@@ -12,7 +12,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             >
             <ImageView
                 android:id="@+id/thumbnail_restaurant"
@@ -44,28 +43,34 @@
                 android:padding="8dp"
                 android:text="Biriyani House"
                 />
+
             <ImageView
                 android:id="@+id/rating_restaurant_image"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_below="@id/category_restaurant"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/category_restaurant"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginTop="-14dp"
+                android:layout_marginEnd="31dp"
+                android:layout_marginRight="31dp"
                 android:layout_marginBottom="4dp"
-                android:src="@drawable/ic_baseline_star"/>
+                android:src="@drawable/ic_baseline_star" />
 
             <TextView
                 android:id="@+id/rating_restaurant_text"
                 android:layout_width="24dp"
-                android:layout_height="16dp"
-                android:text="4.5"
+                android:layout_height="20dp"
+                android:layout_below="@id/category_restaurant"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="-14dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
                 android:layout_marginBottom="4dp"
-                android:layout_below="@id/category_restaurant"/>
+                android:text="4.5" />
 
-<!--            <TextView-->
+            <!--            <TextView-->
 <!--                android:id="@+id/delivery_cost_restaurant"-->
 <!--                style="@style/TextAppearance.AppCompat.Subhead"-->
 <!--                android:layout_width="match_parent"-->

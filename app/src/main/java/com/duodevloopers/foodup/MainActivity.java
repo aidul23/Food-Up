@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -42,16 +43,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        Fragment fragment = new MapFragment();
+//
+//        getSupportFragmentManager().beginTransaction().replace(R.id.map,fragment).commit();
+
         toolbar = findViewById(R.id.toolbarId);
 
 
         Set<Integer> topLevelDestinations = new HashSet<>();
         topLevelDestinations.add(R.id.homeFragment);
-
-
-        //navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-//        NavController navController = navHostFragment.getNavController();
-
 
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations)
                 .setOpenableLayout(drawerLayout)
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navView = findViewById(R.id.navigation_drawer_view);
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        navController.addOnDestinationChangedListener(this);
 
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout);
 
@@ -72,29 +71,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    CompoundButton.OnCheckedChangeListener onCheckedChangeListener = new CompoundButton.OnCheckedChangeListener() {
-//        @Override
-//        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-//             {
-//                if(myMenu != null) {
-//                    if (!buttonView.equals(R.id.cartFragment )) {
-//                        myMenu.findItem(R.id.cartFragment).setVisible(isChecked);
-//                        myMenu.findItem(R.id.cartFragment).setEnabled(isChecked);
-//                    }
-//                }
-//            }
-//    };
-
     //menu option
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.option_menu, menu);
-//        myMenu = menu;
-//        MenuItem item = menu.findItem(R.id.cartFragment);
-//        if (item != null) {
-//            item.setVisible(true);
-//        }
         return true;
     }
 
@@ -119,8 +100,6 @@ public class MainActivity extends AppCompatActivity {
     //toolbar back button
     @Override
     public boolean onSupportNavigateUp() {
-//        navController.navigateUp();
-////        return super.onSupportNavigateUp();
         return NavigationUI.navigateUp(navController, drawerLayout);
     }
 

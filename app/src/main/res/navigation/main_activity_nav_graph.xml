@@ -51,11 +51,14 @@
     <fragment
         android:id="@+id/restaurantFragment"
         android:name="com.duodevloopers.foodup.RestaurantFragment"
-        android:label="fragment_restaurant"
-        tools:layout="@layout/fragment_restaurant" >
+        android:label="Restaurants"
+        tools:layout="@layout/fragment_restaurant">
         <action
             android:id="@+id/action_restaurantFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <argument
+            android:name="restaurantTitle"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"

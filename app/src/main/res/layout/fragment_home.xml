@@ -14,7 +14,7 @@
         app:layout_constraintBottom_toTopOf="@+id/restaurants"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toEndOf="@+id/textView_restaurantNumber"
+        app:layout_constraintStart_toEndOf="@+id/textView_what_you_want"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.4" />
 
@@ -32,7 +32,7 @@
         tools:text="Morning, Aidul" />
 
     <TextView
-        android:id="@+id/textView_restaurantNumber"
+        android:id="@+id/textView_what_you_want"
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="4dp"
@@ -53,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:textSize="24sp"
         android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toBottomOf="@id/textView_restaurantNumber"/>
+        app:layout_constraintTop_toBottomOf="@id/textView_what_you_want"/>
 
 
 

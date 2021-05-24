@@ -1,66 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     >
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/food_icon" />
+    <ImageView
+        android:id="@+id/foodItemImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/food_icon" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Burger"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.043"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/foodItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Burger"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/foodItemImage"
+        app:layout_constraintStart_toEndOf="@+id/foodItemImage"
+        app:layout_constraintTop_toTopOf="@+id/foodItemImage" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="4dp"
-            android:text="300 Tk"
-            android:textColor="#F44336"
-            app:layout_constraintRight_toLeftOf="@id/elegantNumberButton_quantity"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="@+id/textView" />
+    <TextView
+        android:id="@+id/foodItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        tools:text="0 Tk"
+        android:textColor="#F44336"
+        app:layout_constraintBottom_toBottomOf="@+id/foodItemName"
+        app:layout_constraintEnd_toStartOf="@+id/elegantNumberButton_quantity"
+        app:layout_constraintStart_toEndOf="@+id/foodItemName"
+        app:layout_constraintTop_toTopOf="@+id/foodItemName" />
 
-        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-            android:id="@+id/elegantNumberButton_quantity"
-            android:layout_width="102dp"
-            android:layout_height="29dp"
-            android:gravity="center"
-            app:finalNumber="10"
-            app:initialNumber="1"
-            app:backGroundColor="@android:color/holo_red_light"
-            app:layout_constraintBottom_toBottomOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.888"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toTopOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0"/>
-
+    <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+        android:id="@+id/elegantNumberButton_quantity"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        app:backGroundColor="@android:color/holo_red_light"
+        app:finalNumber="10"
+        app:initialNumber="1"
+        app:layout_constraintBottom_toBottomOf="@+id/foodItemName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/foodItemName" />
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

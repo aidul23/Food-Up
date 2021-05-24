@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Model;
 
 public class RestaurantPojo {
     private int mImage;
