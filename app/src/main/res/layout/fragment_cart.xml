@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:text="Total"
-            android:textColor="#F44336"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
         <TextView
@@ -80,7 +80,7 @@
             android:layout_below="@id/view"
             android:layout_alignParentRight="true"
             android:text="330 Taka"
-            android:textColor="#F44336"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
 

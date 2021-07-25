@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.duodevloopers.foodup.Adapter.BannerAdapter;
 import com.duodevloopers.foodup.Adapter.RestaurantAdapter;
 import com.duodevloopers.foodup.Model.RestaurantPojo;
 import com.duodevloopers.foodup.databinding.FragmentHomeBinding;
@@ -49,7 +50,6 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final NavController navController = Navigation.findNavController(view);
 
-
         int currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
         if (currentTime >= 0 && currentTime <= 5) {
@@ -72,6 +72,10 @@ public class HomeFragment extends Fragment {
             binding.textViewWhatYouWant.setText("What's for dinner? There are 20 restaurant in your area");
         }
 
+        binding.bannerViewpager.setPageTransformer(new MyPageTransformer());
+        binding.bannerViewpager.setAdapter(new BannerAdapter());
+        binding.bannerViewpager.setOffscreenPageLimit(3);
+
         ArrayList<RestaurantPojo> restaurantPojoArrayList = new ArrayList<>();
         restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Sultan's Dine", "Biriyani Restaurant", "5.0"));
         restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Bir Chottrola", "Indo Bangla", "4.5"));
@@ -90,11 +94,6 @@ public class HomeFragment extends Fragment {
         binding.homeRecyclerView.setAdapter(adapter);
         binding.homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-        List<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel("https://image.shutterstock.com/image-photo/various-asian-meals-on-rustic-260nw-1125066479.jpg"));
-        slideModels.add(new SlideModel("https://image.shutterstock.com/image-photo/various-asian-meals-on-rustic-260nw-1075946798.jpg"));
-        slideModels.add(new SlideModel("https://image.shutterstock.com/image-photo/italian-food-background-pasta-meat-260nw-678135781.jpg"));
-        binding.homeImageSlider.setImageList(slideModels, true);
     }
 
     private void setOnCliskListener() {
@@ -102,7 +101,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(String resName) {
                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-                NavDirections action = HomeFragmentDirections.actionHomeFragmentToRestaurantFragment(resName);
+                NavDirections action = (NavDirections) HomeFragmentDirections.actionHomeFragmentToRestaurantFragment(resName);
                 navController.navigate(action);
             }
         });
