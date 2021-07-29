@@ -10,6 +10,8 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -28,7 +30,13 @@ public class RestaurantFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
     }
 
     @Override
@@ -53,8 +61,6 @@ public class RestaurantFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         binding.restaurantName.setText(RestaurantFragmentArgs.fromBundle(getArguments()).getRestaurantTitle());
         Bundle args = getArguments();
-
-
 
         binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override

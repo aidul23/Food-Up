@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.duodevloopers.foodup.Adapter.BannerAdapter;
+import com.duodevloopers.foodup.Adapter.PopularItemAdapter;
 import com.duodevloopers.foodup.Adapter.RestaurantAdapter;
+import com.duodevloopers.foodup.Model.PopularItem;
 import com.duodevloopers.foodup.Model.RestaurantPojo;
 import com.duodevloopers.foodup.databinding.FragmentHomeBinding;
 
@@ -28,6 +30,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RestaurantAdapter adapter;
+    private PopularItemAdapter popularItemAdapter;
     private FragmentHomeBinding binding;
     private RestaurantAdapter.RecyclerViewClickListener listener;
 
@@ -75,18 +78,32 @@ public class HomeFragment extends Fragment {
         binding.bannerViewpager.setPageTransformer(new MyPageTransformer());
         binding.bannerViewpager.setAdapter(new BannerAdapter());
         binding.bannerViewpager.setOffscreenPageLimit(3);
+        binding.bannerViewpager.setCurrentItem(1);
 
         ArrayList<RestaurantPojo> restaurantPojoArrayList = new ArrayList<>();
-        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Sultan's Dine", "Biriyani Restaurant", "5.0"));
-        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Bir Chottrola", "Indo Bangla", "4.5"));
-        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Barcode", "Italian", "5.0"));
-        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Mughal", "Indian", "5.0"));
+        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Kashbon", "Cafe and Hotel", "5.0"));
+        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Allah'r Dan", "Bangla Hotel", "4.5"));
+        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Central Cafeteria", "Cafe", "5.0"));
+        restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Mannan Hotel and Tea ", "Bangla Hotel", "5.0"));
 
 
 
         binding.homeRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         adapter = new RestaurantAdapter(restaurantPojoArrayList);
+
+
+        List<PopularItem> popularItems = new ArrayList<>();
+        popularItems.add(new PopularItem("Burger","This is a good burger!","250",R.drawable.ic_burger));
+        popularItems.add(new PopularItem("Pizza","This is a good pizza!","450",R.drawable.ic_pizza));
+        popularItems.add(new PopularItem("Sandwich","This is a good sandwich!","50",R.drawable.ic_sandwich));
+        popularItems.add(new PopularItem("Biriyani","This is a good biriyani!","200",R.drawable.ic_biryani));
+        popularItems.add(new PopularItem("Shingara","This is a good shingara!","5",R.drawable.ic_samosa));
+
+//        binding.popularItemRecyclerview.setHasFixedSize(true);
+        popularItemAdapter = new PopularItemAdapter(popularItems);
+        binding.popularItemRecyclerview.setAdapter(popularItemAdapter);
+
 
         setOnCliskListener();
 

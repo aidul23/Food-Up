@@ -63,12 +63,15 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
                 isSelected = true;
                 if(isSelected){
                     if(selectedItem.contains(mRestaurantItemPojoArrayList.get(position))){
-                        holder.cardView.setCardBackgroundColor(Color.TRANSPARENT);
-                        holder.cardView.setCardElevation(4);
+                        holder.cardView.setCardBackgroundColor(Color.WHITE);
+                        holder.mFoodName.setTextColor(Color.BLACK);
+                        holder.mFoodPrice.setTextColor(Color.rgb(254, 114, 76));
                         selectedItem.remove(mRestaurantItemPojoArrayList.get(position));
                     } else{
                         listener.onClick(mRestaurantItemPojoArrayList.get(position));
-                        holder.cardView.setCardBackgroundColor(Color.LTGRAY);
+                        holder.cardView.setCardBackgroundColor(Color.rgb(255, 197, 41));
+                        holder.mFoodName.setTextColor(Color.WHITE);
+                        holder.mFoodPrice.setTextColor(Color.WHITE);
                         selectedItem.add(mRestaurantItemPojoArrayList.get(position));
                     }
 

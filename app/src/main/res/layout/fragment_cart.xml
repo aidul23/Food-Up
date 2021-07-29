@@ -46,16 +46,16 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/delivery_charge"
+            android:id="@+id/discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/sub_total"
             android:paddingBottom="8dp"
-            android:text="Delivery Charge"
+            android:text="Discount"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/delivery_charge_amount"
+            android:id="@+id/discount_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/sub_total_amount"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:layout_alignParentRight="true"
-            android:text="330 Taka"
+            android:text="0 Taka"
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
 
@@ -88,7 +88,7 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/delivery_charge"
+            android:layout_below="@id/discount"
             android:layout_marginBottom="8dp"
             android:background="#000000" />
 
@@ -98,8 +98,10 @@
         android:id="@+id/proceed_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="#F44336"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_background"
         android:text="Click to Proceed"
         android:textColor="#ffff"
         app:layout_constraintBottom_toBottomOf="parent"

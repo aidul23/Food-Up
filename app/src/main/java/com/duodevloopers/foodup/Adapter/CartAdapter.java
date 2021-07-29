@@ -23,6 +23,7 @@ import static android.content.ContentValues.TAG;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private List<RestaurantItemPojo> myAppArrayList;
+    private CartItemClickListener listener;
 
     public CartAdapter(List<RestaurantItemPojo> myAppArrayList) {
         this.myAppArrayList = myAppArrayList;
@@ -46,7 +47,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.mElegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
+//                Log.d(TAG, "onValueChange: new value "+newValue);
+//                Log.d(TAG, "onValueChange: old value "+oldValue);
+
                 holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice() * newValue)));
+
+                if(oldValue>newValue){
+//                    Log.d(TAG, "onValueChange: new value(decrease) "+newValue);
+//                    Log.d(TAG, "onValueChange: old value(decrease) "+oldValue);
+                    listener.onDecreaseItem(currentItem.getmFoodPrice() * newValue);
+                    Log.d(TAG, "onValueChange: decrease "+currentItem.getmFoodPrice()*newValue);
+
+                } else if(oldValue < newValue){
+//                    Log.d(TAG, "onValueChange: new value(increase) "+newValue);
+//                    Log.d(TAG, "onValueChange: old value(increase) "+newValue);
+                    listener.onIncreaseItem((currentItem.getmFoodPrice()*newValue) - (currentItem.getmFoodPrice()));
+                    Log.d(TAG, "onValueChange: increase "+((currentItem.getmFoodPrice()*newValue) - (currentItem.getmFoodPrice())));
+
+                }
+
             }
         });
     }
@@ -68,6 +87,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             mFoodPrice = itemView.findViewById(R.id.foodItemPrice);
             mElegantNumberButton = itemView.findViewById(R.id.elegantNumberButton_quantity);
         }
+    }
+
+    public interface CartItemClickListener {
+        void onClick();
+        void onIncreaseItem(int price);
+        void onDecreaseItem(int price);
+    }
+
+    public void setListener(CartAdapter.CartItemClickListener listener) {
+        this.listener = listener;
     }
 
 }

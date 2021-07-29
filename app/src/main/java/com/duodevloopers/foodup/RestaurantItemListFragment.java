@@ -80,6 +80,7 @@ public class RestaurantItemListFragment extends Fragment {
                 Log.d(TAG, "onClick: "+restaurantItemPojo.getmFoodName());
                 MyApp.addItem(restaurantItemPojo);
             }
+
         });
     }
 }

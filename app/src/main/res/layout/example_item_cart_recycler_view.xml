@@ -34,13 +34,12 @@
         android:id="@+id/foodItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        tools:text="0 Tk"
+        android:layout_marginEnd="16dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="@+id/foodItemName"
         app:layout_constraintEnd_toStartOf="@+id/elegantNumberButton_quantity"
-        app:layout_constraintStart_toEndOf="@+id/foodItemName"
-        app:layout_constraintTop_toTopOf="@+id/foodItemName" />
+        app:layout_constraintTop_toTopOf="@+id/foodItemName"
+        tools:text="0 Tk" />
 
     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
         android:id="@+id/elegantNumberButton_quantity"
