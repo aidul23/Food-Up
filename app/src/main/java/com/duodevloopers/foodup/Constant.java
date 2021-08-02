@@ -7,7 +7,11 @@ public class Constant {
 
     public static int USER_EMAIL_VALUE = 1;
 
+    public static int USER_DEPT_VALUE = 2;
+
     public static String USER_EMAIL = "user-email";
 
-    public static int USER_DEPT_VALUE = 2;
+    public static String USER_NAME = "user-name";
+
+    public static String USER_DEPT = "user-dept";
 }

@@ -25,7 +25,7 @@
         android:layout_marginStart="8dp"
         android:text="Burger"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/foodItemImage"
         app:layout_constraintStart_toEndOf="@+id/foodItemImage"
         app:layout_constraintTop_toTopOf="@+id/foodItemImage" />

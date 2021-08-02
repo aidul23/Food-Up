@@ -15,7 +15,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/example_item_cart_recycler_view" />
+         />
+
+    <ImageView
+        android:id="@+id/image_view_cart"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/ic_cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_view_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cart is Empty!"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/image_view_cart"
+        app:layout_constraintStart_toStartOf="@id/image_view_cart"
+        app:layout_constraintTop_toBottomOf="@id/image_view_cart"
+        android:visibility="gone"/>
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -61,7 +84,7 @@
             android:layout_below="@id/sub_total_amount"
             android:layout_alignParentRight="true"
             android:paddingTop="8dp"
-            android:text="30 Tk"
+            android:text="0 Tk"
             android:textSize="18sp" />
 
         <TextView
@@ -70,8 +93,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/view"
             android:text="Total"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/total_amount"
@@ -80,8 +103,8 @@
             android:layout_below="@id/view"
             android:layout_alignParentRight="true"
             android:text="0 Taka"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
 
         <View

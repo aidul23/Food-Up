@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,7 @@ import com.duodevloopers.foodup.databinding.FragmentProfileBinding;
 import org.jetbrains.annotations.NotNull;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
+    private static final String TAG = "ProfileFragment";
     private FragmentProfileBinding binding;
     private NavController navController;
 
@@ -68,15 +70,17 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.edit_username:
                 bundle.putInt(Constant.USER_EDIT_SELECTION, Constant.USER_NAME_VALUE);
+                bundle.putString(Constant.USER_NAME, (String) binding.username.getText());
                 navController.navigate(R.id.action_profileFragment_to_editUserProfileFragment, bundle);
                 break;
             case R.id.edit_user_email:
                 bundle.putInt(Constant.USER_EDIT_SELECTION, Constant.USER_EMAIL_VALUE);
-//                bundle.putString(Constant.USER_EMAIL,binding.userEmail.toString());
+                bundle.putString(Constant.USER_EMAIL, (String) binding.userEmail.getText());
                 navController.navigate(R.id.action_profileFragment_to_editUserProfileFragment, bundle);
                 break;
             case R.id.edit_user_dept:
                 bundle.putInt(Constant.USER_EDIT_SELECTION, Constant.USER_DEPT_VALUE);
+                bundle.putString(Constant.USER_DEPT, (String) binding.userDept.getText());
                 navController.navigate(R.id.action_profileFragment_to_editUserProfileFragment, bundle);
                 break;
         }

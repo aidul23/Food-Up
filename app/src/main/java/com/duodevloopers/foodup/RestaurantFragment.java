@@ -70,7 +70,7 @@ public class RestaurantFragment extends Fragment {
                     NavDirections action = RestaurantFragmentDirections.actionRestaurantFragmentToCartFragment();
                     navController.navigate(action);
                 }else {
-                    Toast.makeText(requireContext(), "Your Cart is empty!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Beta kuch add tuo karle", Toast.LENGTH_SHORT).show();
                 }
             }
         });

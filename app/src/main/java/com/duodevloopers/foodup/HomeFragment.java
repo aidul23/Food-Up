@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -33,11 +34,12 @@ public class HomeFragment extends Fragment {
     private PopularItemAdapter popularItemAdapter;
     private FragmentHomeBinding binding;
     private RestaurantAdapter.RecyclerViewClickListener listener;
+    private MainActivityViewModel model;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        model = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
     @Override
@@ -46,6 +48,8 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
         return binding.getRoot();
+
+
     }
 
     @Override
@@ -87,29 +91,30 @@ public class HomeFragment extends Fragment {
         restaurantPojoArrayList.add(new RestaurantPojo(R.drawable.food, "Mannan Hotel and Tea ", "Bangla Hotel", "5.0"));
 
 
-
         binding.homeRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         adapter = new RestaurantAdapter(restaurantPojoArrayList);
 
 
         List<PopularItem> popularItems = new ArrayList<>();
-        popularItems.add(new PopularItem("Burger","This is a good burger!","250",R.drawable.ic_burger));
-        popularItems.add(new PopularItem("Pizza","This is a good pizza!","450",R.drawable.ic_pizza));
-        popularItems.add(new PopularItem("Sandwich","This is a good sandwich!","50",R.drawable.ic_sandwich));
-        popularItems.add(new PopularItem("Biriyani","This is a good biriyani!","200",R.drawable.ic_biryani));
-        popularItems.add(new PopularItem("Shingara","This is a good shingara!","5",R.drawable.ic_samosa));
+        popularItems.add(new PopularItem("Burger", "This is a good burger!", "250", R.drawable.ic_burger));
+        popularItems.add(new PopularItem("Pizza", "This is a good pizza!", "450", R.drawable.ic_pizza));
+        popularItems.add(new PopularItem("Sandwich", "This is a good sandwich!", "50", R.drawable.ic_sandwich));
+        popularItems.add(new PopularItem("Biriyani", "This is a good biriyani!", "200", R.drawable.ic_biryani));
+        popularItems.add(new PopularItem("Shingara", "This is a good shingara!", "5", R.drawable.ic_samosa));
 
-//        binding.popularItemRecyclerview.setHasFixedSize(true);
+
+        binding.popularItemRecyclerview.setHasFixedSize(true);
         popularItemAdapter = new PopularItemAdapter(popularItems);
         binding.popularItemRecyclerview.setAdapter(popularItemAdapter);
 
+        setOnPopularItemClickListener();
 
         setOnCliskListener();
 
-        binding.homeRecyclerView.setLayoutManager(layoutManager);
-        binding.homeRecyclerView.setAdapter(adapter);
         binding.homeRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        binding.homeRecyclerView.setAdapter(adapter);
+
 
     }
 
@@ -120,6 +125,15 @@ public class HomeFragment extends Fragment {
                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
                 NavDirections action = (NavDirections) HomeFragmentDirections.actionHomeFragmentToRestaurantFragment(resName);
                 navController.navigate(action);
+            }
+        });
+    }
+
+    private void setOnPopularItemClickListener() {
+        popularItemAdapter.setPopularItemListener(new PopularItemAdapter.PopularItemRecyclerViewClickListener() {
+            @Override
+            public void onClick(PopularItem popularItem) {
+                model.getPopularItemMutableLiveData().postValue(popularItem);
             }
         });
     }

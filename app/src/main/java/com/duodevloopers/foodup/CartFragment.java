@@ -55,6 +55,8 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(getLayoutInflater());
         return binding.getRoot();
+
+
     }
 
     @Override
@@ -62,6 +64,20 @@ public class CartFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Log.d(TAG, "onViewCreated: "+MyApp.getmRestaurantItemPojo().size());
+
+        if(MyApp.getmRestaurantItemPojo().size() == 0) {
+            binding.subTotal.setVisibility(View.GONE);
+            binding.subTotalAmount.setVisibility(View.GONE);
+            binding.discount.setVisibility(View.GONE);
+            binding.discountAmount.setVisibility(View.GONE);
+            binding.total.setVisibility(View.GONE);
+            binding.totalAmount.setVisibility(View.GONE);
+            binding.view.setVisibility(View.GONE);
+            binding.proceedButton.setVisibility(View.GONE);
+
+            binding.imageViewCart.setVisibility(View.VISIBLE);
+            binding.textViewCart.setVisibility(View.VISIBLE);
+        }
 
         adapter = new CartAdapter(MyApp.getmRestaurantItemPojo());
         binding.cartRecyclerView.setAdapter(adapter);
@@ -71,7 +87,13 @@ public class CartFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 binding.subTotalAmount.setText(String.format("%d Tk",integer));
-                binding.totalAmount.setText(String.format("%d Tk",integer - 30));
+                if(integer >= 50){
+                    binding.discountAmount.setText("30 Tk");
+                    binding.totalAmount.setText(String.format("%d Tk",integer - 30));
+                } else {
+                    binding.totalAmount.setText(String.format("%d Tk",integer));
+                }
+
             }
         });
 
@@ -91,10 +113,6 @@ public class CartFragment extends Fragment {
                 model.decreaseSubTotal(price);
             }
         });
-
-
-//        binding.subTotalAmount.setText(String.format("%d Tk",totalCost()));
-//        binding.totalAmount.setText(String.format("%d Tk",totalCost() - 30));
 
     }
 

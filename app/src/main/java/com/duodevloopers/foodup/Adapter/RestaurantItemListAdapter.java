@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
@@ -63,24 +64,24 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
                 isSelected = true;
                 if(isSelected){
                     if(selectedItem.contains(mRestaurantItemPojoArrayList.get(position))){
-                        holder.cardView.setCardBackgroundColor(Color.WHITE);
-                        holder.mFoodName.setTextColor(Color.BLACK);
-                        holder.mFoodPrice.setTextColor(Color.rgb(254, 114, 76));
-                        selectedItem.remove(mRestaurantItemPojoArrayList.get(position));
+//                        holder.cardView.setCardBackgroundColor(Color.WHITE);
+//                        holder.mFoodName.setTextColor(Color.BLACK);
+//                        holder.mFoodPrice.setTextColor(Color.rgb(254, 114, 76));
+//                        selectedItem.remove(mRestaurantItemPojoArrayList.get(position));
+
                     } else{
                         listener.onClick(mRestaurantItemPojoArrayList.get(position));
-                        holder.cardView.setCardBackgroundColor(Color.rgb(255, 197, 41));
-                        holder.mFoodName.setTextColor(Color.WHITE);
-                        holder.mFoodPrice.setTextColor(Color.WHITE);
-                        selectedItem.add(mRestaurantItemPojoArrayList.get(position));
+                        Toast.makeText(v.getContext(), mRestaurantItemPojoArrayList.get(position).getmFoodName()+" is selected", Toast.LENGTH_SHORT).show();
+//                        holder.cardView.setCardBackgroundColor(Color.rgb(255, 197, 41));
+//                        holder.mFoodName.setTextColor(Color.WHITE);
+//                        holder.mFoodPrice.setTextColor(Color.WHITE);
+//                        selectedItem.add(mRestaurantItemPojoArrayList.get(position));
                     }
 
                     if(selectedItem.size() == 0)
                         isSelected = false;
                 }
-                else {
 
-                }
             }
         });
     }
@@ -98,5 +99,6 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
     public void setListener(RestaurantItemListAdapter.RecyclerViewListItemClickListener listener) {
         this.listener = listener;
     }
+
 
 }

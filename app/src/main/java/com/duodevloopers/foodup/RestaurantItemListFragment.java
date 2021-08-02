@@ -78,7 +78,10 @@ public class RestaurantItemListFragment extends Fragment {
             @Override
             public void onClick(RestaurantItemPojo restaurantItemPojo) {
                 Log.d(TAG, "onClick: "+restaurantItemPojo.getmFoodName());
-                MyApp.addItem(restaurantItemPojo);
+
+
+                    MyApp.addItem(restaurantItemPojo);
+
             }
 
         });
