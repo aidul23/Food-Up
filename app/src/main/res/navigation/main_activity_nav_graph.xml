@@ -20,8 +20,8 @@
         android:label="Cart"
         tools:layout="@layout/fragment_cart" >
         <action
-            android:id="@+id/action_cartFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            android:id="@+id/action_cartFragment_to_summaryFragment"
+            app:destination="@id/summaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -38,9 +38,9 @@
         android:label="Order"
         tools:layout="@layout/fragment_order" />
     <fragment
-        android:id="@+id/faqFragment"
-        android:name="com.duodevloopers.foodup.FaqFragment"
-        android:label="FAQ"
+        android:id="@+id/balanceFragment"
+        android:name="com.duodevloopers.foodup.BalanceFragment"
+        android:label="Balance"
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/termsFragment"
@@ -65,10 +65,15 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/mapFragment"
-        android:name="com.duodevloopers.foodup.MapFragment"
-        android:label="fragment_map"
-        tools:layout="@layout/fragment_map" />
+        android:id="@+id/summaryFragment"
+        android:name="com.duodevloopers.foodup.SummaryFragment"
+        android:label="Order Summary"
+        tools:layout="@layout/fragment_summary" >
+        <argument
+            android:name="SummaryItemPojo"
+            app:argType="com.duodevloopers.foodup.Model.SummaryItemPojo"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"
         android:name="com.duodevloopers.foodup.EditUserProfileFragment"

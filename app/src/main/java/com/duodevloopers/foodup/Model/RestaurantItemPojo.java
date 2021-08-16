@@ -1,15 +1,47 @@
 package com.duodevloopers.foodup.Model;
 
-public class RestaurantItemPojo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class RestaurantItemPojo implements Parcelable {
     private int mImage;
     private String mFoodName;
     private int mFoodPrice;
+    private List<RestaurantItemPojo> list = new ArrayList<>();
+
 
     public RestaurantItemPojo(int mImage, String mFoodName, int mFoodPrice) {
         this.mImage = mImage;
         this.mFoodName = mFoodName;
         this.mFoodPrice = mFoodPrice;
     }
+
+    public RestaurantItemPojo(List<RestaurantItemPojo> list) {
+        this.list = list;
+    }
+
+    protected RestaurantItemPojo(Parcel in) {
+        mImage = in.readInt();
+        mFoodName = in.readString();
+        mFoodPrice = in.readInt();
+        list = in.createTypedArrayList(RestaurantItemPojo.CREATOR);
+    }
+
+    public static final Creator<RestaurantItemPojo> CREATOR = new Creator<RestaurantItemPojo>() {
+        @Override
+        public RestaurantItemPojo createFromParcel(Parcel in) {
+            return new RestaurantItemPojo(in);
+        }
+
+        @Override
+        public RestaurantItemPojo[] newArray(int size) {
+            return new RestaurantItemPojo[size];
+        }
+    };
 
     public int getmImage() {
         return mImage;
@@ -33,5 +65,19 @@ public class RestaurantItemPojo {
 
     public void setmFoodPrice(int mFoodPrice) {
         this.mFoodPrice = mFoodPrice;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mImage);
+        dest.writeString(mFoodName);
+        dest.writeInt(mFoodPrice);
+        dest.writeTypedList(list);
     }
 }

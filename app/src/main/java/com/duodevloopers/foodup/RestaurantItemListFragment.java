@@ -59,10 +59,10 @@ public class RestaurantItemListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         ArrayList<RestaurantItemPojo> restaurantItemPojoArrayList = new ArrayList<>();
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Burger", 230));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Fry", 200));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Drinks", 30));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Biriyani", 250));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "White rice & Chicken ", 50));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Khichuri & Chicken", 60));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Chicken Biriyani", 80));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Mineral Water", 15));
 
 
 
@@ -78,7 +78,6 @@ public class RestaurantItemListFragment extends Fragment {
             @Override
             public void onClick(RestaurantItemPojo restaurantItemPojo) {
                 Log.d(TAG, "onClick: "+restaurantItemPojo.getmFoodName());
-
 
                     MyApp.addItem(restaurantItemPojo);
 

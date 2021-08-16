@@ -19,6 +19,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity  {
         Set<Integer> topLevelDestinations = new HashSet<>();
         topLevelDestinations.add(R.id.homeFragment);
 
+
+
         appBarConfiguration = new AppBarConfiguration.Builder(topLevelDestinations)
                 .setOpenableLayout(drawerLayout)
                 .build();
@@ -92,6 +96,8 @@ public class MainActivity extends AppCompatActivity  {
         sheetBehavior.setHideable(true);
         sheetBehavior.addBottomSheetCallback(callback);
         sheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+
     }
 
     // listener for the bottom sheet

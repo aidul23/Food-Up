@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class FaqFragment extends Fragment {
+public class BalanceFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

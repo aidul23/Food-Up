@@ -91,7 +91,7 @@
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view"
+            android:layout_below="@id/discount"
             android:text="Total"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -100,20 +100,14 @@
             android:id="@+id/total_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view"
+            android:layout_below="@id/discount_amount"
             android:layout_alignParentRight="true"
-            android:text="0 Taka"
+            android:text="0 Tk"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
 
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/discount"
-            android:layout_marginBottom="8dp"
-            android:background="#000000" />
+
 
     </RelativeLayout>
 
