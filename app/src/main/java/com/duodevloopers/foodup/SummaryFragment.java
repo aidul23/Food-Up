@@ -116,7 +116,4 @@ public class SummaryFragment extends Fragment{
     }
 
 
-
-
-
 }
