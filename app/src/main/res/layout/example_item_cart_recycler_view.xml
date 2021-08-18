@@ -26,19 +26,31 @@
         android:text="Burger"
         android:textSize="18sp"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/foodItemImage"
         app:layout_constraintStart_toEndOf="@+id/foodItemImage"
         app:layout_constraintTop_toTopOf="@+id/foodItemImage" />
+
+    <TextView
+        android:id="@+id/foodItemdes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Chicken Patty, Slice Cheese, Onion"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toBottomOf="@id/foodItemName"
+        app:layout_constraintStart_toEndOf="@+id/foodItemImage"
+        app:layout_constraintBottom_toBottomOf="@id/foodItemImage"
+        app:layout_constraintEnd_toStartOf="@id/elegantNumberButton_quantity"
+        android:layout_marginEnd="8dp"
+        android:maxLines="3"/>
 
     <TextView
         android:id="@+id/foodItemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/foodItemName"
-        app:layout_constraintEnd_toStartOf="@+id/elegantNumberButton_quantity"
-        app:layout_constraintTop_toTopOf="@+id/foodItemName"
+        app:layout_constraintStart_toEndOf="@id/foodItemImage"
+        app:layout_constraintTop_toBottomOf="@id/foodItemdes"
         tools:text="0 Tk" />
 
     <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
@@ -46,13 +58,13 @@
         android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         app:backGroundColor="@color/colorPrimary"
         app:finalNumber="10"
         app:initialNumber="1"
-        app:layout_constraintBottom_toBottomOf="@+id/foodItemName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/foodItemName" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

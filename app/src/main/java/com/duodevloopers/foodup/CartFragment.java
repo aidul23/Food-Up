@@ -37,7 +37,7 @@ public class CartFragment extends Fragment {
     private CartAdapter adapter;
     private FragmentCartBinding binding;
     private MainActivityViewModel model;
-
+    Bundle bundle = new Bundle();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,11 +88,17 @@ public class CartFragment extends Fragment {
         binding.cartRecyclerView.setHasFixedSize(true);
 
         model.getSubTotal().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+
             @Override
             public void onChanged(Integer integer) {
                 binding.subTotalAmount.setText(String.format("%d Tk",integer));
+
+
+                bundle.putString("subtotal", String.valueOf(integer));
+
+
                 if(integer >= 50){
-                    binding.discountAmount.setText("30 Tk");
+                    binding.discountAmount.setText("-30 Tk");
                     binding.totalAmount.setText(String.format("%d Tk",integer - 30));
                 } else {
                     binding.totalAmount.setText(String.format("%d Tk",integer));
@@ -133,9 +139,10 @@ public class CartFragment extends Fragment {
 //                RestaurantItemPojo restaurantItemPojo = new RestaurantItemPojo(0,"Chicken Biriyani",80);
                 SummaryItemPojo summaryItemPojo = new SummaryItemPojo(MyApp.getmRestaurantItemPojo());
 
-                CartFragmentDirections.ActionCartFragmentToSummaryFragment action = CartFragmentDirections.actionCartFragmentToSummaryFragment(summaryItemPojo);
+                CartFragmentDirections.ActionCartFragmentToSummaryFragment action = CartFragmentDirections.actionCartFragmentToSummaryFragment(summaryItemPojo, bundle.getString("subtotal"));
 //                NavDirections action = CartFragmentDirections.actionCartFragmentToSummaryFragment();
                 navController.navigate(action);
+
             }
         });
 

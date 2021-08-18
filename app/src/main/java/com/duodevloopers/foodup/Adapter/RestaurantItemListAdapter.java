@@ -27,7 +27,7 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
 
     public class RestaurantItemListViewHolder extends RecyclerView.ViewHolder {
         public ImageView mFoodImageView;
-        public TextView mFoodName, mFoodPrice;
+        public TextView mFoodName,mFoodDes, mFoodPrice;
         private CardView cardView;
 
         public RestaurantItemListViewHolder(@NonNull View itemView) {
@@ -36,6 +36,7 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
             mFoodImageView = itemView.findViewById(R.id.foodImage);
             mFoodName = itemView.findViewById(R.id.foodName);
             mFoodPrice = itemView.findViewById(R.id.foodPrice);
+            mFoodDes = itemView.findViewById(R.id.food_des);
         }
     }
 
@@ -56,6 +57,7 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
 
         holder.mFoodImageView.setImageResource(currentItem.getmImage());
         holder.mFoodName.setText(currentItem.getmFoodName());
+        holder.mFoodDes.setText(currentItem.getmFoodDes());
         holder.mFoodPrice.setText(String.format("%d Tk",currentItem.getmFoodPrice()));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {

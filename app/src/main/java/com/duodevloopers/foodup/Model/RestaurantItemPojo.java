@@ -10,13 +10,15 @@ import java.util.Map;
 public class RestaurantItemPojo implements Parcelable {
     private int mImage;
     private String mFoodName;
+    private String mFoodDes;
     private int mFoodPrice;
     private List<RestaurantItemPojo> list = new ArrayList<>();
 
 
-    public RestaurantItemPojo(int mImage, String mFoodName, int mFoodPrice) {
+    public RestaurantItemPojo(int mImage, String mFoodName, String mFoodDes, int mFoodPrice) {
         this.mImage = mImage;
         this.mFoodName = mFoodName;
+        this.mFoodDes = mFoodDes;
         this.mFoodPrice = mFoodPrice;
     }
 
@@ -24,9 +26,11 @@ public class RestaurantItemPojo implements Parcelable {
         this.list = list;
     }
 
+
     protected RestaurantItemPojo(Parcel in) {
         mImage = in.readInt();
         mFoodName = in.readString();
+        mFoodDes = in.readString();
         mFoodPrice = in.readInt();
         list = in.createTypedArrayList(RestaurantItemPojo.CREATOR);
     }
@@ -67,6 +71,14 @@ public class RestaurantItemPojo implements Parcelable {
         this.mFoodPrice = mFoodPrice;
     }
 
+    public String getmFoodDes() {
+        return mFoodDes;
+    }
+
+    public void setmFoodDes(String mFoodDes) {
+        this.mFoodDes = mFoodDes;
+    }
+
 
     @Override
     public int describeContents() {
@@ -77,6 +89,7 @@ public class RestaurantItemPojo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mImage);
         dest.writeString(mFoodName);
+        dest.writeString(mFoodDes);
         dest.writeInt(mFoodPrice);
         dest.writeTypedList(list);
     }

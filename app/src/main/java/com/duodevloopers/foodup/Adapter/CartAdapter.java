@@ -1,5 +1,8 @@
 package com.duodevloopers.foodup.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.RestaurantPojo;
+import com.duodevloopers.foodup.Model.SummaryItemPojo;
 import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
 
@@ -17,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static android.content.ContentValues.TAG;
@@ -24,6 +29,7 @@ import static android.content.ContentValues.TAG;
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
     private List<RestaurantItemPojo> myAppArrayList;
     private CartItemClickListener listener;
+
 
     public CartAdapter(List<RestaurantItemPojo> myAppArrayList) {
         this.myAppArrayList = myAppArrayList;
@@ -42,7 +48,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         final RestaurantItemPojo currentItem = myAppArrayList.get(position);
 
         holder.mFoodImageView.setImageResource(currentItem.getmImage());
-        holder.mfoodName.setText(currentItem.getmFoodName());
+        holder.mFoodName.setText(currentItem.getmFoodName());
+        holder.mFoodDes.setText(currentItem.getmFoodDes());
         holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice())));
         holder.mElegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
@@ -51,6 +58,10 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 //                Log.d(TAG, "onValueChange: old value "+oldValue);
 
                 holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice() * newValue)));
+//                String amount = String.valueOf(newValue);
+//                Intent intent = new Intent();
+//                intent.putExtra("amount",amount);
+//                LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
 
                 if(oldValue>newValue){
 //                    Log.d(TAG, "onValueChange: new value(decrease) "+newValue);
@@ -77,13 +88,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
         public ImageView mFoodImageView;
-        public TextView mfoodName, mFoodPrice;
+        public TextView mFoodName, mFoodDes, mFoodPrice;
         public ElegantNumberButton mElegantNumberButton;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             mFoodImageView = itemView.findViewById(R.id.foodItemImage);
-            mfoodName = itemView.findViewById(R.id.foodItemName);
+            mFoodName = itemView.findViewById(R.id.foodItemName);
+            mFoodDes = itemView.findViewById(R.id.foodItemdes);
             mFoodPrice = itemView.findViewById(R.id.foodItemPrice);
             mElegantNumberButton = itemView.findViewById(R.id.elegantNumberButton_quantity);
         }

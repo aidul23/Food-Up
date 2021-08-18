@@ -70,9 +70,12 @@
         android:label="Order Summary"
         tools:layout="@layout/fragment_summary" >
         <argument
-            android:name="SummaryItemPojo"
+            android:name="SummaryItempojo"
             app:argType="com.duodevloopers.foodup.Model.SummaryItemPojo"
             app:nullable="true" />
+        <argument
+            android:name="Subtotal"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"

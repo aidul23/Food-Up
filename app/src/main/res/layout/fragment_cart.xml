@@ -94,7 +94,7 @@
             android:layout_below="@id/discount"
             android:text="Total"
             android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/total_amount"
@@ -104,7 +104,7 @@
             android:layout_alignParentRight="true"
             android:text="0 Tk"
             android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
 
 

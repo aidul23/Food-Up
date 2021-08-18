@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -78,6 +79,7 @@ public class SummaryFragment extends Fragment{
 
     private FragmentSummaryBinding binding;
     private SummaryItemListAdapter adapter;
+    private CartAdapter cartAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,12 +108,21 @@ public class SummaryFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
         SummaryFragmentArgs args = SummaryFragmentArgs.fromBundle(getArguments());
-        SummaryItemPojo summaryItemPojo = args.getSummaryItemPojo();
+        SummaryItemPojo summaryItemPojo = args.getSummaryItempojo();
+
+        String subTotal = args.getSubtotal();
+        binding.subTotalAmount.setText(subTotal+" Tk");
+        binding.discountAmount.setText("-30 Tk");
+        if(Integer.valueOf(subTotal) >= 50){
+            binding.totalAmount.setText(Integer.valueOf(subTotal) - 30+" Tk");
+        }
 
 
         adapter = new SummaryItemListAdapter(summaryItemPojo.getList());
         binding.summaryItemRecyclerView.setAdapter(adapter);
         binding.summaryItemRecyclerView.setHasFixedSize(true);
+
+        ;
 
     }
 

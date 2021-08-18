@@ -8,6 +8,7 @@ import java.util.List;
 public class SummaryItemPojo implements Parcelable {
     private List<RestaurantItemPojo> list;
 
+
     public List<RestaurantItemPojo> getList() {
         return list;
     }
