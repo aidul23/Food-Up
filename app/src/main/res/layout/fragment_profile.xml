@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
         android:layout_width="120dp"
         android:layout_height="120dp"
@@ -15,6 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular"
         />
 
     <ImageView
@@ -25,6 +26,7 @@
         android:layout_margin="8dp"
         android:padding="3dp"
         android:elevation="4dp"
+        android:contextClickable="true"
         android:src="@drawable/ic_edit"
         android:clickable="true"
         android:focusable="true"
@@ -61,7 +63,6 @@
                     android:padding="16dp">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Name" />
@@ -71,11 +72,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Aidul Islam"
+                        android:text="Md. Aidul Islam"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
-
-
                 </LinearLayout>
 
                 <ImageView
@@ -83,10 +82,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_button_background"
+                    android:padding="3dp"
+                    android:longClickable="true"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_edit" />
-
 
             </LinearLayout>
 
@@ -137,6 +138,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_button_background"
+                    android:padding="3dp"
+                    android:longClickable="true"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_edit" />
@@ -190,6 +194,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:background="@drawable/edit_button_background"
+                    android:padding="3dp"
+                    android:longClickable="true"
                     android:clickable="true"
                     android:focusable="true"
                     android:src="@drawable/ic_edit" />

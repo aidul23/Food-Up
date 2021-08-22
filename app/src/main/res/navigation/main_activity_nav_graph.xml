@@ -76,10 +76,18 @@
         <argument
             android:name="Subtotal"
             app:argType="string" />
+        <action
+            android:id="@+id/action_summaryFragment_to_orderStatusFragment"
+            app:destination="@id/orderStatusFragment" />
     </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"
         android:name="com.duodevloopers.foodup.EditUserProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_user_profile" />
+    <fragment
+        android:id="@+id/orderStatusFragment"
+        android:name="com.duodevloopers.foodup.OrderStatusFragment"
+        android:label="Order Status"
+        tools:layout="@layout/fragment_order_status" />
 </navigation>

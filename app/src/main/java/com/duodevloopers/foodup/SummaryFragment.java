@@ -13,9 +13,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,7 +79,7 @@ import java.util.function.ObjIntConsumer;
 
 import static android.content.ContentValues.TAG;
 
-public class SummaryFragment extends Fragment{
+public class SummaryFragment extends Fragment implements View.OnClickListener{
 
     private FragmentSummaryBinding binding;
     private SummaryItemListAdapter adapter;
@@ -122,9 +126,30 @@ public class SummaryFragment extends Fragment{
         binding.summaryItemRecyclerView.setAdapter(adapter);
         binding.summaryItemRecyclerView.setHasFixedSize(true);
 
-        ;
+        binding.digitalPayment.setOnClickListener(this);
+        binding.cashPayment.setOnClickListener(this);
+
+        binding.placeOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+                NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();
+                navController.navigate(action);
+            }
+        });
 
     }
 
 
+    @Override
+    public void onClick(View v) {
+        binding.digitalPayment.setBackground(null);
+        binding.cashPayment.setBackground(null);
+
+        if(v.getId() == R.id.digital_payment) {
+            binding.digitalPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));
+        } else if(v.getId() == R.id.cash_payment) {
+            binding.cashPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));
+        }
+    }
 }

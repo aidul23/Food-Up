@@ -13,7 +13,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         android:layout_margin="8dp">
 
@@ -62,7 +61,6 @@
         app:layout_constraintTop_toBottomOf="@id/info_card"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         android:layout_margin="8dp">
 
@@ -70,7 +68,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_margin="8dp">
+            android:padding="8dp"
+            >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,8 +82,8 @@
             android:id="@+id/payment_method_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             android:orientation="horizontal"
             android:weightSum="2">
@@ -143,7 +142,6 @@
 
         </LinearLayout>>
 
-
         </LinearLayout>
 
 
@@ -156,7 +154,6 @@
         app:layout_constraintTop_toBottomOf="@id/payment_card"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         android:layout_margin="8dp">
 
@@ -243,14 +240,8 @@
                     android:layout_alignParentRight="true"
                     android:text="0 Tk"
                      />
-
-
             </RelativeLayout>
-
-
         </LinearLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
@@ -266,7 +257,7 @@
         app:layout_constraintTop_toBottomOf="@id/summary_card" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/delivery_request_button"
+        android:id="@+id/place_order_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:cornerRadius="10dp"

@@ -1,5 +1,8 @@
 package com.duodevloopers.foodup;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,10 +19,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.duodevloopers.foodup.databinding.FragmentProfileBinding;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ProfileFragment";
@@ -29,7 +37,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
     }
 
@@ -61,6 +68,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         binding.editUsername.setOnClickListener(this);
         binding.editUserEmail.setOnClickListener(this);
         binding.editUserDept.setOnClickListener(this);
+        binding.editUserProfilePic.setOnClickListener(this);
     }
 
     @Override
@@ -83,7 +91,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 bundle.putString(Constant.USER_DEPT, (String) binding.userDept.getText());
                 navController.navigate(R.id.action_profileFragment_to_editUserProfileFragment, bundle);
                 break;
+            case R.id.edit_user_profile_pic:
+                ImagePicker.with(this)
+                        .galleryOnly()
+                        .crop() //Crop image(Optional), Check Customization for more option
+                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
+                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .start();
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Uri uri = data.getData();
+        binding.profileImage.setImageURI(uri);
+
     }
 }
 

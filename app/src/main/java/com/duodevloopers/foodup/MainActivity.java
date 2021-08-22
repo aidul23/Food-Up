@@ -21,6 +21,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -199,6 +200,5 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onSupportNavigateUp() {
         return NavigationUI.navigateUp(navController, drawerLayout);
     }
-
 
 }
