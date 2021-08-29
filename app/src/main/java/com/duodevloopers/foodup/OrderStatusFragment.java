@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.duodevloopers.foodup.databinding.FragmentOrderStatusBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -34,12 +35,14 @@ public class OrderStatusFragment extends Fragment implements OnMapReadyCallback 
     private SupportMapFragment supportMapFragment;
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LatLng latLng;
+    private ProgressBar progressBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity());
+
     }
 
     @Override
@@ -55,11 +58,13 @@ public class OrderStatusFragment extends Fragment implements OnMapReadyCallback 
         // Inflate the layout for this fragment
         binding = FragmentOrderStatusBinding.inflate(getLayoutInflater());
         return binding.getRoot();
+
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
@@ -98,7 +103,7 @@ public class OrderStatusFragment extends Fragment implements OnMapReadyCallback 
     public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
         this.googleMap = googleMap;
         this.googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        this.googleMap.setMyLocationEnabled(true);
+//        this.googleMap.setMyLocationEnabled(true);
         latLng = new LatLng(22.339988611732178, 91.77440467825808);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng,18);
         this.googleMap.animateCamera(cameraUpdate);

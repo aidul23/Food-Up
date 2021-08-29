@@ -20,12 +20,13 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+
 
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,32 +43,6 @@ import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.SummaryItemPojo;
 import com.duodevloopers.foodup.databinding.FragmentSummaryBinding;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.internal.IGoogleMapDelegate;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.JointType;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 
 import org.jetbrains.annotations.NotNull;
@@ -120,6 +95,15 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
         if(Integer.valueOf(subTotal) >= 50){
             binding.totalAmount.setText(Integer.valueOf(subTotal) - 30+" Tk");
         }
+
+        String text  = "By proceeding you are agreeing to our Terms and Conditions";
+        SpannableString string = new SpannableString(text);
+
+        ForegroundColorSpan primaryColor = new ForegroundColorSpan(Color.RED);
+
+        string.setSpan(primaryColor,38,58, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        binding.text.setText(string);
 
 
         adapter = new SummaryItemListAdapter(summaryItemPojo.getList());

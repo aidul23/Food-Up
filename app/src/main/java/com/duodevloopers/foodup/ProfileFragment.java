@@ -105,6 +105,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+
         Uri uri = data.getData();
         binding.profileImage.setImageURI(uri);
 
