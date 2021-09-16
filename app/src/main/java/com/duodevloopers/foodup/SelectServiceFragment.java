@@ -18,6 +18,8 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
 
     private FragmentSelectServiceBinding binding;
 
+    private PrintServiceBottomSheet bottomSheet;
+
     public SelectServiceFragment() {
         // Required empty public constructor
     }
@@ -25,6 +27,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bottomSheet = new PrintServiceBottomSheet(requireContext(), this);
     }
 
     @Override
@@ -50,8 +53,15 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         binding.page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MakeCoverPageActivity.class);
+                Intent intent = new Intent(getActivity(), MakeCoverPageActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        binding.page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomSheet.showBottomSheet();
             }
         });
     }

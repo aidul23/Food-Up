@@ -68,6 +68,7 @@
             android:layout_height="100dp"
             android:clickable="true"
             android:focusable="true"
+            android:id="@+id/food"
             app:cardCornerRadius="10dp"
             app:cardElevation="6dp"
             app:layout_columnWeight="1"

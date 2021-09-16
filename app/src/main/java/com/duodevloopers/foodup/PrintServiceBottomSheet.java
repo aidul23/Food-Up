@@ -73,7 +73,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
     }
 
     public void hideBottomSheet() {
-
+        bottomSheetDialog.dismiss();
     }
 
     @Override
@@ -91,6 +91,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
 
     private void placePrintOrder(ServiceOrder order) {
         callback.onConfirm();
+        hideBottomSheet();
     }
 
     class PrintTypeSpinnerClass implements AdapterView.OnItemSelectedListener {

@@ -20,16 +20,19 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity
-            android:name=".RegistrationActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SplashActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".MainActivity" />
         <activity
