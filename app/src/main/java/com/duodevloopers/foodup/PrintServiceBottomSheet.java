@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class PrintServiceBottomSheet implements View.OnClickListener{
+public class PrintServiceBottomSheet implements View.OnClickListener {
 
     private final BottomSheetDialog bottomSheetDialog;
     private final View bottomSheetView;
@@ -24,18 +24,27 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
 
     //todo spinner
     private TextInputEditText pageAmount, documentLink;
-    private Spinner pageTypeSpinner,shopSpinner;
+    private Spinner pageTypeSpinner, shopSpinner;
     private MaterialButton confirmButton;
 
+    private String[] shops;
+    private String[] print;
+    private ServiceOrder order;
 
     public PrintServiceBottomSheet(Context context, PrintBottomSheetInteractionCallback callback) {
         this.callback = callback;
         this.context = context;
+        this.shops = context.getResources().getStringArray(R.array.shopName);
+        this.print = context.getResources().getStringArray(R.array.printType);
+
         bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
         bottomSheetView = LayoutInflater.from(context).inflate(R.layout.print_bottom_sheet, null);
     }
 
     public void showBottomSheet() {
+
+        order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
+
         //todo spinner
         pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);
         shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);
@@ -44,15 +53,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
         confirmButton = bottomSheetView.findViewById(R.id.confirm_button);
 
         bottomSheetDialog.setContentView(bottomSheetView);
-        confirmButton.setOnClickListener(this);
-    }
 
-    public void hideBottomSheet() {
-
-    }
-
-    @Override
-    public void onClick(View v) {
 
         //shop spinner
         ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,
@@ -68,15 +69,23 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
         pageTypeSpinner.setAdapter(adapter);
         pageTypeSpinner.setOnItemSelectedListener(new PrintTypeSpinnerClass());
 
+        confirmButton.setOnClickListener(this);
+    }
 
+    public void hideBottomSheet() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
         if (documentLink.getText().toString().equals("")) {
             Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        ServiceOrder order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
         order.setLink(documentLink.getText().toString().trim());
+        order.setPage(Double.parseDouble(pageAmount.getText().toString()));
         placePrintOrder(order);
     }
 
@@ -88,7 +97,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            order.setType(print[position]);
         }
 
         @Override
@@ -101,7 +110,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+            order.setType(shops[position]);
         }
 
         @Override
@@ -109,7 +118,6 @@ public class PrintServiceBottomSheet implements View.OnClickListener{
 
         }
     }
-
 
 
 }

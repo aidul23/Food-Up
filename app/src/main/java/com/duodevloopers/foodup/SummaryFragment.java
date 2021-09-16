@@ -1,58 +1,34 @@
 package com.duodevloopers.foodup;
 
-import android.Manifest;
-import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationManager;
-import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
-
-
-import android.os.Handler;
-import android.provider.Settings;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.LinearInterpolator;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.duodevloopers.foodup.Adapter.CartAdapter;
 import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
+import com.duodevloopers.foodup.Model.FoodOrder;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.SummaryItemPojo;
 import com.duodevloopers.foodup.databinding.FragmentSummaryBinding;
 
-
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.ObjIntConsumer;
-
-import static android.content.ContentValues.TAG;
 
 public class SummaryFragment extends Fragment implements View.OnClickListener{
 
@@ -119,8 +95,34 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
                 NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();
                 navController.navigate(action);
+                placeFoodOrder(summaryItemPojo.getList());
             }
         });
+
+    }
+
+    private void placeFoodOrder(List<RestaurantItemPojo> list) {
+        FoodOrder order = new FoodOrder(
+                "",
+                "",
+                false,
+                "",
+                "",
+                false,
+                String.valueOf(System.currentTimeMillis())
+        );
+
+        int totalCost = 0;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (RestaurantItemPojo s : list) {
+            stringBuilder.append(s.getmFoodName());
+            stringBuilder.append("#");
+            totalCost += s.getmFoodPrice();
+        }
+
+        order.setItem(stringBuilder.toString());
+        order.setCost(String.valueOf(totalCost));
 
     }
 
@@ -130,9 +132,9 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
         binding.digitalPayment.setBackground(null);
         binding.cashPayment.setBackground(null);
 
-        if(v.getId() == R.id.digital_payment) {
-            binding.digitalPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));
-        } else if(v.getId() == R.id.cash_payment) {
+        if (v.getId() == R.id.digital_payment) {
+            binding.digitalPayment.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.button_border));
+        } else if (v.getId() == R.id.cash_payment) {
             binding.cashPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));
         }
     }

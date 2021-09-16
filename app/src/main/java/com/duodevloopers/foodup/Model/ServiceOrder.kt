@@ -56,4 +56,8 @@ class ServiceOrder(
         this.link = link
     }
 
+    fun setPage(page: Double) {
+        this.page = page
+    }
+
 }
