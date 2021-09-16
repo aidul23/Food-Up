@@ -7,18 +7,55 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:962224456073:android:3d83b3e8a1f05f7823e158",
+        "mobilesdk_app_id": "1:962224456073:android:ade4ee40a2891a8d23e158",
         "android_client_info": {
           "package_name": "com.duodevloopers.foodup"
         }
       },
       "oauth_client": [
         {
-          "client_id": "962224456073-du8lagf82u9b4b9j8hbj7qcpbovt8nk8.apps.googleusercontent.com",
+          "client_id": "962224456073-ebvreb9ouj0ujrq8p8stlhv1rbjqpmkb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.duodevloopers.foodup",
-            "certificate_hash": "b9db7f3cf566ac72b7ade82fb5f24880b92f0872"
+            "certificate_hash": "7c1b3c0664812b5efa184f59e515fb18d30a1097"
+          }
+        },
+        {
+          "client_id": "962224456073-n9qlmsdn0faerl8bp0pse1j3jfvh9cl0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbA7AtmRUjgW_mPUsP4h0iWOHC8_Lh7ag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962224456073-n9qlmsdn0faerl8bp0pse1j3jfvh9cl0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962224456073:android:6986d719d356f83923e158",
+        "android_client_info": {
+          "package_name": "com.duodevloopers.fooduppartner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962224456073-t6el5i7og2o43ftbkulat184hrvueod5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duodevloopers.fooduppartner",
+            "certificate_hash": "7c1b3c0664812b5efa184f59e515fb18d30a1097"
           }
         },
         {
