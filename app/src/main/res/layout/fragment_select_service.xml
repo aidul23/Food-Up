@@ -6,14 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".SelectServiceFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="16dp"
-        android:background="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+    <ImageView
+        android:id="@+id/bottom_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_select_home_bg"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/heading"
@@ -33,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:clickable="true"
+        android:focusable="true"
         app:columnCount="4"
         app:layout_constraintBottom_toTopOf="@id/bottom_image"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +41,7 @@
         app:rowCount="1">
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/print"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_marginEnd="16dp"
@@ -63,8 +64,11 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/food"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="6dp"
             app:layout_columnWeight="1"
@@ -83,10 +87,13 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/page"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="10dp"
             app:cardElevation="6dp"
             app:layout_columnWeight="1"
@@ -129,12 +136,14 @@
     </androidx.gridlayout.widget.GridLayout>
 
 
-    <ImageView
-        android:id="@+id/bottom_image"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_select_home_bg"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="16dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

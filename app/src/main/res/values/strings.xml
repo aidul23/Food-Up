@@ -16,4 +16,20 @@
         <item>Stationary Shop 3</item>
         <item>Stationary Shop 4</item>
     </string-array>
+
+    <string-array name="department">
+        <item>CSE</item>
+        <item>EEE</item>
+        <item>ETE</item>
+        <item>CCE</item>
+        <item>CE</item>
+        <item>Pharmacy</item>
+        <item>BBA</item>
+        <item>EB</item>
+        <item>ELL</item>
+        <item>LLB</item>
+        <item>QSIS</item>
+        <item>DIS</item>
+        <item>SHIS</item>
+    </string-array>
 </resources>
