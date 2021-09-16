@@ -67,6 +67,8 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
 
         bottomSheetDialog.setContentView(bottomSheetView);
 
+        bottomSheetDialog.show();
+
         confirmButton.setOnClickListener(this);
     }
 
