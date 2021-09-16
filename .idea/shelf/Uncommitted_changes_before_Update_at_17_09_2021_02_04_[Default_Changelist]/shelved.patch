@@ -1,0 +1,209 @@
+Index: app/src/main/java/com/duodevloopers/foodup/SummaryFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup;\r\n\r\nimport android.Manifest;\r\nimport android.animation.ValueAnimator;\r\nimport android.annotation.SuppressLint;\r\nimport android.app.Activity;\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.location.Location;\r\nimport android.location.LocationManager;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.core.content.ContextCompat;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.fragment.app.FragmentActivity;\r\nimport androidx.lifecycle.ViewModelProvider;\r\nimport androidx.navigation.NavController;\r\nimport androidx.navigation.NavDirections;\r\nimport androidx.navigation.Navigation;\r\n\r\n\r\nimport android.os.Handler;\r\nimport android.provider.Settings;\r\nimport android.text.SpannableString;\r\nimport android.text.Spanned;\r\nimport android.text.style.ForegroundColorSpan;\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.Menu;\r\nimport android.view.MenuInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.view.animation.LinearInterpolator;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Toast;\r\n\r\nimport com.duodevloopers.foodup.Adapter.CartAdapter;\r\nimport com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;\r\nimport com.duodevloopers.foodup.Model.RestaurantItemPojo;\r\nimport com.duodevloopers.foodup.Model.SummaryItemPojo;\r\nimport com.duodevloopers.foodup.databinding.FragmentSummaryBinding;\r\n\r\n\r\nimport org.jetbrains.annotations.NotNull;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Collections;\r\nimport java.util.List;\r\nimport java.util.function.ObjIntConsumer;\r\n\r\nimport static android.content.ContentValues.TAG;\r\n\r\npublic class SummaryFragment extends Fragment implements View.OnClickListener{\r\n\r\n    private FragmentSummaryBinding binding;\r\n    private SummaryItemListAdapter adapter;\r\n    private CartAdapter cartAdapter;\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setHasOptionsMenu(true);\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {\r\n        super.onCreateOptionsMenu(menu, inflater);\r\n        menu.clear();\r\n    }\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        binding = FragmentSummaryBinding.inflate(getLayoutInflater());\r\n        return binding.getRoot();\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n\r\n        SummaryFragmentArgs args = SummaryFragmentArgs.fromBundle(getArguments());\r\n        SummaryItemPojo summaryItemPojo = args.getSummaryItempojo();\r\n\r\n        String subTotal = args.getSubtotal();\r\n        binding.subTotalAmount.setText(subTotal+\" Tk\");\r\n        binding.discountAmount.setText(\"-30 Tk\");\r\n        if(Integer.valueOf(subTotal) >= 50){\r\n            binding.totalAmount.setText(Integer.valueOf(subTotal) - 30+\" Tk\");\r\n        }\r\n\r\n        String text  = \"By proceeding you are agreeing to our Terms and Conditions\";\r\n        SpannableString string = new SpannableString(text);\r\n\r\n        ForegroundColorSpan primaryColor = new ForegroundColorSpan(Color.RED);\r\n\r\n        string.setSpan(primaryColor,38,58, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);\r\n\r\n        binding.text.setText(string);\r\n\r\n\r\n        adapter = new SummaryItemListAdapter(summaryItemPojo.getList());\r\n        binding.summaryItemRecyclerView.setAdapter(adapter);\r\n        binding.summaryItemRecyclerView.setHasFixedSize(true);\r\n\r\n        binding.digitalPayment.setOnClickListener(this);\r\n        binding.cashPayment.setOnClickListener(this);\r\n\r\n        binding.placeOrderButton.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);\r\n                NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();\r\n                navController.navigate(action);\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n        binding.digitalPayment.setBackground(null);\r\n        binding.cashPayment.setBackground(null);\r\n\r\n        if(v.getId() == R.id.digital_payment) {\r\n            binding.digitalPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));\r\n        } else if(v.getId() == R.id.cash_payment) {\r\n            binding.cashPayment.setBackground(ContextCompat.getDrawable(requireContext(),R.drawable.button_border));\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/duodevloopers/foodup/SummaryFragment.java	(revision 3325eddb03353195c4d7475e455272a204fafac3)
++++ app/src/main/java/com/duodevloopers/foodup/SummaryFragment.java	(date 1631822418934)
+@@ -40,6 +40,7 @@
+ 
+ import com.duodevloopers.foodup.Adapter.CartAdapter;
+ import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
++import com.duodevloopers.foodup.Model.FoodOrder;
+ import com.duodevloopers.foodup.Model.RestaurantItemPojo;
+ import com.duodevloopers.foodup.Model.SummaryItemPojo;
+ import com.duodevloopers.foodup.databinding.FragmentSummaryBinding;
+@@ -49,6 +50,7 @@
+ 
+ import java.util.ArrayList;
+ import java.util.Collections;
++import java.util.Iterator;
+ import java.util.List;
+ import java.util.function.ObjIntConsumer;
+ 
+@@ -119,8 +121,34 @@
+                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+                 NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();
+                 navController.navigate(action);
++                placeFoodOrder(summaryItemPojo.getList());
+             }
+         });
++
++    }
++
++    private void placeFoodOrder(List<RestaurantItemPojo> list) {
++        FoodOrder order  = new FoodOrder(
++                "",
++                "",
++                false,
++                "",
++                "",
++                false,
++                String.valueOf(System.currentTimeMillis())
++        );
++
++        int totalCost = 0;
++        StringBuilder stringBuilder = new StringBuilder();
++
++        for (RestaurantItemPojo s : list) {
++            stringBuilder.append(s.getmFoodName());
++            stringBuilder.append("#");
++            totalCost += s.getmFoodPrice();
++        }
++
++        order.setItem(stringBuilder.toString());
++        order.setCost(String.valueOf(totalCost));
+ 
+     }
+ 
+Index: app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Spinner;\r\nimport android.widget.Toast;\r\n\r\nimport com.duodevloopers.foodup.Model.ServiceOrder;\r\nimport com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;\r\nimport com.google.android.material.bottomsheet.BottomSheetDialog;\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.google.android.material.textfield.TextInputEditText;\r\n\r\npublic class PrintServiceBottomSheet implements View.OnClickListener{\r\n\r\n    private final BottomSheetDialog bottomSheetDialog;\r\n    private final View bottomSheetView;\r\n    private final PrintBottomSheetInteractionCallback callback;\r\n    private Context context;\r\n\r\n\r\n    //todo spinner\r\n    private TextInputEditText pageAmount, documentLink;\r\n    private Spinner pageTypeSpinner,shopSpinner;\r\n    private MaterialButton confirmButton;\r\n\r\n\r\n    public PrintServiceBottomSheet(Context context, PrintBottomSheetInteractionCallback callback) {\r\n        this.callback = callback;\r\n        this.context = context;\r\n        bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);\r\n        bottomSheetView = LayoutInflater.from(context).inflate(R.layout.print_bottom_sheet, null);\r\n    }\r\n\r\n    public void showBottomSheet() {\r\n        //todo spinner\r\n        pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);\r\n        shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);\r\n        pageAmount = bottomSheetView.findViewById(R.id.page_amount);\r\n        documentLink = bottomSheetView.findViewById(R.id.document_link);\r\n        confirmButton = bottomSheetView.findViewById(R.id.confirm_button);\r\n\r\n        bottomSheetDialog.setContentView(bottomSheetView);\r\n        confirmButton.setOnClickListener(this);\r\n    }\r\n\r\n    public void hideBottomSheet() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n\r\n        //shop spinner\r\n        ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,\r\n                R.array.shopName, android.R.layout.simple_spinner_item);\r\n        adapterShop.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        shopSpinner.setAdapter(adapterShop);\r\n        shopSpinner.setOnItemSelectedListener(new shopSelectedSpinnerClass());\r\n\r\n        //print type spinner\r\n        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,\r\n                R.array.printType, android.R.layout.simple_spinner_item);\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        pageTypeSpinner.setAdapter(adapter);\r\n        pageTypeSpinner.setOnItemSelectedListener(new PrintTypeSpinnerClass());\r\n\r\n\r\n\r\n        if (documentLink.getText().toString().equals(\"\")) {\r\n            Toast.makeText(context, \"Please fill all the fields\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n\r\n        ServiceOrder order = new ServiceOrder(\"\", false, \"\", \"\", 0.00, false, String.valueOf(System.currentTimeMillis()), \"\");\r\n        order.setLink(documentLink.getText().toString().trim());\r\n        placePrintOrder(order);\r\n    }\r\n\r\n    private void placePrintOrder(ServiceOrder order) {\r\n        callback.onConfirm();\r\n    }\r\n\r\n    class PrintTypeSpinnerClass implements AdapterView.OnItemSelectedListener {\r\n\r\n        @Override\r\n        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n        }\r\n    }\r\n\r\n    class shopSelectedSpinnerClass implements AdapterView.OnItemSelectedListener {\r\n\r\n        @Override\r\n        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n\r\n        }\r\n\r\n        @Override\r\n        public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n        }\r\n    }\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java	(revision 3325eddb03353195c4d7475e455272a204fafac3)
++++ app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java	(date 1631821386953)
+@@ -14,7 +14,7 @@
+ import com.google.android.material.button.MaterialButton;
+ import com.google.android.material.textfield.TextInputEditText;
+ 
+-public class PrintServiceBottomSheet implements View.OnClickListener{
++public class PrintServiceBottomSheet implements View.OnClickListener {
+ 
+     private final BottomSheetDialog bottomSheetDialog;
+     private final View bottomSheetView;
+@@ -24,18 +24,27 @@
+ 
+     //todo spinner
+     private TextInputEditText pageAmount, documentLink;
+-    private Spinner pageTypeSpinner,shopSpinner;
++    private Spinner pageTypeSpinner, shopSpinner;
+     private MaterialButton confirmButton;
+ 
++    private String[] shops;
++    private String[] print;
++    private ServiceOrder order;
+ 
+     public PrintServiceBottomSheet(Context context, PrintBottomSheetInteractionCallback callback) {
+         this.callback = callback;
+         this.context = context;
++        this.shops = context.getResources().getStringArray(R.array.shopName);
++        this.print = context.getResources().getStringArray(R.array.printType);
++
+         bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
+         bottomSheetView = LayoutInflater.from(context).inflate(R.layout.print_bottom_sheet, null);
+     }
+ 
+     public void showBottomSheet() {
++
++        order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
++
+         //todo spinner
+         pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);
+         shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);
+@@ -44,15 +53,7 @@
+         confirmButton = bottomSheetView.findViewById(R.id.confirm_button);
+ 
+         bottomSheetDialog.setContentView(bottomSheetView);
+-        confirmButton.setOnClickListener(this);
+-    }
+-
+-    public void hideBottomSheet() {
+ 
+-    }
+-
+-    @Override
+-    public void onClick(View v) {
+ 
+         //shop spinner
+         ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,
+@@ -68,15 +69,23 @@
+         pageTypeSpinner.setAdapter(adapter);
+         pageTypeSpinner.setOnItemSelectedListener(new PrintTypeSpinnerClass());
+ 
++        confirmButton.setOnClickListener(this);
++    }
++
++    public void hideBottomSheet() {
+ 
++    }
++
++    @Override
++    public void onClick(View v) {
+ 
+         if (documentLink.getText().toString().equals("")) {
+             Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+             return;
+         }
+ 
+-        ServiceOrder order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
+         order.setLink(documentLink.getText().toString().trim());
++        order.setPage(Double.parseDouble(pageAmount.getText().toString()));
+         placePrintOrder(order);
+     }
+ 
+@@ -88,7 +97,7 @@
+ 
+         @Override
+         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+-
++            order.setType(print[position]);
+         }
+ 
+         @Override
+@@ -101,7 +110,7 @@
+ 
+         @Override
+         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+-
++            order.setType(shops[position]);
+         }
+ 
+         @Override
+@@ -111,5 +120,4 @@
+     }
+ 
+ 
+-
+ }
+Index: app/src/main/res/layout/fragment_select_service.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".SelectServiceFragment\">\r\n\r\n    <com.google.android.material.imageview.ShapeableImageView\r\n        android:layout_width=\"70dp\"\r\n        android:layout_height=\"70dp\"\r\n        android:layout_margin=\"16dp\"\r\n        android:background=\"@color/black\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:shapeAppearanceOverlay=\"@style/ShapeAppearanceOverlay.App.CornerSize50Percent\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/heading\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:text=\"What do you need, \\nSagor?\"\r\n        android:textColor=\"@color/colorPrimary\"\r\n        android:textSize=\"32sp\"\r\n        android:textStyle=\"bold\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/grid_layout\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <androidx.gridlayout.widget.GridLayout\r\n        android:id=\"@+id/grid_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        app:columnCount=\"4\"\r\n        app:layout_constraintBottom_toTopOf=\"@id/bottom_image\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/heading\"\r\n        app:rowCount=\"1\">\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"100dp\"\r\n            android:layout_marginEnd=\"16dp\"\r\n            android:background=\"@color/black\"\r\n            app:cardCornerRadius=\"10dp\"\r\n            app:cardElevation=\"6dp\"\r\n            app:layout_columnWeight=\"1\"\r\n            app:strokeColor=\"@color/colorPrimary\"\r\n            app:strokeWidth=\"1dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:padding=\"8dp\"\r\n                android:text=\"Print\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"24sp\" />\r\n\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"100dp\"\r\n            app:cardCornerRadius=\"10dp\"\r\n            app:cardElevation=\"6dp\"\r\n            app:layout_columnWeight=\"1\"\r\n            app:strokeColor=\"@color/colorPrimary\"\r\n            app:strokeWidth=\"1dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:padding=\"8dp\"\r\n                android:text=\"Food\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"24sp\" />\r\n\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"100dp\"\r\n            android:layout_marginStart=\"16dp\"\r\n            android:layout_marginEnd=\"16dp\"\r\n            app:cardCornerRadius=\"10dp\"\r\n            app:cardElevation=\"6dp\"\r\n            app:layout_columnWeight=\"1\"\r\n            app:strokeColor=\"@color/colorPrimary\"\r\n            app:strokeWidth=\"1dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:padding=\"8dp\"\r\n                android:text=\"Page\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"24sp\" />\r\n\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n        <com.google.android.material.card.MaterialCardView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"100dp\"\r\n            android:layout_marginBottom=\"18dp\"\r\n            android:visibility=\"gone\"\r\n            app:cardCornerRadius=\"10dp\"\r\n            app:cardElevation=\"6dp\"\r\n            app:layout_columnWeight=\"1\"\r\n            app:strokeColor=\"@color/colorPrimary\"\r\n            app:strokeWidth=\"1dp\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:padding=\"8dp\"\r\n                android:text=\"Room\"\r\n                android:textColor=\"@color/black\"\r\n                android:textSize=\"24sp\" />\r\n\r\n        </com.google.android.material.card.MaterialCardView>\r\n\r\n    </androidx.gridlayout.widget.GridLayout>\r\n\r\n\r\n    <ImageView\r\n        android:id=\"@+id/bottom_image\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"200dp\"\r\n        android:src=\"@drawable/ic_select_home_bg\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\" />\r\n\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_select_service.xml	(revision 3325eddb03353195c4d7475e455272a204fafac3)
++++ app/src/main/res/layout/fragment_select_service.xml	(date 1631820619669)
+@@ -86,7 +86,6 @@
+             android:layout_width="wrap_content"
+             android:layout_height="100dp"
+             android:layout_marginStart="16dp"
+-            android:layout_marginEnd="16dp"
+             app:cardCornerRadius="10dp"
+             app:cardElevation="6dp"
+             app:layout_columnWeight="1"
+Index: app/src/main/java/com/duodevloopers/foodup/Model/ServiceOrder.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Model\r\n\r\nclass ServiceOrder(\r\n    private var cost: String,\r\n    private var done: Boolean,\r\n    private var id: String,\r\n    private var link: String,\r\n    private var page: Double,\r\n    private var paid: Boolean,\r\n    private var timestamp: String,\r\n    private var type: String\r\n\r\n) {\r\n\r\n    fun getCost(): String {\r\n        return cost\r\n    }\r\n\r\n    fun isDone(): Boolean {\r\n        return done\r\n    }\r\n\r\n    fun getLink(): String {\r\n        return link\r\n    }\r\n\r\n    fun getId(): String {\r\n        return id\r\n    }\r\n\r\n    fun getPage(): Int {\r\n        return page.toInt()\r\n    }\r\n\r\n    fun isPaid(): Boolean {\r\n        return paid\r\n    }\r\n\r\n    fun getTimestamp(): String {\r\n        return timestamp\r\n    }\r\n\r\n    fun getType(): String {\r\n        return type\r\n    }\r\n\r\n    fun setType(type: String) {\r\n        this.type = type\r\n    }\r\n\r\n    fun setCost(cost: String) {\r\n        this.cost = cost\r\n    }\r\n\r\n    fun setLink(link: String) {\r\n        this.link = link\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/duodevloopers/foodup/Model/ServiceOrder.kt	(revision 3325eddb03353195c4d7475e455272a204fafac3)
++++ app/src/main/java/com/duodevloopers/foodup/Model/ServiceOrder.kt	(date 1631820619606)
+@@ -56,4 +56,8 @@
+         this.link = link
+     }
+ 
++    fun setPage(page : Double) {
++        this.page = page
++    }
++
+ }
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_9_16_2021_11_02_PM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_9_16_2021_11_02_PM__Default_Changelist_.xml

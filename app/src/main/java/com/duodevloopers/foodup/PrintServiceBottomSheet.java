@@ -22,7 +22,6 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
     private Context context;
 
 
-    //todo spinner
     private TextInputEditText pageAmount, documentLink;
     private Spinner pageTypeSpinner, shopSpinner;
     private MaterialButton confirmButton;
@@ -45,14 +44,11 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
 
         order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
 
-        //todo spinner
         pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);
         shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);
         pageAmount = bottomSheetView.findViewById(R.id.page_amount);
         documentLink = bottomSheetView.findViewById(R.id.document_link);
         confirmButton = bottomSheetView.findViewById(R.id.confirm_button);
-
-
 
         //shop spinner
         ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,
