@@ -52,7 +52,6 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
         documentLink = bottomSheetView.findViewById(R.id.document_link);
         confirmButton = bottomSheetView.findViewById(R.id.confirm_button);
 
-        bottomSheetDialog.setContentView(bottomSheetView);
 
 
         //shop spinner
@@ -68,6 +67,9 @@ public class PrintServiceBottomSheet implements View.OnClickListener {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pageTypeSpinner.setAdapter(adapter);
         pageTypeSpinner.setOnItemSelectedListener(new PrintTypeSpinnerClass());
+
+
+        bottomSheetDialog.setContentView(bottomSheetView);
 
         confirmButton.setOnClickListener(this);
     }
