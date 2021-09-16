@@ -58,7 +58,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
             }
         });
 
-        binding.page.setOnClickListener(new View.OnClickListener() {
+        binding.print.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bottomSheet.showBottomSheet();
