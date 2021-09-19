@@ -1,88 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context=".MakeCoverPageActivity">
 
-    <EditText
-        android:id="@+id/assignment_no"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Assignment No"/>
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/assignment_title"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Assignment Cover Information"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Assignment Title"/>
-    <EditText
-        android:id="@+id/course_code"
+        android:hint="Assignment No">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/assignment_no"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Course Code"/>
-    <EditText
-        android:id="@+id/course_title"
+        android:hint="Assignment Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/assignment_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Course Title"/>
-    <EditText
-        android:id="@+id/student_name"
+        android:hint="Course Code">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/course_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Your Name"/>
-    <EditText
-        android:id="@+id/student_semester"
+        android:hint="Course Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/course_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Current Semester"/>
-    <EditText
-        android:id="@+id/student_id"
+        android:hint="Your Name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Matric ID"/>
-    <EditText
-        android:id="@+id/student_section"
+        android:hint="Enrolled Semester">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_semester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Section"/>
-    <EditText
-        android:id="@+id/teacher_name"
+        android:hint="Matric ID">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Teacher Name"/>
-    <EditText
-        android:id="@+id/teacher_designation"
+        android:hint="Section">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/student_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:hint="Teacher Designation"/>
+        android:hint="Teacher Name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teacher_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teacher Designation">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teacher_designation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <Spinner
         android:id="@+id/department_spinner"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="4dp"
         />
-    <EditText
-        android:id="@+id/date_of_sub"
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Date of Submission"/>
+        android:hint="Date of Submission">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/date_of_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/makePdf"
@@ -92,4 +207,6 @@
         android:textAllCaps="false"
         android:text="Make PDF"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

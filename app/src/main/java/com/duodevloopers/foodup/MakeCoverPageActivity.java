@@ -161,6 +161,8 @@ public class MakeCoverPageActivity extends AppCompatActivity implements AdapterV
         table1.addCell(new Cell().add(new Paragraph("Submission Date").setBold()));
         table1.addCell(new Cell().add(new Paragraph(submissionDate).setTextAlignment(TextAlignment.CENTER)));
 
+        table1.setMarginTop(30);
+
         float[] widthSecondTable = {200,200};
         Table table2 = new Table(widthSecondTable);
         table2.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -175,7 +177,7 @@ public class MakeCoverPageActivity extends AppCompatActivity implements AdapterV
         table2.addCell(new Cell().add(new Paragraph(teacherDesignation).setTextAlignment(TextAlignment.CENTER)));
         table2.addCell(new Cell().add(new Paragraph(studentId).setTextAlignment(TextAlignment.CENTER)));
 
-        table2.addCell(new Cell().add(new Paragraph("CSE IIUC").setTextAlignment(TextAlignment.CENTER)));
+        table2.addCell(new Cell().add(new Paragraph("CSE, IIUC").setTextAlignment(TextAlignment.CENTER)));
         table2.addCell(new Cell().add(new Paragraph("Semester: "+semester+" "+"Section: "+section).setTextAlignment(TextAlignment.CENTER)));
 
 
@@ -184,7 +186,7 @@ public class MakeCoverPageActivity extends AppCompatActivity implements AdapterV
         document.add(image);
         document.add(table1);
         document.add(table2);
-
+        document.add(new Paragraph("\n\n\n\n\n\n\n\n\n\n(Teacher Signature)\n\n\n").setTextAlignment(TextAlignment.RIGHT).setMarginRight(16));
         document.close();
         Toast.makeText(this, "PDF Created", Toast.LENGTH_SHORT).show();
     }
