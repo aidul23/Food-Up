@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 
@@ -19,6 +20,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     private FragmentSelectServiceBinding binding;
 
     private PrintServiceBottomSheet bottomSheet;
+    private RoomBottomSheet roomBottomSheet;
 
     public SelectServiceFragment() {
         // Required empty public constructor
@@ -28,6 +30,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bottomSheet = new PrintServiceBottomSheet(requireContext(), this);
+        roomBottomSheet = new RoomBottomSheet(requireContext());
     }
 
     @Override
@@ -45,7 +48,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         binding.food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),MainActivity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,6 +65,13 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
             @Override
             public void onClick(View v) {
                 bottomSheet.showBottomSheet();
+            }
+        });
+
+        binding.room.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roomBottomSheet.showBottomSheet();
             }
         });
     }

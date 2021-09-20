@@ -1,0 +1,386 @@
+Index: app/src/main/res/layout/print_bottom_sheet.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/heading\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:padding=\"16dp\"\r\n        android:text=\"Specify your requirements\"\r\n        android:textColor=\"@color/black\"\r\n        android:textSize=\"24sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/shop_name_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/heading\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Shop\"\r\n            android:textSize=\"16sp\" />\r\n\r\n\r\n        <Spinner\r\n            android:id=\"@+id/shop_spinner\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/page_type_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/shop_name_layout\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:text=\"Page Type\"\r\n            android:textSize=\"16sp\" />\r\n\r\n\r\n        <Spinner\r\n            android:id=\"@+id/page_type_spinner\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/page_amount_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:gravity=\"center\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/page_type_layout\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"Page Amount\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n            android:layout_width=\"60dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:gravity=\"center\"\r\n            android:hint=\"1\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/page_amount\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:gravity=\"center\"\r\n                android:inputType=\"numberDecimal\" />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:id=\"@+id/document_link_layout\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:gravity=\"center\"\r\n        android:orientation=\"horizontal\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/page_amount_layout\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_weight=\"1\"\r\n            android:text=\"Document Link\"\r\n            android:textSize=\"16sp\" />\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n            android:layout_width=\"160dp\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:gravity=\"center\"\r\n            android:hint=\"http://drive.google.com..\">\r\n\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:id=\"@+id/document_link\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:gravity=\"center\"\r\n                android:inputType=\"text\" />\r\n\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n\r\n    </LinearLayout>\r\n\r\n    <com.google.android.material.button.MaterialButton\r\n        android:id=\"@+id/confirm_button\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_margin=\"16dp\"\r\n        android:text=\"Confirm\"\r\n        app:cornerRadius=\"0dp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@id/document_link_layout\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/print_bottom_sheet.xml	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ app/src/main/res/layout/print_bottom_sheet.xml	(date 1632125085245)
+@@ -2,6 +2,7 @@
+ <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
++    android:fitsSystemWindows="true"
+     android:layout_height="wrap_content">
+ 
+     <TextView
+@@ -26,13 +27,14 @@
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
++            android:layout_weight="1"
+             android:text="Shop"
+             android:textSize="16sp" />
+ 
+ 
+         <Spinner
+             android:id="@+id/shop_spinner"
+-            android:layout_width="match_parent"
++            android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+ 
+     </LinearLayout>
+@@ -48,13 +50,14 @@
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
++            android:layout_weight="1"
+             android:text="Page Type"
+             android:textSize="16sp" />
+ 
+ 
+         <Spinner
+             android:id="@+id/page_type_spinner"
+-            android:layout_width="match_parent"
++            android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+ 
+     </LinearLayout>
+@@ -79,15 +82,15 @@
+             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+             android:layout_width="60dp"
+             android:layout_height="wrap_content"
+-            android:gravity="center"
+-            android:hint="1">
++            android:gravity="center">
+ 
+             <com.google.android.material.textfield.TextInputEditText
+                 android:id="@+id/page_amount"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:gravity="center"
+-                android:inputType="numberDecimal" />
++                android:inputType="numberDecimal"
++                android:text="1" />
+ 
+         </com.google.android.material.textfield.TextInputLayout>
+ 
+@@ -127,6 +130,19 @@
+ 
+     </LinearLayout>
+ 
++    <TextView
++        android:id="@+id/cost"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:paddingStart="16dp"
++        android:paddingTop="16dp"
++        android:paddingEnd="16dp"
++        android:text="Total : 0 BDT"
++        android:textColor="@android:color/black"
++        android:textSize="18sp"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@id/document_link_layout" />
++
+     <com.google.android.material.button.MaterialButton
+         android:id="@+id/confirm_button"
+         android:layout_width="match_parent"
+@@ -135,6 +151,6 @@
+         android:text="Confirm"
+         app:cornerRadius="0dp"
+         app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintTop_toBottomOf="@id/document_link_layout" />
++        app:layout_constraintTop_toBottomOf="@id/cost" />
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    package=\"com.duodevloopers.foodup\">\r\n\r\n    <application\r\n        android:name=\".MyApp\"\r\n        android:allowBackup=\"true\"\r\n        android:icon=\"@mipmap/ic_launcher\"\r\n        android:label=\"@string/app_name\"\r\n        android:requestLegacyExternalStorage=\"true\"\r\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\r\n        android:supportsRtl=\"true\"\r\n        android:theme=\"@style/AppTheme\">\r\n        <activity\r\n            android:name=\".SelectServiceActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".MakeCoverPageActivity\"\r\n            android:exported=\"true\" />\r\n        <activity\r\n            android:name=\".LoginActivity\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\">\r\n\r\n        </activity>\r\n        <activity\r\n            android:name=\".RegistrationActivity\"\r\n            android:theme=\"@style/AppTheme.NoActionBar\" />\r\n        <activity android:name=\".SplashActivity\">\r\n            <intent-filter>\r\n                <action android:name=\"android.intent.action.MAIN\" />\r\n\r\n                <category android:name=\"android.intent.category.LAUNCHER\" />\r\n            </intent-filter>\r\n\r\n        </activity>\r\n        <activity android:name=\".MapActivity\" />\r\n        <activity android:name=\".MainActivity\" />\r\n        <activity\r\n            android:name=\".CaptureAct\"\r\n            android:screenOrientation=\"fullSensor\"\r\n            android:stateNotNeeded=\"true\"\r\n            android:windowSoftInputMode=\"stateAlwaysHidden\" />\r\n\r\n        <meta-data\r\n            android:name=\"com.google.android.geo.API_KEY\"\r\n            android:value=\"@string/map_key\" />\r\n    </application>\r\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\r\n    <uses-permission android:name=\"android.permission.CAMERA\" />\r\n    <uses-permission android:name=\"android.hardware.camera\" />\r\n    <uses-permission android:name=\"android.hardware.camera.autofocus\" />\r\n    <uses-permission android:name=\"android.permission.INTERNET\" />\r\n    <uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />\r\n    <uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />\r\n\r\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\r\n\r\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ app/src/main/AndroidManifest.xml	(date 1632126329547)
+@@ -2,6 +2,8 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.duodevloopers.foodup">
+ 
++    <uses-permission android:name="android.permission.INTERNET"/>
++
+     <application
+         android:name=".MyApp"
+         android:allowBackup="true"
+@@ -18,12 +20,12 @@
+             android:name=".MakeCoverPageActivity"
+             android:exported="true" />
+         <activity
+-            android:name=".LoginActivity"
++            android:name=".Activities.LoginActivity"
+             android:theme="@style/AppTheme.NoActionBar">
+ 
+         </activity>
+         <activity
+-            android:name=".RegistrationActivity"
++            android:name=".Activities.RegistrationActivity"
+             android:theme="@style/AppTheme.NoActionBar" />
+         <activity android:name=".SplashActivity">
+             <intent-filter>
+@@ -33,8 +35,8 @@
+             </intent-filter>
+ 
+         </activity>
+-        <activity android:name=".MapActivity" />
+-        <activity android:name=".MainActivity" />
++        <activity android:name=".Activities.MapActivity" />
++        <activity android:name=".Activities.MainActivity" />
+         <activity
+             android:name=".CaptureAct"
+             android:screenOrientation="fullSensor"
+Index: app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.widget.AdapterView;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Spinner;\r\nimport android.widget.Toast;\r\n\r\nimport com.duodevloopers.foodup.Model.ServiceOrder;\r\nimport com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;\r\nimport com.google.android.material.bottomsheet.BottomSheetDialog;\r\nimport com.google.android.material.button.MaterialButton;\r\nimport com.google.android.material.textfield.TextInputEditText;\r\n\r\npublic class PrintServiceBottomSheet implements View.OnClickListener {\r\n\r\n    private final BottomSheetDialog bottomSheetDialog;\r\n    private final View bottomSheetView;\r\n    private final PrintBottomSheetInteractionCallback callback;\r\n    private Context context;\r\n\r\n\r\n    private TextInputEditText pageAmount, documentLink;\r\n    private Spinner pageTypeSpinner, shopSpinner;\r\n    private MaterialButton confirmButton;\r\n\r\n    private String[] shops;\r\n    private String[] print;\r\n    private ServiceOrder order;\r\n\r\n    public PrintServiceBottomSheet(Context context, PrintBottomSheetInteractionCallback callback) {\r\n        this.callback = callback;\r\n        this.context = context;\r\n        this.shops = context.getResources().getStringArray(R.array.shopName);\r\n        this.print = context.getResources().getStringArray(R.array.printType);\r\n\r\n        bottomSheetDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);\r\n        bottomSheetView = LayoutInflater.from(context).inflate(R.layout.print_bottom_sheet, null);\r\n    }\r\n\r\n    public void showBottomSheet() {\r\n\r\n        order = new ServiceOrder(\"\", false, \"\", \"\", 0.00, false, String.valueOf(System.currentTimeMillis()), \"\");\r\n\r\n        pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);\r\n        shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);\r\n        pageAmount = bottomSheetView.findViewById(R.id.page_amount);\r\n        documentLink = bottomSheetView.findViewById(R.id.document_link);\r\n        confirmButton = bottomSheetView.findViewById(R.id.confirm_button);\r\n\r\n        //shop spinner\r\n        ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,\r\n                R.array.shopName, android.R.layout.simple_spinner_item);\r\n        adapterShop.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        shopSpinner.setAdapter(adapterShop);\r\n        shopSpinner.setOnItemSelectedListener(new shopSelectedSpinnerClass());\r\n\r\n        //print type spinner\r\n        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,\r\n                R.array.printType, android.R.layout.simple_spinner_item);\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);\r\n        pageTypeSpinner.setAdapter(adapter);\r\n        pageTypeSpinner.setOnItemSelectedListener(new PrintTypeSpinnerClass());\r\n\r\n\r\n        bottomSheetDialog.setContentView(bottomSheetView);\r\n\r\n        bottomSheetDialog.show();\r\n\r\n        confirmButton.setOnClickListener(this);\r\n    }\r\n\r\n    public void hideBottomSheet() {\r\n        bottomSheetDialog.dismiss();\r\n    }\r\n\r\n    @Override\r\n    public void onClick(View v) {\r\n\r\n        if (documentLink.getText().toString().equals(\"\")) {\r\n            Toast.makeText(context, \"Please fill all the fields\", Toast.LENGTH_SHORT).show();\r\n            return;\r\n        }\r\n\r\n        order.setLink(documentLink.getText().toString().trim());\r\n        order.setPage(Double.parseDouble(pageAmount.getText().toString()));\r\n        placePrintOrder(order);\r\n    }\r\n\r\n    private void placePrintOrder(ServiceOrder order) {\r\n        callback.onConfirm();\r\n        hideBottomSheet();\r\n    }\r\n\r\n    class PrintTypeSpinnerClass implements AdapterView.OnItemSelectedListener {\r\n\r\n        @Override\r\n        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n            order.setType(print[position]);\r\n        }\r\n\r\n        @Override\r\n        public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n        }\r\n    }\r\n\r\n    class shopSelectedSpinnerClass implements AdapterView.OnItemSelectedListener {\r\n\r\n        @Override\r\n        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {\r\n            order.setType(shops[position]);\r\n        }\r\n\r\n        @Override\r\n        public void onNothingSelected(AdapterView<?> parent) {\r\n\r\n        }\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ app/src/main/java/com/duodevloopers/foodup/PrintServiceBottomSheet.java	(date 1632125085285)
+@@ -1,20 +1,28 @@
+ package com.duodevloopers.foodup;
+ 
+ import android.content.Context;
++import android.text.Editable;
++import android.text.TextWatcher;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.widget.AdapterView;
+ import android.widget.ArrayAdapter;
+ import android.widget.Spinner;
++import android.widget.TextView;
+ import android.widget.Toast;
+ 
++import androidx.lifecycle.MutableLiveData;
++import androidx.lifecycle.Observer;
++
+ import com.duodevloopers.foodup.Model.ServiceOrder;
+ import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
++import com.google.android.gms.tasks.OnSuccessListener;
+ import com.google.android.material.bottomsheet.BottomSheetDialog;
+ import com.google.android.material.button.MaterialButton;
+ import com.google.android.material.textfield.TextInputEditText;
++import com.google.firebase.firestore.FirebaseFirestore;
+ 
+-public class PrintServiceBottomSheet implements View.OnClickListener {
++public class PrintServiceBottomSheet implements View.OnClickListener, Observer<Integer> {
+ 
+     private final BottomSheetDialog bottomSheetDialog;
+     private final View bottomSheetView;
+@@ -23,13 +31,18 @@
+ 
+ 
+     private TextInputEditText pageAmount, documentLink;
++    private TextView totalCost;
+     private Spinner pageTypeSpinner, shopSpinner;
+     private MaterialButton confirmButton;
+ 
+     private String[] shops;
+     private String[] print;
++    private String selectedPrintType = "Normal Paper B&W";
++    private String selectedShop = "Stationary Shop 1";
+     private ServiceOrder order;
+ 
++    private MutableLiveData<Integer> costLiveData = new MutableLiveData<>();
++
+     public PrintServiceBottomSheet(Context context, PrintBottomSheetInteractionCallback callback) {
+         this.callback = callback;
+         this.context = context;
+@@ -42,13 +55,17 @@
+ 
+     public void showBottomSheet() {
+ 
+-        order = new ServiceOrder("", false, "", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
++        order = new ServiceOrder("", false, "C171080", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
+ 
+         pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);
+         shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);
+         pageAmount = bottomSheetView.findViewById(R.id.page_amount);
+         documentLink = bottomSheetView.findViewById(R.id.document_link);
+         confirmButton = bottomSheetView.findViewById(R.id.confirm_button);
++        totalCost = bottomSheetView.findViewById(R.id.cost);
++
++        pageAmount.addTextChangedListener(new TextChangeListener());
++        costLiveData.observeForever(this);
+ 
+         //shop spinner
+         ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,
+@@ -86,12 +103,15 @@
+ 
+         order.setLink(documentLink.getText().toString().trim());
+         order.setPage(Double.parseDouble(pageAmount.getText().toString()));
++        order.setCost(String.valueOf(costLiveData.getValue()));
+         placePrintOrder(order);
+     }
+ 
+-    private void placePrintOrder(ServiceOrder order) {
+-        callback.onConfirm();
+-        hideBottomSheet();
++    @Override
++    public void onChanged(Integer integer) {
++        totalCost.setText(
++                String.format("Total : %d BDT", integer)
++        );
+     }
+ 
+     class PrintTypeSpinnerClass implements AdapterView.OnItemSelectedListener {
+@@ -99,6 +119,9 @@
+         @Override
+         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+             order.setType(print[position]);
++            costLiveData.setValue(
++                    Utility.Companion.getPrice(print[position]) * Integer.parseInt(pageAmount.getText().toString())
++            );
+         }
+ 
+         @Override
+@@ -112,6 +135,7 @@
+         @Override
+         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+             order.setType(shops[position]);
++            selectedShop = shops[position];
+         }
+ 
+         @Override
+@@ -120,5 +144,45 @@
+         }
+     }
+ 
++    class TextChangeListener implements TextWatcher {
++
++        @Override
++        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
++
++        }
++
++        @Override
++        public void onTextChanged(CharSequence s, int start, int before, int count) {
++            if (s.length() > 0) {
++                int quantity = Integer.parseInt(s.toString());
++                costLiveData.setValue(
++                        Utility.Companion.getPrice(selectedPrintType) * quantity
++                );
++            }
++
++        }
++
++        @Override
++        public void afterTextChanged(Editable s) {
++
++        }
++    }
++
++    private void placePrintOrder(ServiceOrder order) {
++        FirebaseFirestore.getInstance()
++                .collection("shops")
++                .document(selectedShop)
++                .collection("orders")
++                .document(order.getId())
++                .set(order)
++                .addOnSuccessListener(new OnSuccessListener<Void>() {
++                    @Override
++                    public void onSuccess(Void unused) {
++                        callback.onConfirm();
++                        hideBottomSheet();
++                    }
++                });
++    }
++
+ 
+ }
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"GRADLE\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"1.8\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ .idea/gradle.xml	(date 1632125085292)
+@@ -4,7 +4,7 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <option name="testRunner" value="GRADLE" />
++        <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleJvm" value="1.8" />
+Index: app/src/main/java/com/duodevloopers/foodup/SelectServiceFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Toast;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;\r\nimport com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;\r\n\r\npublic class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback {\r\n\r\n    private FragmentSelectServiceBinding binding;\r\n\r\n    private PrintServiceBottomSheet bottomSheet;\r\n\r\n    public SelectServiceFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        bottomSheet = new PrintServiceBottomSheet(requireContext(), this);\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        binding = FragmentSelectServiceBinding.inflate(getLayoutInflater());\r\n        return binding.getRoot();\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n\r\n        binding.food.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(getActivity(),MainActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        binding.page.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(getActivity(), MakeCoverPageActivity.class);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        binding.print.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                bottomSheet.showBottomSheet();\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public void onConfirm() {\r\n        Toast.makeText(requireContext(), \"Your print request has been posted\", Toast.LENGTH_SHORT).show();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/duodevloopers/foodup/SelectServiceFragment.java	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ app/src/main/java/com/duodevloopers/foodup/SelectServiceFragment.java	(date 1632125884517)
+@@ -11,6 +11,7 @@
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
++import com.duodevloopers.foodup.Activities.MainActivity;
+ import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
+ import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
+ 
+@@ -45,7 +46,7 @@
+         binding.food.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                Intent intent = new Intent(getActivity(),MainActivity.class);
++                Intent intent = new Intent(getActivity(), MainActivity.class);
+                 startActivity(intent);
+             }
+         });
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/runConfigurations.xml	(date 1632125085446)
++++ .idea/runConfigurations.xml	(date 1632125085446)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'kotlin-android'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.duodevloopers.foodup\"\r\n        minSdkVersion 23\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildFeatures {\r\n        viewBinding = true;\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n\r\n    packagingOptions {\r\n        exclude 'com/itextpdf/io/font/cmap_info.txt'\r\n        exclude 'com/itextpdf/io/font/cmap/*'\r\n    }\r\n}\r\n\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.3.1'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'\r\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\r\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\r\n    testImplementation 'junit:junit:4.13.2'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.3'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'\r\n\r\n\r\n    implementation 'androidx.core:core-ktx:1.3.2'\r\n    implementation \"org.jetbrains.kotlin:kotlin-stdlib:1.4.31\"\r\n\r\n    def nav_version = \"2.3.5\"\r\n\r\n    // Java language implementation\r\n    implementation \"androidx.navigation:navigation-fragment:$nav_version\"\r\n    implementation \"androidx.navigation:navigation-ui:$nav_version\"\r\n\r\n    implementation \"androidx.navigation:navigation-dynamic-features-fragment:$nav_version\"\r\n\r\n    // Testing Navigation\r\n    androidTestImplementation \"androidx.navigation:navigation-testing:$nav_version\"\r\n\r\n    // Jetpack Compose Integration\r\n    implementation \"androidx.navigation:navigation-compose:2.4.0-alpha06\"\r\n\r\n    apply plugin: \"androidx.navigation.safeargs\"\r\n\r\n    implementation 'com.google.android.material:material:1.4.0'\r\n\r\n    implementation 'com.thoughtbot:expandablerecyclerview:1.4'\r\n\r\n    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'\r\n    \r\n    implementation 'com.cepheuen.elegant-number-button:lib:1.0.3'\r\n\r\n    implementation 'com.google.android.gms:play-services-maps:17.0.1'\r\n    implementation 'com.google.android.gms:play-services-location:18.0.0'\r\n\r\n    implementation 'com.squareup.retrofit2:retrofit:2.6.0'\r\n    implementation 'com.squareup.retrofit2:converter-scalars:2.6.0'\r\n\r\n    //easy permission\r\n    implementation 'com.karumi:dexter:6.2.3'\r\n\r\n    //firebase\r\n    implementation platform('com.google.firebase:firebase-bom:28.4.0')\r\n    implementation 'com.google.firebase:firebase-analytics'\r\n    implementation 'com.google.firebase:firebase-database'\r\n    implementation 'com.google.firebase:firebase-storage'\r\n    implementation 'com.google.firebase:firebase-auth'\r\n    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'\r\n    implementation 'com.google.firebase:firebase-auth-ktx'\r\n    implementation 'com.firebaseui:firebase-ui-database:7.2.0'\r\n    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'\r\n    implementation 'com.google.firebase:firebase-firestore'\r\n\r\n\r\n    // easy permission\r\n    implementation 'com.vmadalin:easypermissions-ktx:1.0.0'\r\n\r\n    //image picker\r\n    implementation 'com.github.dhaval2404:imagepicker:2.1'\r\n\r\n    //animation\r\n    implementation 'com.airbnb.android:lottie:3.4.2'\r\n\r\n    implementation 'br.com.simplepass:loading-button-android:1.14.0'\r\n\r\n    //qr and barcode\r\n    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'\r\n\r\n    //pdf\r\n    implementation 'com.itextpdf:itext7-core:7.0.2'\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 6cdabca85f6b5328ef46e5446235379f7360d6d5)
++++ app/build.gradle	(date 1632125578243)
+@@ -111,4 +111,6 @@
+     //pdf
+     implementation 'com.itextpdf:itext7-core:7.0.2'
+ 
++    // otp view
++    implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
+ }
+\ No newline at end of file
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_20-Sep-21_11_49_AM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_20-Sep-21_11_49_AM__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_17_09_2021_02_04__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_17_09_2021_02_04__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_9_16_2021_11_02_PM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_9_16_2021_11_02_PM__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_17_09_2021_01_30__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_17_09_2021_01_30__Default_Changelist_.xml
+diff --git .idea/shelf/Uncommitted_changes_before_Update_at_9_17_2021_2_17_AM__Default_Changelist_.xml .idea/shelf/Uncommitted_changes_before_Update_at_9_17_2021_2_17_AM__Default_Changelist_.xml
