@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.ViewModel;
 
 import com.duodevloopers.foodup.Model.PopularItem;
 

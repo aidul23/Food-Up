@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.annotation.SuppressLint;
 import android.graphics.Camera;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentOrderStatusBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;

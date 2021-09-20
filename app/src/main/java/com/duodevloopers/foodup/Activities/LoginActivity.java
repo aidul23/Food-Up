@@ -1,8 +1,10 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.duodevloopers.foodup.R;
 
 public class LoginActivity extends AppCompatActivity {
 

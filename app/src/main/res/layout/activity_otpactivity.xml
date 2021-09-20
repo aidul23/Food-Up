@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.OTPActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/inputPhoneNumberCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="6dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:text="OTP"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <com.mukesh.OtpView
+                android:id="@+id/otp_view"
+                style="@style/OtpWidget.OtpView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:itemBackground="#40D3D3D3"
+                android:textColor="@android:color/black"
+                app:OtpCursorColor="@color/colorPrimary"
+                app:OtpItemCount="6"
+                app:OtpItemHeight="35dp"
+                app:OtpItemWidth="35dp"
+                app:OtpLineColor="@android:color/transparent"
+                app:OtpViewType="rectangle" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal"
+                android:text="OTP is send to your phone to verify" />
+
+
+
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/button_background"
+                    android:layout_centerInParent="true"
+                    android:text="Next"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

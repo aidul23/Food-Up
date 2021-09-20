@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.ActionMode;
 import android.view.View;
 import android.widget.Toast;
 
+import com.duodevloopers.foodup.CaptureAct;
 import com.duodevloopers.foodup.databinding.ActivityRegistrationBinding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -37,7 +38,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         intentIntegrator.setCaptureActivity(CaptureAct.class);
         intentIntegrator.setOrientationLocked(true);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        intentIntegrator.setPrompt("Scanning Code");
+        intentIntegrator.setPrompt("Scanning Barcode from Your Student ID Card");
         intentIntegrator.initiateScan();
     }
 

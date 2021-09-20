@@ -46,16 +46,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(@NonNull final CartViewHolder holder, int position) {
         final RestaurantItemPojo currentItem = myAppArrayList.get(position);
+        final RestaurantItemPojo abc = new RestaurantItemPojo(currentItem.getmImage(), currentItem.getmFoodName(), currentItem.getmFoodDes(), currentItem.getmFoodPrice(), currentItem.getQuantity());
 
         holder.mFoodImageView.setImageResource(currentItem.getmImage());
         holder.mFoodName.setText(currentItem.getmFoodName());
         holder.mFoodDes.setText(currentItem.getmFoodDes());
-        holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice())));
+        holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice()*currentItem.getQuantity())));
+        holder.mElegantNumberButton.setNumber(String.valueOf(currentItem.getQuantity()));
         holder.mElegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
-//                Log.d(TAG, "onValueChange: new value "+newValue);
-//                Log.d(TAG, "onValueChange: old value "+oldValue);
 
                 holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice() * newValue)));
 //                String amount = String.valueOf(newValue);
@@ -66,13 +66,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 if(oldValue>newValue){
 //                    Log.d(TAG, "onValueChange: new value(decrease) "+newValue);
 //                    Log.d(TAG, "onValueChange: old value(decrease) "+oldValue);
-                    listener.onDecreaseItem(currentItem.getmFoodPrice() * newValue);
+                    listener.onDecreaseItem(currentItem.getmFoodPrice());
                     Log.d(TAG, "onValueChange: decrease "+currentItem.getmFoodPrice()*newValue);
 
                 } else if(oldValue < newValue){
 //                    Log.d(TAG, "onValueChange: new value(increase) "+newValue);
 //                    Log.d(TAG, "onValueChange: old value(increase) "+newValue);
-                    listener.onIncreaseItem((currentItem.getmFoodPrice()*newValue) - (currentItem.getmFoodPrice()));
+                    abc.setQuantity(newValue);
+                    listener.onItemUpdated(abc);
+                    listener.onIncreaseItem(currentItem.getmFoodPrice());
                     Log.d(TAG, "onValueChange: increase "+((currentItem.getmFoodPrice()*newValue) - (currentItem.getmFoodPrice())));
 
                 }
@@ -105,6 +107,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         void onClick();
         void onIncreaseItem(int price);
         void onDecreaseItem(int price);
+        void onItemUpdated(RestaurantItemPojo updatedItem);
     }
 
     public void setListener(CartAdapter.CartItemClickListener listener) {

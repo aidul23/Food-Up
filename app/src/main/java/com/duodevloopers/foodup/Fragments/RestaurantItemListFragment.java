@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
 
@@ -11,11 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.duodevloopers.foodup.Adapter.FragmentAdapter;
 import com.duodevloopers.foodup.Adapter.RestaurantItemListAdapter;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
+import com.duodevloopers.foodup.MyApp;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentRestaurantItemListBinding;
 
 import java.util.ArrayList;
@@ -61,10 +62,10 @@ public class RestaurantItemListFragment extends Fragment {
         ArrayList<RestaurantItemPojo> restaurantItemPojoArrayList = new ArrayList<>();
 
 
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "White rice & Chicken ","One plate rice, one piece chicken with gravy", 50));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Khichuri & Chicken","One plate khichuri, one piece chicken with gravy", 60));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Chicken Biriyani","One plate biriyani rice, one piece chicken with gravy", 80));
-        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Mineral Water","Half liter", 15));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "White rice & Chicken ","One plate rice, one piece chicken with gravy", 50,1));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Khichuri & Chicken","One plate khichuri, one piece chicken with gravy", 60,1));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Chicken Biriyani","One plate biriyani rice, one piece chicken with gravy", 80,1));
+        restaurantItemPojoArrayList.add(new RestaurantItemPojo(R.drawable.food_icon, "Mineral Water","Half liter", 15,1));
 
 
 

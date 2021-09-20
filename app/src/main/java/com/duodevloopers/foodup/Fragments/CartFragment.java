@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,15 +19,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.duodevloopers.foodup.Adapter.CartAdapter;
+import com.duodevloopers.foodup.ViewModel.MainActivityViewModel;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.SummaryItemPojo;
+import com.duodevloopers.foodup.MyApp;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentCartBinding;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -68,7 +64,7 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d(TAG, "onViewCreated: "+MyApp.getmRestaurantItemPojo().size());
+        Log.d(TAG, "onViewCreated: "+ MyApp.getmRestaurantItemPojo().size());
 
         if(MyApp.getmRestaurantItemPojo().size() == 0) {
             binding.subTotal.setVisibility(View.GONE);
@@ -122,6 +118,13 @@ public class CartFragment extends Fragment {
             public void onDecreaseItem(int price) {
                 model.decreaseSubTotal(price);
             }
+
+            @Override
+            public void onItemUpdated(RestaurantItemPojo updatedItem) {
+                MyApp.addItemFromCart(updatedItem);
+            }
+
+
         });
 
 

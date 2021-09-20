@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.duodevloopers.foodup.HomeFragment"
+        android:name="com.duodevloopers.foodup.Fragments.HomeFragment"
         android:label="FoodUp"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.duodevloopers.foodup.CartFragment"
+        android:name="com.duodevloopers.foodup.Fragments.CartFragment"
         android:label="Cart"
         tools:layout="@layout/fragment_cart" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.duodevloopers.foodup.ProfileFragment"
+        android:name="com.duodevloopers.foodup.Fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -34,27 +34,27 @@
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.duodevloopers.foodup.OrderFragment"
+        android:name="com.duodevloopers.foodup.Fragments.OrderFragment"
         android:label="Order"
         tools:layout="@layout/fragment_order" />
     <fragment
         android:id="@+id/balanceFragment"
-        android:name="com.duodevloopers.foodup.BalanceFragment"
+        android:name="com.duodevloopers.foodup.Fragments.BalanceFragment"
         android:label="Balance"
         tools:layout="@layout/fragment_faq" />
     <fragment
         android:id="@+id/termsFragment"
-        android:name="com.duodevloopers.foodup.TermsFragment"
+        android:name="com.duodevloopers.foodup.Fragments.TermsFragment"
         android:label="Terms &amp; Conditions"
         tools:layout="@layout/fragment_terms" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.duodevloopers.foodup.SettingsFragment"
+        android:name="com.duodevloopers.foodup.Fragments.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/restaurantFragment"
-        android:name="com.duodevloopers.foodup.RestaurantFragment"
+        android:name="com.duodevloopers.foodup.Fragments.RestaurantFragment"
         android:label="Restaurants"
         tools:layout="@layout/fragment_restaurant">
         <action
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/summaryFragment"
-        android:name="com.duodevloopers.foodup.SummaryFragment"
+        android:name="com.duodevloopers.foodup.Fragments.SummaryFragment"
         android:label="Order Summary"
         tools:layout="@layout/fragment_summary" >
         <argument
@@ -82,12 +82,12 @@
     </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"
-        android:name="com.duodevloopers.foodup.EditUserProfileFragment"
+        android:name="com.duodevloopers.foodup.Fragments.EditUserProfileFragment"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_user_profile" />
     <fragment
         android:id="@+id/orderStatusFragment"
-        android:name="com.duodevloopers.foodup.OrderStatusFragment"
+        android:name="com.duodevloopers.foodup.Fragments.OrderStatusFragment"
         android:label="Order Status"
         tools:layout="@layout/fragment_order_status" />
     <fragment

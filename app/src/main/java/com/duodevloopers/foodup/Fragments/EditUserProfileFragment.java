@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
 
@@ -6,13 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.duodevloopers.foodup.Constant.Constant;
 import com.duodevloopers.foodup.databinding.FragmentEditUserProfileBinding;
 
 import org.jetbrains.annotations.NotNull;

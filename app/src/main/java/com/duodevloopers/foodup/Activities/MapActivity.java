@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -21,9 +21,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.duodevloopers.foodup.Constant.Constant;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.ActivityMapBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,16 +36,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 import com.vmadalin.easypermissions.EasyPermissions;
 
 import org.jetbrains.annotations.NotNull;
@@ -106,7 +98,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .setMessage("Please Enable GPS")
                     .setPositiveButton("OK", ((dialogInterface, i) -> {
                         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivityForResult(intent, Constants.GPS_REQUEST_CODE);
+                        startActivityForResult(intent, Constant.GPS_REQUEST_CODE);
                     })).setCancelable(true).show();
         }
         return false;
@@ -166,7 +158,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         EasyPermissions.requestPermissions(
                 this,
                 "This app requires location permission",
-                Constants.PERMISSION_LOCATION_REQUEST_CODE,
+                Constant.PERMISSION_LOCATION_REQUEST_CODE,
                 Manifest.permission.ACCESS_FINE_LOCATION
         );
     }

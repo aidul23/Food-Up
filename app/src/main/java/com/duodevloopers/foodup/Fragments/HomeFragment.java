@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
 
@@ -16,12 +16,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.denzcoskun.imageslider.models.SlideModel;
 import com.duodevloopers.foodup.Adapter.BannerAdapter;
 import com.duodevloopers.foodup.Adapter.PopularItemAdapter;
 import com.duodevloopers.foodup.Adapter.RestaurantAdapter;
+import com.duodevloopers.foodup.ViewModel.MainActivityViewModel;
 import com.duodevloopers.foodup.Model.PopularItem;
 import com.duodevloopers.foodup.Model.RestaurantPojo;
+import com.duodevloopers.foodup.MyPageTransformer;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;

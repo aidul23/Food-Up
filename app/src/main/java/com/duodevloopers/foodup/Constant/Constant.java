@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Constant;
 
 public class Constant {
     public static String USER_EDIT_SELECTION = "user-edit-selection";
@@ -14,4 +14,8 @@ public class Constant {
     public static String USER_NAME = "user-name";
 
     public static String USER_DEPT = "user-dept";
+
+    public static int GPS_REQUEST_CODE = 9001;
+
+    public static int PERMISSION_LOCATION_REQUEST_CODE = 200;
 }

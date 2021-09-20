@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
 import com.duodevloopers.foodup.Model.FoodOrder;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.SummaryItemPojo;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentSummaryBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -34,7 +35,6 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
 
     private FragmentSummaryBinding binding;
     private SummaryItemListAdapter adapter;
-    private CartAdapter cartAdapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

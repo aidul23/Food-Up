@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_restaurant_scene"
-    tools:context=".RestaurantFragment">
+    tools:context=".Fragments.RestaurantFragment">
 
     <Button
         android:id="@+id/add_to_cart"

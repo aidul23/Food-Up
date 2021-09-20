@@ -12,14 +12,16 @@ public class RestaurantItemPojo implements Parcelable {
     private String mFoodName;
     private String mFoodDes;
     private int mFoodPrice;
+    private int quantity;
     private List<RestaurantItemPojo> list = new ArrayList<>();
 
 
-    public RestaurantItemPojo(int mImage, String mFoodName, String mFoodDes, int mFoodPrice) {
+    public RestaurantItemPojo(int mImage, String mFoodName, String mFoodDes, int mFoodPrice, int quantity) {
         this.mImage = mImage;
         this.mFoodName = mFoodName;
         this.mFoodDes = mFoodDes;
         this.mFoodPrice = mFoodPrice;
+        this.quantity = quantity;
     }
 
     public RestaurantItemPojo(List<RestaurantItemPojo> list) {
@@ -32,6 +34,7 @@ public class RestaurantItemPojo implements Parcelable {
         mFoodName = in.readString();
         mFoodDes = in.readString();
         mFoodPrice = in.readInt();
+        quantity = in.readInt();
         list = in.createTypedArrayList(RestaurantItemPojo.CREATOR);
     }
 
@@ -79,6 +82,13 @@ public class RestaurantItemPojo implements Parcelable {
         this.mFoodDes = mFoodDes;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     @Override
     public int describeContents() {
@@ -91,6 +101,7 @@ public class RestaurantItemPojo implements Parcelable {
         dest.writeString(mFoodName);
         dest.writeString(mFoodDes);
         dest.writeInt(mFoodPrice);
+        dest.writeInt(quantity);
         dest.writeTypedList(list);
     }
 }

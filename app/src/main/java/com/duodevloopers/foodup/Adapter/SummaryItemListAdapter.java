@@ -43,10 +43,9 @@ public class SummaryItemListAdapter extends RecyclerView.Adapter<SummaryItemList
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull SummaryViewHolder holder, int position) {
-        holder.quantity.setText("1x");
-        holder.quantity.setText("1x");
+        holder.quantity.setText(list.get(position).getQuantity()+"x");
         holder.name.setText(list.get(position).getmFoodName());
-        holder.price.setText(list.get(position).getmFoodPrice()+" Tk");
+        holder.price.setText((list.get(position).getmFoodPrice() * list.get(position).getQuantity()) +" Tk");
 
     }
 

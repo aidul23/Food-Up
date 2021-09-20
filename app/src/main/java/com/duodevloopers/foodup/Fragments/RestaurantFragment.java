@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
 
@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.duodevloopers.foodup.Adapter.FragmentAdapter;
+import com.duodevloopers.foodup.MyApp;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentRestaurantBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;

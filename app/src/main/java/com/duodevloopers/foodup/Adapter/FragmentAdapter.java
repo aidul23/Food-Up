@@ -2,8 +2,8 @@ package com.duodevloopers.foodup.Adapter;
 
 import android.os.Bundle;
 
-import com.duodevloopers.foodup.RestaurantFragment;
-import com.duodevloopers.foodup.RestaurantItemListFragment;
+import com.duodevloopers.foodup.Fragments.RestaurantFragment;
+import com.duodevloopers.foodup.Fragments.RestaurantItemListFragment;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
