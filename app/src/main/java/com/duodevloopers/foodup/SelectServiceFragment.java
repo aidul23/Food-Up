@@ -12,13 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.duodevloopers.foodup.Activities.MainActivity;
+import com.duodevloopers.foodup.Activities.MapActivity;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 
 public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback {
 
     private FragmentSelectServiceBinding binding;
-
     private PrintServiceBottomSheet bottomSheet;
     private RoomBottomSheet roomBottomSheet;
 
@@ -72,6 +72,14 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
             @Override
             public void onClick(View v) {
                 roomBottomSheet.showBottomSheet();
+            }
+        });
+
+        binding.navigation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MapActivity.class);
+                startActivity(intent);
             }
         });
     }

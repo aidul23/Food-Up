@@ -9,23 +9,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
         android:orientation="vertical">
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Assignment Cover Information"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp"/>
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            />
 
-
-    <com.google.android.material.textfield.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
         android:hint="Assignment No">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -41,6 +45,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Assignment Title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,12 +63,16 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Course Code">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/course_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:singleLine="true"
             />
 
@@ -71,6 +82,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Course Title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -86,6 +100,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Your Name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -101,6 +118,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Enrolled Semester">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -116,6 +136,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Matric ID">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -131,6 +154,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Section">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -146,6 +172,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Teacher Name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -161,6 +190,9 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Teacher Designation">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -177,13 +209,18 @@
         android:id="@+id/department_spinner"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:hint="Date of Submission">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -205,6 +242,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16sp"
         android:textAllCaps="false"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Make PDF"/>
 
     </LinearLayout>
