@@ -175,7 +175,6 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
                         Utility.Companion.getPrice(selectedPrintType) * quantity
                 );
             }
-
         }
 
         @Override

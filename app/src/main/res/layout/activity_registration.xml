@@ -136,7 +136,6 @@
                     <TextView
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:onClick="onLoginClick"
                         android:text="Already have an account?"
                         android:textAlignment="center"
                         android:textColor="@color/colorPrimary"
@@ -156,15 +155,6 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/ic_side_bg2" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="30dp"
-        android:adjustViewBounds="false"
-        android:onClick="onLoginClick"
-        android:src="@drawable/ic_back_img" />
+
 
 </RelativeLayout>

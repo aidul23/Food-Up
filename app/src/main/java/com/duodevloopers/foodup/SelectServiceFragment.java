@@ -10,9 +10,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.Activities.MapActivity;
+import com.duodevloopers.foodup.Fragments.ProfileFragment;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 
@@ -21,6 +26,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     private FragmentSelectServiceBinding binding;
     private PrintServiceBottomSheet bottomSheet;
     private RoomBottomSheet roomBottomSheet;
+    private NavController navController;
 
     public SelectServiceFragment() {
         // Required empty public constructor
@@ -44,6 +50,16 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+//        navController = Navigation.findNavController(view);
+
+        binding.shapeableImageViewProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.selectServiceFragment, ProfileFragment.class,null).commit();
+            }
+        });
 
         binding.food.setOnClickListener(new View.OnClickListener() {
             @Override

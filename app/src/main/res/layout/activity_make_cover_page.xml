@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
         android:hint="Assignment No">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Assignment Title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,14 +65,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Course Code">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/course_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:singleLine="true"
             />
 
@@ -84,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Course Title">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -102,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Your Name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -120,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Enrolled Semester">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -138,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Matric ID">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -156,7 +155,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Section">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -174,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Teacher Name">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -192,7 +191,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Teacher Designation">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -211,7 +210,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -220,7 +219,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="Date of Submission">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -244,7 +243,7 @@
         android:textAllCaps="false"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="Make PDF"/>
 
     </LinearLayout>
