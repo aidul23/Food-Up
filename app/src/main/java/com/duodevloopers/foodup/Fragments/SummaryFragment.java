@@ -86,6 +86,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
         binding.summaryItemRecyclerView.setAdapter(adapter);
         binding.summaryItemRecyclerView.setHasFixedSize(true);
 
+        binding.cashPayment.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.button_border));
         binding.digitalPayment.setOnClickListener(this);
         binding.cashPayment.setOnClickListener(this);
 
