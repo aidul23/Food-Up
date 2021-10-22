@@ -99,7 +99,6 @@ public class SummaryFragment extends Fragment implements View.OnClickListener{
                 placeFoodOrder(summaryItemPojo.getList());
             }
         });
-
     }
 
     private void placeFoodOrder(List<RestaurantItemPojo> list) {
