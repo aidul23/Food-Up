@@ -1,5 +1,10 @@
 package com.duodevloopers.foodup
 
+import android.content.Context
+import android.widget.Toast
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+
 class Utility {
     companion object {
 
@@ -11,6 +16,17 @@ class Utility {
             priceMap["Offset Paper B&W"] = 7
             priceMap["Offset Paper Color"] = 12
             return priceMap[type]!!
+        }
+
+        fun getQuery(type: String, section: String): Query {
+            return FirebaseFirestore.getInstance()
+                .collection("notice")
+                .whereEqualTo("type", type)
+                .whereEqualTo("section", section)
+        }
+
+        fun showToast(context: Context, s: String) {
+            Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="section">
+
+        <item name="1AM" />
+        <item name="1BM" />
+        <item name="1CM" />
+        <item name="1AM" />
+
+    </string-array>
+
+</resources>
