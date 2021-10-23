@@ -114,7 +114,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             mLocation = location;
 //                            myLocation = new LatLng(mLocation.getLatitude(), mLocation.getLongitude());
 //                            getAddressFromLocation(mLocation.getLatitude(), mLocation.getLongitude());
-                            gotoLocation(location.getLatitude(), location.getLongitude());
+                            gotoLocation(22.496600331944418, 91.72107610220237);
                         } else {
                             Log.d(TAG, "onSuccess: null");
                         }
@@ -124,12 +124,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private void gotoLocation(double latitude, double longitude) {
         LatLng latLng = new LatLng(latitude, longitude);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 18);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
         mGoogleMap.moveCamera(cameraUpdate);
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mGoogleMap.addMarker(new MarkerOptions().position(latLng)
-                .icon(BitmapFromVector(getApplicationContext(), R.drawable.ic_location))
-                .title("My Location"));
+//        mGoogleMap.addMarker(new MarkerOptions().position(latLng)
+//                .icon(BitmapFromVector(getApplicationContext(), R.drawable.ic_location))
+//                .title("My Location"));
     }
 
     //.icon(BitmapFromVector(getApplicationContext(), R.drawable.ic_location))

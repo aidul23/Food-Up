@@ -1,5 +1,6 @@
 package com.duodevloopers.foodup.Adapter;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,7 @@ public class RestaurantItemListAdapter extends RecyclerView.Adapter<RestaurantIt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RestaurantItemListViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final RestaurantItemListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         RestaurantItemPojo currentItem = mRestaurantItemPojoArrayList.get(position);
 
         holder.mFoodImageView.setImageResource(currentItem.getmImage());

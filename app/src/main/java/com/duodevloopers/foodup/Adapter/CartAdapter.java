@@ -53,6 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.mFoodDes.setText(currentItem.getmFoodDes());
         holder.mFoodPrice.setText(String.format("%d Tk", (currentItem.getmFoodPrice()*currentItem.getQuantity())));
         holder.mElegantNumberButton.setNumber(String.valueOf(currentItem.getQuantity()));
+
         holder.mElegantNumberButton.setOnValueChangeListener(new ElegantNumberButton.OnValueChangeListener() {
             @Override
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
@@ -64,19 +65,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 //                LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
 
                 if(oldValue>newValue){
-//                    Log.d(TAG, "onValueChange: new value(decrease) "+newValue);
-//                    Log.d(TAG, "onValueChange: old value(decrease) "+oldValue);
                     listener.onDecreaseItem(currentItem.getmFoodPrice());
                     Log.d(TAG, "onValueChange: decrease "+currentItem.getmFoodPrice()*newValue);
 
                 } else if(oldValue < newValue){
-//                    Log.d(TAG, "onValueChange: new value(increase) "+newValue);
-//                    Log.d(TAG, "onValueChange: old value(increase) "+newValue);
                     abc.setQuantity(newValue);
                     listener.onItemUpdated(abc);
                     listener.onIncreaseItem(currentItem.getmFoodPrice());
-                    Log.d(TAG, "onValueChange: increase "+((currentItem.getmFoodPrice()*newValue) - (currentItem.getmFoodPrice())));
-
                 }
 
             }

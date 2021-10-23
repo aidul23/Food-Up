@@ -90,9 +90,4 @@
         android:name="com.duodevloopers.foodup.Fragments.OrderStatusFragment"
         android:label="Order Status"
         tools:layout="@layout/fragment_order_status" />
-    <fragment
-        android:id="@+id/selectServiceFragment"
-        android:name="com.duodevloopers.foodup.SelectServiceFragment"
-        android:label="fragment_select_service"
-        tools:layout="@layout/fragment_select_service" />
 </navigation>
