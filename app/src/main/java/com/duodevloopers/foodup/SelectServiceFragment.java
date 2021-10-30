@@ -17,6 +17,8 @@ import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.Activities.NoticeActivity;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
+import com.duodevloopers.foodup.utility.Constants;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback, MotionLayout.TransitionListener {
 
@@ -50,6 +52,46 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         return binding.getRoot();
     }
 
+    private View.OnClickListener qrScanActivity = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            if (v.getId() == R.id.attendance) {
+                scanCode(Constants.ATTENDANCE_REQUEST_CODE);
+            } else if (v.getId() == R.id.recharge) {
+                scanCode(Constants.RECHARGE_REQUEST_CODE);
+            }
+
+        }
+    };
+
+    @Override
+    public void onConfirm() {
+        Toast.makeText(requireContext(), "Your print request has been posted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+    }
+
+    @Override
+    public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+        if (progress >= 0.50) {
+            credit.setText("1211.00");
+        }
+    }
+
+    @Override
+    public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+        motionLayout.transitionToStart();
+        if (currentId == R.id.start) credit.setText("Tap");
+    }
+
+    @Override
+    public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,13 +100,6 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         credit = creditMotionLayout.findViewById(R.id.text);
 
         creditMotionLayout.addTransitionListener(this);
-
-        binding.recharge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
         binding.food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,32 +137,19 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
                 startActivity(new Intent(requireActivity(), NoticeActivity.class));
             }
         });
+
+        binding.recharge.setOnClickListener(qrScanActivity);
+        binding.attendance.setOnClickListener(qrScanActivity);
+
     }
 
-    @Override
-    public void onConfirm() {
-        Toast.makeText(requireContext(), "Your print request has been posted", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
-    }
-
-    @Override
-    public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-        if (progress >= 0.50) {
-            credit.setText("1211.00");
-        }
-    }
-
-    @Override
-    public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-        motionLayout.transitionToStart();
-        if (currentId == R.id.start) credit.setText("Tap");
-    }
-
-    @Override
-    public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
-
+    private void scanCode(int requestCode) {
+        IntentIntegrator intentIntegrator = new IntentIntegrator(requireActivity());
+        intentIntegrator.setCaptureActivity(CaptureAct.class);
+        intentIntegrator.setOrientationLocked(true);
+        intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+        intentIntegrator.initiateScan();
+//        Intent intent = intentIntegrator.createScanIntent();
+//        startActivityForResult(intent, requestCode);
     }
 }

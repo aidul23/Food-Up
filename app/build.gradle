@@ -107,6 +107,7 @@ dependencies {
 
     //qr and barcode
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'com.google.zxing:core:3.4.0'
 
 
     //pdf
