@@ -27,7 +27,6 @@ public class SummaryItemListAdapter extends RecyclerView.Adapter<SummaryItemList
 
     List<RestaurantItemPojo> list = new ArrayList<>();
 
-
     public SummaryItemListAdapter(List<RestaurantItemPojo> list) {
         this.list = list;
     }

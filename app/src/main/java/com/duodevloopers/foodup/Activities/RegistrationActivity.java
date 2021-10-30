@@ -1,5 +1,6 @@
 package com.duodevloopers.foodup.Activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(intentResult != null) {
             if(intentResult.getContents() != null){
@@ -68,10 +69,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             else {
                 Toast.makeText(this, "No Results", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        else {
-            super.onActivityResult(requestCode,resultCode,data);
-        }
-
     }
+
 }

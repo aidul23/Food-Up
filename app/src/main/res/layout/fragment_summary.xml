@@ -140,7 +140,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>>
+        </LinearLayout>
 
         </LinearLayout>
 
@@ -230,7 +230,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_below="@id/discount"
                     android:text="Total"
-                     />
+                    />
 
                 <TextView
                     android:id="@+id/total_amount"
@@ -240,7 +240,7 @@
                     android:layout_below="@id/discount_amount"
                     android:layout_alignParentRight="true"
                     android:text="0 Tk"
-                     />
+                    />
             </RelativeLayout>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -269,10 +269,5 @@
         android:text="place order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.61" />
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
