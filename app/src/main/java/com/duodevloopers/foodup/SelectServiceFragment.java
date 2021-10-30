@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
 import com.duodevloopers.foodup.Activities.MainActivity;
@@ -16,12 +18,18 @@ import com.duodevloopers.foodup.Activities.NoticeActivity;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 
-public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback {
+public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback, MotionLayout.TransitionListener {
+
+    private static final String TAG = "SelectServiceFragment";
 
     private FragmentSelectServiceBinding binding;
 
     private PrintServiceBottomSheet bottomSheet;
     private RoomBottomSheet roomBottomSheet;
+
+    private MotionLayout creditMotionLayout;
+
+    private TextView credit;
 
     public SelectServiceFragment() {
         // Required empty public constructor
@@ -45,6 +53,18 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        creditMotionLayout = binding.getRoot().findViewById(R.id.motion_layout);
+        credit = creditMotionLayout.findViewById(R.id.text);
+
+        creditMotionLayout.addTransitionListener(this);
+
+        binding.recharge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         binding.food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,5 +107,27 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onConfirm() {
         Toast.makeText(requireContext(), "Your print request has been posted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+    }
+
+    @Override
+    public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+        if (progress >= 0.50) {
+            credit.setText("1211.00");
+        }
+    }
+
+    @Override
+    public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+        motionLayout.transitionToStart();
+        if (currentId == R.id.start) credit.setText("Tap");
+    }
+
+    @Override
+    public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
     }
 }

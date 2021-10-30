@@ -27,33 +27,36 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
 
     private lateinit var selectedType: String
 
+    private val sections = arrayOf("1AM", "1BM", "1CM", "2AM", "2BM", "2CM")
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // TODO: 23/10/2021 get section from user profile
+        /*MyApp.getLoggedInUser()!!.section*/
         selectedSection = ""
 
         binding.list.layoutManager = GridLayoutManager(this, 2)
         binding.chipGroup.setOnCheckedChangeListener(this)
         binding.chipGroup.check(binding.chipGroup.checkedChipId)
         binding.toolbar.setNavigationOnClickListener {
-            finish()
+            onBackPressed()
         }
+
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_spinner_item, sections
+        )
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.sectionSpinner.adapter = adapter
+        binding.sectionSpinner.onItemSelectedListener = this
     }
 
     override fun onStart() {
         super.onStart()
-
-        val spinnerAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.section,
-            android.R.layout.simple_spinner_dropdown_item
-        )
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.sectionSpinner.adapter = spinnerAdapter
-        binding.sectionSpinner.onItemSelectedListener = this
     }
 
     override fun onCheckedChanged(group: ChipGroup?, checkedId: Int) {
@@ -94,7 +97,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        selectedSection = resources.getStringArray(R.array.section)[position]
+        selectedSection = sections[position]
         Utility.showToast(this, selectedSection)
         //getNotice(selectedType, selectedSection)
     }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SelectServiceFragment">
 
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
         android:layout_width="70dp"
@@ -258,6 +259,39 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <include layout="@layout/reveal" />
+
+            <TextView
+                android:id="@+id/recharge"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end|center"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Recharge"
+                android:textColor="@color/fui_bgTwitter"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
 
 
     <ImageView
