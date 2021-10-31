@@ -13,7 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
+import com.duodevloopers.foodup.Activities.CaptureAct;
 import com.duodevloopers.foodup.Activities.MainActivity;
+import com.duodevloopers.foodup.Activities.MakeCoverPageActivity;
 import com.duodevloopers.foodup.Activities.NoticeActivity;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;

@@ -1,6 +1,4 @@
-package com.duodevloopers.foodup;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.duodevloopers.foodup.Activities;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
@@ -16,6 +14,9 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.ActivityMakeCoverPageBinding;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;

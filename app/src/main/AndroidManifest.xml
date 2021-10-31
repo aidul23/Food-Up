@@ -23,10 +23,10 @@
         <activity android:name=".Activities.ScanActivity"></activity>
         <activity android:name=".Activities.NoticeActivity" />
         <activity
-            android:name=".SelectServiceActivity"
+            android:name=".Activities.SelectServiceActivity"
             android:exported="true" />
         <activity
-            android:name=".MakeCoverPageActivity"
+            android:name=".Activities.MakeCoverPageActivity"
             android:exported="true" />
         <activity
             android:name=".Activities.LoginActivity"
@@ -44,7 +44,7 @@
         <activity android:name=".Activities.MapActivity" />
         <activity android:name=".Activities.MainActivity" />
         <activity
-            android:name=".CaptureAct"
+            android:name=".Activities.CaptureAct"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
             android:windowSoftInputMode="stateAlwaysHidden" />

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.duodevloopers.foodup.Adapter.NoticeAdapter
 import com.duodevloopers.foodup.Model.Notice
 import com.duodevloopers.foodup.R
-import com.duodevloopers.foodup.Utility
 import com.duodevloopers.foodup.clicklisteners.NoticeOnClickListener
 import com.duodevloopers.foodup.databinding.ActivityNoticeBinding
+import com.duodevloopers.foodup.utility.Utility
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.chip.ChipGroup
 

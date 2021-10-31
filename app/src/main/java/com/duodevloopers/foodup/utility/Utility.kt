@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup
+package com.duodevloopers.foodup.utility
 
 import android.content.Context
 import android.widget.Toast

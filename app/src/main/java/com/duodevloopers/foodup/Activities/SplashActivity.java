@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.duodevloopers.foodup.Activities.SelectServiceActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

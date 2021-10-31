@@ -1,17 +1,15 @@
 package com.duodevloopers.foodup.Activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.View;
-import android.widget.Toast;
-
-import com.duodevloopers.foodup.CaptureAct;
 import com.duodevloopers.foodup.databinding.ActivityRegistrationBinding;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;

@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Activities;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 

@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +8,9 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.duodevloopers.foodup.MyApp;
+import com.duodevloopers.foodup.R;
+import com.duodevloopers.foodup.repository.Repository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,10 +27,14 @@ public class SelectServiceActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectServiceActivity";
 
+    private Repository repository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_service);
+
+        repository = new Repository();
     }
 
     @Override
@@ -45,6 +52,8 @@ public class SelectServiceActivity extends AppCompatActivity {
                     recharge(contents[0]);
                 } else if (contents.length == 2) {
                     // attendance
+                    //repository.writeToSheet(MyApp.getLoggedInUser());
+
                 }
 
             }
@@ -67,8 +76,7 @@ public class SelectServiceActivity extends AppCompatActivity {
                     public Void apply(@NotNull Transaction transaction) throws FirebaseFirestoreException {
                         DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document(MyApp.getLoggedInUser().getNumber());
                         DocumentSnapshot documentSnapshot = transaction.get(reference);
-                        // Note: this could be done without a transaction
-                        //       by updating the population using FieldValue.increment()
+
                         double newAmount = documentSnapshot.getDouble("credit") + Double.parseDouble(amount);
                         transaction.update(reference, "credit", newAmount);
 
