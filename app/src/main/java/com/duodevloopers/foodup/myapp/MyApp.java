@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.myapp;
 
 import android.app.Application;
 
@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyApp extends Application {
+
+    private static final String TAG = "MyApp";
 
     public static List<RestaurantItemPojo> mRestaurantItemPojo = new ArrayList<>();
 
@@ -37,13 +39,18 @@ public class MyApp extends Application {
         return user;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
+    public static void addItemFromCart(RestaurantItemPojo restaurantItemPojo) {
 
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            getUser();
+        List<RestaurantItemPojo> toRemove = new ArrayList<>();
+
+        for (RestaurantItemPojo item : mRestaurantItemPojo) {
+            if (item.getmFoodName().equals(restaurantItemPojo.getmFoodName())) {
+                toRemove.add(item);
+            }
         }
+
+        mRestaurantItemPojo.removeAll(toRemove);
+        mRestaurantItemPojo.add(restaurantItemPojo);
     }
 
     public static void addItem(RestaurantItemPojo restaurantItemPojo) {
@@ -56,14 +63,16 @@ public class MyApp extends Application {
 
     }
 
-    public static void addItemFromCart(RestaurantItemPojo restaurantItemPojo) {
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
-        for (RestaurantItemPojo item : mRestaurantItemPojo) {
-            if (item.getmFoodName().equals(restaurantItemPojo.getmFoodName())) {
-                mRestaurantItemPojo.remove(item);
-                mRestaurantItemPojo.add(restaurantItemPojo);
-            }
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            //getUser();
         }
+        user = new User();
+        user.id = "C171080";
+        user.credit = "300.00";
 
     }
 

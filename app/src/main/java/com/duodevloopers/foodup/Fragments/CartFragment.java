@@ -1,6 +1,12 @@
 package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,20 +17,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.duodevloopers.foodup.Adapter.CartAdapter;
-import com.duodevloopers.foodup.ViewModel.MainActivityViewModel;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.Model.SummaryItemPojo;
-import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
+import com.duodevloopers.foodup.ViewModel.MainActivityViewModel;
 import com.duodevloopers.foodup.databinding.FragmentCartBinding;
+import com.duodevloopers.foodup.myapp.MyApp;
 
 import static android.content.ContentValues.TAG;
 
@@ -64,9 +63,9 @@ public class CartFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d(TAG, "onViewCreated: "+ MyApp.getmRestaurantItemPojo().size());
+        Log.d(TAG, "onViewCreated: " + MyApp.getmRestaurantItemPojo().size());
 
-        if(MyApp.getmRestaurantItemPojo().size() == 0) {
+        if (MyApp.getmRestaurantItemPojo().size() == 0) {
             binding.subTotal.setVisibility(View.GONE);
             binding.subTotalAmount.setVisibility(View.GONE);
             binding.discount.setVisibility(View.GONE);
@@ -87,17 +86,17 @@ public class CartFragment extends Fragment {
 
             @Override
             public void onChanged(Integer integer) {
-                binding.subTotalAmount.setText(String.format("%d Tk",integer));
+                binding.subTotalAmount.setText(String.format("%d Tk", integer));
 
 
                 bundle.putString("subtotal", String.valueOf(integer));
 
 
-                if(integer >= 50){
+                if (integer >= 50) {
                     binding.discountAmount.setText("-30 Tk");
-                    binding.totalAmount.setText(String.format("%d Tk",integer - 30));
+                    binding.totalAmount.setText(String.format("%d Tk", integer - 30));
                 } else {
-                    binding.totalAmount.setText(String.format("%d Tk",integer));
+                    binding.totalAmount.setText(String.format("%d Tk", integer));
                 }
 
             }
@@ -133,13 +132,6 @@ public class CartFragment extends Fragment {
             public void onClick(View v) {
                 final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
-//                navController.navigate(action);
-
-//                Map<String,Object> foodItem = new HashMap<>();
-//                foodItem.put("selectedFood",MyApp.getmRestaurantItemPojo());
-//                Log.d(TAG, "onClick: "+foodItem);
-
-//                RestaurantItemPojo restaurantItemPojo = new RestaurantItemPojo(0,"Chicken Biriyani",80);
                 SummaryItemPojo summaryItemPojo = new SummaryItemPojo(MyApp.getmRestaurantItemPojo());
 
                 CartFragmentDirections.ActionCartFragmentToSummaryFragment action = CartFragmentDirections.actionCartFragmentToSummaryFragment(summaryItemPojo, bundle.getString("subtotal"));
@@ -151,9 +143,9 @@ public class CartFragment extends Fragment {
 
     }
 
-    public int totalCost(){
+    public int totalCost() {
         int cost = 0;
-        for(RestaurantItemPojo item:MyApp.getmRestaurantItemPojo()){
+        for (RestaurantItemPojo item : MyApp.getmRestaurantItemPojo()) {
             cost = cost + item.getmFoodPrice();
         }
         return cost;

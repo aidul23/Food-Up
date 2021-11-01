@@ -1,9 +1,10 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.bottomsheet;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 

@@ -1,6 +1,12 @@
 package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,17 +15,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.duodevloopers.foodup.Adapter.FragmentAdapter;
-import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentRestaurantBinding;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 

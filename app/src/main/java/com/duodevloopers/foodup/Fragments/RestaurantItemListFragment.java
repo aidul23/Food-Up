@@ -1,23 +1,22 @@
 package com.duodevloopers.foodup.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.duodevloopers.foodup.Adapter.FragmentAdapter;
 import com.duodevloopers.foodup.Adapter.RestaurantItemListAdapter;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
-import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentRestaurantItemListBinding;
+import com.duodevloopers.foodup.myapp.MyApp;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import com.duodevloopers.foodup.Activities.CaptureAct;
 import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.Activities.MakeCoverPageActivity;
 import com.duodevloopers.foodup.Activities.NoticeActivity;
+import com.duodevloopers.foodup.R;
+import com.duodevloopers.foodup.bottomsheet.PrintServiceBottomSheet;
+import com.duodevloopers.foodup.bottomsheet.RoomBottomSheet;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 import com.duodevloopers.foodup.utility.Constants;

@@ -1,4 +1,4 @@
-package com.duodevloopers.foodup;
+package com.duodevloopers.foodup.bottomsheet;
 
 import android.content.Context;
 import android.text.Editable;
@@ -15,6 +15,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.duodevloopers.foodup.Model.ServiceOrder;
+import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.utility.Utility;
 import com.google.android.gms.tasks.OnSuccessListener;

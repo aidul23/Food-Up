@@ -8,8 +8,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.repository.Repository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;

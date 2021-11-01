@@ -1,27 +1,20 @@
 package com.duodevloopers.foodup.Adapter;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
-import com.duodevloopers.foodup.Model.SummaryItemPojo;
-import com.duodevloopers.foodup.MyApp;
 import com.duodevloopers.foodup.R;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class SummaryItemListAdapter extends RecyclerView.Adapter<SummaryItemListAdapter.SummaryViewHolder>{
 

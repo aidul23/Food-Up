@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class RestaurantItemPojo implements Parcelable {
     private int mImage;
@@ -103,5 +102,17 @@ public class RestaurantItemPojo implements Parcelable {
         dest.writeInt(mFoodPrice);
         dest.writeInt(quantity);
         dest.writeTypedList(list);
+    }
+
+    @Override
+    public String toString() {
+        return "RestaurantItemPojo{" +
+                "mImage=" + mImage +
+                ", mFoodName='" + mFoodName + '\'' +
+                ", mFoodDes='" + mFoodDes + '\'' +
+                ", mFoodPrice=" + mFoodPrice +
+                ", quantity=" + quantity +
+                ", list=" + list +
+                '}';
     }
 }
