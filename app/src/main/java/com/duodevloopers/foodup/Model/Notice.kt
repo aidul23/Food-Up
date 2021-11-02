@@ -7,6 +7,9 @@ class Notice(
     var title: String,
     var type: String,
 ) {
+
+    constructor() : this("", "", "", "", "")
+
     override fun toString(): String {
         return super.toString()
     }

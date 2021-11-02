@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ScanActivity"></activity>
+        <activity android:name=".Activities.CreateNoticeActivity"></activity>
+        <activity android:name=".Activities.ScanActivity" />
         <activity android:name=".Activities.NoticeActivity" />
         <activity
             android:name=".Activities.SelectServiceActivity"
@@ -33,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.RegistrationActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

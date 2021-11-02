@@ -1,9 +1,12 @@
 package com.duodevloopers.foodup.utility
 
 import android.content.Context
+import android.text.format.DateFormat
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import java.util.*
+import kotlin.collections.HashMap
 
 class Utility {
     companion object {
@@ -28,5 +31,13 @@ class Utility {
         fun showToast(context: Context, s: String) {
             Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
         }
+
+        fun formatMillisecondsIntoDate(time: Long): String {
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.timeInMillis = time
+            return DateFormat.format("dd-MM-yyyy", calendar).toString()
+        }
+
+
     }
 }

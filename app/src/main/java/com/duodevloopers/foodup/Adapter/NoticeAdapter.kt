@@ -1,5 +1,6 @@
 package com.duodevloopers.foodup.Adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,20 +14,19 @@ import com.duodevloopers.foodup.clicklisteners.NoticeOnClickListener
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
-class NoticeAdapter : FirestoreRecyclerAdapter<Notice, NoticeAdapter.NoticeViewHolder> {
+class NoticeAdapter(options: FirestoreRecyclerOptions<Notice>, var type: String) :
+    FirestoreRecyclerAdapter<Notice, NoticeAdapter.NoticeViewHolder>(options) {
 
-    private lateinit var type: String
+    private val TAG = "NoticeAdapter"
 
     private lateinit var noticeOnClickListener: NoticeOnClickListener
-
-    constructor(options: FirestoreRecyclerOptions<Notice>, type: String) : super(options) {
-        this.type = type
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): NoticeViewHolder {
+
+        Log.d(TAG, "onCreateViewHolder: ")
 
         val view = when (viewType) {
             0 -> LayoutInflater.from(parent.context)
@@ -46,16 +46,18 @@ class NoticeAdapter : FirestoreRecyclerAdapter<Notice, NoticeAdapter.NoticeViewH
         position: Int,
         model: Notice
     ) {
+        Log.d(TAG, "onBindViewHolder: ")
+
         holder.title.text = model.title
         holder.date.text = model.date
 
-        if (type == "photo") {
-            Glide.with(holder.image.context).load(model.imageUrl).into(holder.image)
+        if (type == "image") {
+            Glide.with(holder.image!!.context).load(model.imageUrl).into(holder.image!!)
         }
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             when (model.type) {
-                "photo" -> {
+                "image" -> {
                     noticeOnClickListener.onViewPhoto(model.imageUrl)
                 }
                 "doc" -> {
@@ -70,8 +72,10 @@ class NoticeAdapter : FirestoreRecyclerAdapter<Notice, NoticeAdapter.NoticeViewH
 
     override fun getItemViewType(position: Int): Int {
 
+        Log.d(TAG, "getItemViewType: " + type)
+
         when (type) {
-            "photo" -> return 0
+            "image" -> return 0
             "doc" -> return 1
         }
 
@@ -81,7 +85,7 @@ class NoticeAdapter : FirestoreRecyclerAdapter<Notice, NoticeAdapter.NoticeViewH
     class NoticeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.title)
         val date: TextView = view.findViewById(R.id.date)
-        val image: ImageView = view.findViewById(R.id.image)
+        val image: ImageView? = view.findViewById(R.id.image)
     }
 
     fun setNoticeOnClickListener(noticeOnClickListener: NoticeOnClickListener) {

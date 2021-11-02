@@ -1,5 +1,6 @@
 package com.duodevloopers.foodup.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -13,6 +14,7 @@ import com.duodevloopers.foodup.Model.Notice
 import com.duodevloopers.foodup.R
 import com.duodevloopers.foodup.clicklisteners.NoticeOnClickListener
 import com.duodevloopers.foodup.databinding.ActivityNoticeBinding
+import com.duodevloopers.foodup.myapp.MyApp
 import com.duodevloopers.foodup.utility.Utility
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.chip.ChipGroup
@@ -21,13 +23,15 @@ import com.google.android.material.chip.ChipGroup
 class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener {
 
+    private val TAG = "NoticeActivity"
+
     private lateinit var binding: ActivityNoticeBinding
 
     private lateinit var adapter: NoticeAdapter
 
     private lateinit var selectedSection: String
 
-    private lateinit var selectedType: String
+    private var selectedType: String = "notice"
 
     private val sections = arrayOf("1AM", "1BM", "1CM", "2AM", "2BM", "2CM")
 
@@ -65,13 +69,15 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         setContentView(binding.root)
 
         binding.add.setOnClickListener(this)
+        binding.addFile.setOnClickListener(this)
+        binding.addImage.setOnClickListener(this)
+        binding.addNotice.setOnClickListener(this)
 
         /*MyApp.getLoggedInUser()!!.section*/
-        selectedSection = ""
+        selectedSection = MyApp.getLoggedInUser()!!.section
 
-        binding.list.layoutManager = GridLayoutManager(this, 2)
+
         binding.chipGroup.setOnCheckedChangeListener(this)
-        binding.chipGroup.check(binding.chipGroup.checkedChipId)
         binding.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -86,20 +92,16 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         binding.sectionSpinner.onItemSelectedListener = this
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
     override fun onCheckedChanged(group: ChipGroup?, checkedId: Int) {
 
         selectedType = when (checkedId) {
-            R.id.photo -> "photo"
+            R.id.photo -> "image"
             R.id.doc -> "doc"
             else -> "notice"
         }
 
         Utility.showToast(this, selectedType)
-        //getNotice(selectedType, selectedSection)
+        getNotice(selectedType, selectedSection)
 
     }
 
@@ -110,7 +112,9 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
             .build()
 
         adapter = NoticeAdapter(options, type)
+        binding.list.layoutManager = GridLayoutManager(this, 2)
         binding.list.adapter = adapter
+        adapter.startListening()
         adapter.setNoticeOnClickListener(this)
 
     }
@@ -130,7 +134,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         selectedSection = sections[position]
         Utility.showToast(this, selectedSection)
-        //getNotice(selectedType, selectedSection)
+        getNotice(selectedType, selectedSection)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -138,9 +142,26 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     }
 
     override fun onClick(v: View?) {
-        if (v!!.id == R.id.add) {
-            onAddButtonClicked()
+        when {
+            v!!.id == R.id.add -> {
+                onAddButtonClicked()
+            }
+            v.id == R.id.add_image -> {
+                goToCreateActivity("image")
+            }
+            v.id == R.id.add_file -> {
+                goToCreateActivity("doc")
+            }
+            v.id == R.id.add_notice -> {
+                goToCreateActivity("notice")
+            }
         }
+    }
+
+    private fun goToCreateActivity(s: String) {
+
+        startActivity(Intent(this, CreateNoticeActivity::class.java).putExtra("type", s))
+
     }
 
     private fun onAddButtonClicked() {
@@ -173,5 +194,15 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
             binding.addImage.visibility = View.INVISIBLE
             binding.addFile.visibility = View.INVISIBLE
         }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if (adapter != null) adapter.stopListening()
     }
 }

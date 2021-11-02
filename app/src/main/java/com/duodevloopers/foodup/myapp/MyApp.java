@@ -73,6 +73,7 @@ public class MyApp extends Application {
         user = new User();
         user.id = "C171080";
         user.credit = "300.00";
+        user.section = "1CM";
 
     }
 
