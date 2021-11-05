@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.CreateNoticeActivity"></activity>
+        <activity android:name=".Activities.OrderStatusActivity"></activity>
+        <activity android:name=".Activities.CreateNoticeActivity" />
         <activity android:name=".Activities.ScanActivity" />
         <activity android:name=".Activities.NoticeActivity" />
         <activity

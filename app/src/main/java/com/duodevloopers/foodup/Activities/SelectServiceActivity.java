@@ -34,6 +34,8 @@ public class SelectServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_service);
 
+//        startActivity(new Intent(this, OrderStatusActivity.class));
+
         repository = new Repository();
     }
 
