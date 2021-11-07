@@ -61,100 +61,88 @@
 
     </LinearLayout>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/summary_card"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        app:cardElevation="4dp"
-        app:layout_constraintBottom_toTopOf="@id/text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/payment_card">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Summary"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/summaryItemRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/summary_item_layout" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/black" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
             <TextView
+                android:id="@+id/sub_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order Summary"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:text="Sub Total" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/summaryItemRecyclerView"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/sub_total_amount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/summary_item_layout" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="4dp"
-                android:background="@android:color/black" />
+                android:text="0 Tk" />
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/discount"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                android:layout_below="@id/sub_total"
+                android:layout_marginTop="4dp"
+                android:text="Discount" />
 
-                <TextView
-                    android:id="@+id/sub_total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sub Total" />
+            <TextView
+                android:id="@+id/discount_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sub_total_amount"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                android:text="0 Tk" />
 
-                <TextView
-                    android:id="@+id/sub_total_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="4dp"
-                    android:text="0 Tk" />
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/discount"
+                android:layout_marginTop="4dp"
+                android:text="Total" />
 
-                <TextView
-                    android:id="@+id/discount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/sub_total"
-                    android:layout_marginTop="4dp"
-                    android:text="Discount" />
-
-                <TextView
-                    android:id="@+id/discount_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/sub_total_amount"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="4dp"
-                    android:text="0 Tk" />
-
-                <TextView
-                    android:id="@+id/total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/discount"
-                    android:layout_marginTop="4dp"
-                    android:text="Total" />
-
-                <TextView
-                    android:id="@+id/total_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/discount_amount"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="4dp"
-                    android:text="0 Tk" />
-            </RelativeLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/total_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/discount_amount"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                android:text="0 Tk" />
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

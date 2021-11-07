@@ -33,6 +33,8 @@ class NoticeAdapter(options: FirestoreRecyclerOptions<Notice>, var type: String)
                 .inflate(R.layout.item_photo_layout, parent, false)
             1 -> LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_doc_layout, parent, false)
+            3 -> LayoutInflater.from(parent.context)
+                .inflate(R.layout.news_item_layout, parent, false)
             else -> LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_notice_layout, parent, false)
         }
@@ -51,7 +53,7 @@ class NoticeAdapter(options: FirestoreRecyclerOptions<Notice>, var type: String)
         holder.title.text = model.title
         holder.date.text = model.date
 
-        if (type == "image") {
+        if (type == "image" || type == "news") {
             Glide.with(holder.image!!.context).load(model.imageUrl).into(holder.image!!)
         }
 
@@ -77,6 +79,7 @@ class NoticeAdapter(options: FirestoreRecyclerOptions<Notice>, var type: String)
         when (type) {
             "image" -> return 0
             "doc" -> return 1
+            "news" -> return 3
         }
 
         return 2

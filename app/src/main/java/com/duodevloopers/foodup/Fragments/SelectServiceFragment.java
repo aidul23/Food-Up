@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,18 +13,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
 import com.duodevloopers.foodup.Activities.CaptureAct;
 import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.Activities.MakeCoverPageActivity;
 import com.duodevloopers.foodup.Activities.NoticeActivity;
+import com.duodevloopers.foodup.Adapter.NoticeAdapter;
+import com.duodevloopers.foodup.Model.Notice;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.bottomsheet.PrintServiceBottomSheet;
 import com.duodevloopers.foodup.bottomsheet.RoomBottomSheet;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 import com.duodevloopers.foodup.utility.Constants;
+import com.duodevloopers.foodup.utility.Utility;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.synnapps.carouselview.ImageListener;
 
 public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback, MotionLayout.TransitionListener {
 
@@ -37,6 +45,12 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     private MotionLayout creditMotionLayout;
 
     private TextView credit;
+
+    private NoticeAdapter adapter;
+
+    private String[] urls = {"https://loremflickr.com/cache/resized/65535_51268117623_0472f4fd17_b_640_480_g.jpg",
+            "https://loremflickr.com/cache/resized/65535_51174182925_63083892ac_b_640_480_g.jpg",
+            "https://loremflickr.com/cache/resized/65535_51280154990_651235f317_b_640_480_g.jpg"};
 
     public SelectServiceFragment() {
         // Required empty public constructor
@@ -81,7 +95,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
 
     @Override
     public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-        if (progress >= 0.50) {
+        if (progress > 0.50) {
             credit.setText("1211.00");
         }
     }
@@ -146,6 +160,32 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         binding.recharge.setOnClickListener(qrScanActivity);
         binding.attendance.setOnClickListener(qrScanActivity);
 
+        binding.newsList.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        FirestoreRecyclerOptions<Notice> options = new FirestoreRecyclerOptions.Builder<Notice>()
+                .setQuery(Utility.Companion.getNewsQuery("news"), Notice.class)
+                .build();
+
+        adapter = new NoticeAdapter(options, "news");
+        binding.newsList.setAdapter(adapter);
+        adapter.startListening();
+
+
+        binding.imageSlider.setPageCount(3);
+        binding.imageSlider.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                Glide.with(imageView).load(urls[position]).into(imageView);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            }
+        });
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (adapter != null) adapter.stopListening();
     }
 
     private void scanCode(int requestCode) {

@@ -28,6 +28,12 @@ class Utility {
                 .whereEqualTo("section", section)
         }
 
+        fun getNewsQuery(type: String): Query {
+            return FirebaseFirestore.getInstance()
+                .collection("notice")
+                .whereEqualTo("type", type)
+        }
+
         fun showToast(context: Context, s: String) {
             Toast.makeText(context, s, Toast.LENGTH_SHORT).show()
         }

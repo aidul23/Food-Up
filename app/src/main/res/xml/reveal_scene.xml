@@ -22,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tap to view credit"
+            android:textSize="14sp"
             motion:layout_constraintBottom_toBottomOf="@id/icon"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -31,8 +32,8 @@
     <ConstraintSet android:id="@+id/end">
         <Constraint
             android:id="@+id/icon"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:alpha="1"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintTop_toTopOf="parent"
@@ -41,9 +42,15 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="14sp"
             motion:layout_constraintBottom_toBottomOf="@id/icon"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="@id/icon" />
+
+        <Constraint
+            android:id="@+id/motion_layout"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content" />
     </ConstraintSet>
 </MotionScene>
