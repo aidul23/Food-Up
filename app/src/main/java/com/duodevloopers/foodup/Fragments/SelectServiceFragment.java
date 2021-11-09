@@ -48,9 +48,9 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
 
     private NoticeAdapter adapter;
 
-    private String[] urls = {"https://loremflickr.com/cache/resized/65535_51268117623_0472f4fd17_b_640_480_g.jpg",
-            "https://loremflickr.com/cache/resized/65535_51174182925_63083892ac_b_640_480_g.jpg",
-            "https://loremflickr.com/cache/resized/65535_51280154990_651235f317_b_640_480_g.jpg"};
+    private String[] urls = {"https://firebasestorage.googleapis.com/v0/b/foodup-94d58.appspot.com/o/glw.png?alt=media&token=af9f4fe4-d2b6-436e-a974-fe6ca86d2217",
+            "https://firebasestorage.googleapis.com/v0/b/foodup-94d58.appspot.com/o/Green%20and%20Yellow%20Classic%20Maximalist%20Sports%20Football%20Banner.png?alt=media&token=c39f6f0b-8fe4-4972-ad36-5628947cc253",
+            "https://firebasestorage.googleapis.com/v0/b/foodup-94d58.appspot.com/o/varsity.png?alt=media&token=974b07ef-dc22-4a02-9c8d-92c036a17934"};
 
     public SelectServiceFragment() {
         // Required empty public constructor
