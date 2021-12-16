@@ -23,7 +23,7 @@ class FoodOrder(
         this.cost = cost;
     }
 
-    fun getItems(): List<String> = item.split("#")
+    fun getItems(): String = item
 
     fun getCost(): String {
         return cost

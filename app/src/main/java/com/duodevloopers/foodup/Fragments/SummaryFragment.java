@@ -1,5 +1,6 @@
 package com.duodevloopers.foodup.Fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -15,16 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
+import com.duodevloopers.foodup.Activities.OrderStatusActivity;
 import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
 import com.duodevloopers.foodup.Model.FoodOrder;
 import com.duodevloopers.foodup.Model.RestaurantItemPojo;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentSummaryBinding;
 import com.duodevloopers.foodup.myapp.MyApp;
+import com.duodevloopers.foodup.utility.Utility;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
@@ -117,15 +117,17 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         int totalCost = 0;
         StringBuilder stringBuilder = new StringBuilder();
 
-        for (RestaurantItemPojo s : list) {
+        for (int i = 0; i < list.size(); i++) {
+            RestaurantItemPojo s = list.get(i);
             stringBuilder.append(s.getmFoodName());
-            stringBuilder.append("#");
+            if (i != list.size() - 1) stringBuilder.append("#");
             totalCost += s.getmFoodPrice();
         }
 
         order.setItem(stringBuilder.toString());
         order.setCost(String.valueOf(totalCost));
 
+        Utility.Companion.placeFoodOrder(order);
     }
 
 
@@ -154,9 +156,10 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     }
 
     private void proceedToOrderStatus() {
-        final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();
-        navController.navigate(action);
+//        final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+//        NavDirections action = SummaryFragmentDirections.actionSummaryFragmentToOrderStatusFragment();
+//        navController.navigate(action);
+        startActivity(new Intent(requireActivity(), OrderStatusActivity.class));
         placeFoodOrder(MyApp.getmRestaurantItemPojo());
     }
 

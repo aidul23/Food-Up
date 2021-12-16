@@ -3,6 +3,8 @@ package com.duodevloopers.foodup.utility
 import android.content.Context
 import android.text.format.DateFormat
 import android.widget.Toast
+import com.duodevloopers.foodup.Model.FoodOrder
+import com.duodevloopers.foodup.Model.ServiceOrder
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
@@ -45,5 +47,22 @@ class Utility {
         }
 
 
+        fun placeFoodOrder(foodOrder: FoodOrder) {
+            FirebaseFirestore.getInstance()
+                .collection("shops")
+                .document("q3Uvg4piInWxRBC8ChrC")
+                .collection("orders")
+                .document()
+                .set(foodOrder)
+        }
+
+        fun placeServiceOrder(serviceOrder: ServiceOrder) {
+            FirebaseFirestore.getInstance()
+                .collection("shops")
+                .document("Stationary Shop 1")
+                .collection("orders")
+                .document()
+                .set(serviceOrder)
+        }
     }
 }
