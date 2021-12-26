@@ -1,6 +1,7 @@
 package com.duodevloopers.foodup.myapp
 
 import android.app.Application
+import android.util.Log
 import com.duodevloopers.foodup.Model.RestaurantItemPojo
 import com.duodevloopers.foodup.Model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +17,7 @@ class MyApp : Application() {
 
     }
 
+
     companion object {
         private const val TAG = "MyApp"
         var mRestaurantItemPojo: MutableList<RestaurantItemPojo> = ArrayList()
@@ -23,17 +25,37 @@ class MyApp : Application() {
 
         private fun getUser() {
 
-            FirebaseFirestore.getInstance()
-                .collection("student")
+            val ref = FirebaseFirestore.getInstance().collection("student")
                 .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
-                .get()
-                .addOnSuccessListener { documentSnapshot ->
-                    if (documentSnapshot.exists()) {
-                        loggedInUser = documentSnapshot.toObject(
-                            User::class.java
-                        )
-                    }
+
+            ref.addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    return@addSnapshotListener
                 }
+
+                if (snapshot != null && snapshot.exists()) {
+
+                    loggedInUser = snapshot.toObject(
+                        User::class.java
+                    )
+
+                } else {
+                    Log.d(TAG, "Current data: null")
+                }
+            }
+
+//            FirebaseFirestore.getInstance()
+//                .collection("student")
+//                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
+//                .get()
+//                .addOnSuccessListener { documentSnapshot ->
+//                    if (documentSnapshot.exists()) {
+//                        loggedInUser = documentSnapshot.toObject(
+//                            User::class.java
+//                        )
+//                    }
+//                }
         }
 
         @JvmStatic
@@ -66,4 +88,5 @@ class MyApp : Application() {
             return mRestaurantItemPojo
         }
     }
+
 }
