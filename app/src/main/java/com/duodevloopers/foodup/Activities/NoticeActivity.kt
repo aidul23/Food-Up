@@ -68,6 +68,8 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        if (MyApp.loggedInUser?.type  == "student") binding.add.visibility = View.GONE
+
         binding.add.setOnClickListener(this)
         binding.addFile.setOnClickListener(this)
         binding.addImage.setOnClickListener(this)
@@ -91,6 +93,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         binding.sectionSpinner.adapter = adapter
         binding.sectionSpinner.onItemSelectedListener = this
     }
+
 
     override fun onCheckedChanged(group: ChipGroup?, checkedId: Int) {
 

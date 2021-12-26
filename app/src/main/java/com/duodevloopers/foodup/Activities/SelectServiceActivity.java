@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,7 +54,11 @@ public class SelectServiceActivity extends AppCompatActivity {
 
                 if (contents.length == 3) {
                     // recharge
-                    recharge(contents[1]);
+                    if (contents[0] == MyApp.Companion.getLoggedInUser().id) {
+                        recharge(contents[1]);
+                    } else {
+                        Toast.makeText(this, "ID did not match", Toast.LENGTH_SHORT).show();
+                    }
                 } else if (contents.length == 2) {
                     // attendance
                     repository.writeToSheet(MyApp.Companion.getLoggedInUser(), contents[0]);
