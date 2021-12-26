@@ -40,7 +40,7 @@
             motion:transitionEasing="linear" />
         <Constraint
             android:id="@+id/text"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             motion:layout_constraintBottom_toBottomOf="@id/icon"
