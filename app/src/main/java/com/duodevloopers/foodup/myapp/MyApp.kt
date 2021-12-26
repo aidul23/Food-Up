@@ -24,7 +24,7 @@ class MyApp : Application() {
         private fun getUser() {
 
             FirebaseFirestore.getInstance()
-                .collection("users")
+                .collection("student")
                 .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
                 .get()
                 .addOnSuccessListener { documentSnapshot ->

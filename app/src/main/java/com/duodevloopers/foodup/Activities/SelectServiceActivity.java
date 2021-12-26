@@ -83,8 +83,8 @@ public class SelectServiceActivity extends AppCompatActivity {
                         DocumentReference reference = FirebaseFirestore.getInstance().collection("student").document(MyApp.Companion.getLoggedInUser().number);
                         DocumentSnapshot documentSnapshot = transaction.get(reference);
 
-                        double newAmount = Double.parseDouble(documentSnapshot.get("credit").toString()) + Double.parseDouble(amount);
-                        transaction.update(reference, "credit", newAmount);
+                        Double newAmount = Double.parseDouble(documentSnapshot.get("credit").toString()) + Double.parseDouble(amount);
+                        transaction.update(reference, "credit", newAmount.toString());
 
                         // Success
                         return null;
