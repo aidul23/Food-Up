@@ -123,15 +123,15 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     }
 
     override fun onViewPhoto(url: String) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onViewDoc(url: String) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onViewNotice(model: Notice) {
-        TODO("Not yet implemented")
+
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

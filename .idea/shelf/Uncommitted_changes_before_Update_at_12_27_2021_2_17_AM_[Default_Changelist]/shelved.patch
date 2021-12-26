@@ -1,0 +1,19 @@
+Index: app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.myapp\r\n\r\nimport android.app.Application\r\nimport com.duodevloopers.foodup.Model.RestaurantItemPojo\r\nimport com.duodevloopers.foodup.Model.User\r\nimport com.google.firebase.auth.FirebaseAuth\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\nimport java.util.*\r\n\r\nclass MyApp : Application() {\r\n    override fun onCreate() {\r\n        super.onCreate()\r\n        if (FirebaseAuth.getInstance().currentUser != null) {\r\n            getUser()\r\n        }\r\n\r\n    }\r\n\r\n    companion object {\r\n        private const val TAG = \"MyApp\"\r\n        var mRestaurantItemPojo: MutableList<RestaurantItemPojo> = ArrayList()\r\n        var loggedInUser: User? = null\r\n\r\n        private fun getUser() {\r\n\r\n            FirebaseFirestore.getInstance()\r\n                .collection(\"users\")\r\n                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)\r\n                .get()\r\n                .addOnSuccessListener { documentSnapshot ->\r\n                    if (documentSnapshot.exists()) {\r\n                        loggedInUser = documentSnapshot.toObject(\r\n                            User::class.java\r\n                        )\r\n                    }\r\n                }\r\n        }\r\n\r\n        @JvmStatic\r\n        fun addItemFromCart(restaurantItemPojo: RestaurantItemPojo) {\r\n            val toRemove: MutableList<RestaurantItemPojo> = ArrayList()\r\n            for (item in mRestaurantItemPojo) {\r\n                if (item.getmFoodName() == restaurantItemPojo.getmFoodName()) {\r\n                    toRemove.add(item)\r\n                }\r\n            }\r\n            mRestaurantItemPojo.removeAll(toRemove)\r\n            mRestaurantItemPojo.add(restaurantItemPojo)\r\n        }\r\n\r\n        @JvmStatic\r\n        fun addItem(restaurantItemPojo: RestaurantItemPojo) {\r\n            if (mRestaurantItemPojo.contains(restaurantItemPojo)) {\r\n                mRestaurantItemPojo.remove(restaurantItemPojo)\r\n            } else {\r\n                mRestaurantItemPojo.add(restaurantItemPojo)\r\n            }\r\n        }\r\n\r\n        fun removeItem(restaurantItemPojo: RestaurantItemPojo) {\r\n            mRestaurantItemPojo.remove(restaurantItemPojo)\r\n        }\r\n\r\n        @JvmStatic\r\n        fun getmRestaurantItemPojo(): List<RestaurantItemPojo> {\r\n            return mRestaurantItemPojo\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt b/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt
+--- a/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt	(revision 17747a8a6e12254d734cda18ee9c67c35df936b0)
++++ b/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt	(date 1640548373401)
+@@ -24,7 +24,7 @@
+         private fun getUser() {
+ 
+             FirebaseFirestore.getInstance()
+-                .collection("users")
++                .collection("student")
+                 .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
+                 .get()
+                 .addOnSuccessListener { documentSnapshot ->
