@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.duodevloopers.foodup.R;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.repository.Repository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -21,6 +22,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Arrays;
 
 public class SelectServiceActivity extends AppCompatActivity {
 
@@ -47,19 +50,17 @@ public class SelectServiceActivity extends AppCompatActivity {
                 showSnackBar();
 
                 String[] contents = intentResult.getContents().split("/");
-//
-//                if (contents.length == 3) {
-//                    // recharge
-//                    recharge(contents[0]);
-//                } else if (contents.length == 2) {
-//                    // attendance
-//                    //repository.writeToSheet(MyApp.getLoggedInUser());
-//
-//
-//
-//                }
 
-                Log.d(TAG, "onActivityResult: " + contents.toString());
+                if (contents.length == 3) {
+                    // recharge
+                    recharge(contents[0]);
+                } else if (contents.length == 2) {
+                    // attendance
+                    repository.writeToSheet(MyApp.Companion.getLoggedInUser(), contents[0]);
+
+                }
+
+                Log.d(TAG, "onActivityResult: " + Arrays.toString(contents));
 
             }
         } else {

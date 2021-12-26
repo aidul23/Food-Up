@@ -6,7 +6,7 @@ import retrofit2.http.QueryMap
 
 interface GoogleSheetApi {
 
-    @POST("https://script.google.com/macros/s/AKfycbzcJgym5u3Z0WPG7wxuV2tvreb6YUJ3j_0rcX4sQ3IASQ6_IA/exec")
+    @POST("https://script.google.com/macros/s/AKfycbzq0_33lKE0tFAaxOWa5jcvyRL6umg-Q8fzBqmGmm18wWBvcCG_4zObNi1DXLNaT5M/exec")
     fun writeToSheet(@QueryMap map: Map<String, String>): Call<Void>
 
 }

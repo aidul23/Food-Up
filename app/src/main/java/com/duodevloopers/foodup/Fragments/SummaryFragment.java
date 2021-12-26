@@ -148,7 +148,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     private void checkIfUserHasBalance() {
         SummaryFragmentArgs args = SummaryFragmentArgs.fromBundle(getArguments());
         double subTotal = Double.parseDouble(args.getSubtotal()) - 30.00;
-        if (subTotal > Double.parseDouble(MyApp.getLoggedInUser().getCredit())) {
+        if (subTotal > Double.parseDouble(MyApp.Companion.getLoggedInUser().getCredit())) {
             showSnackBar();
         } else {
             proceedToOrderStatus();
