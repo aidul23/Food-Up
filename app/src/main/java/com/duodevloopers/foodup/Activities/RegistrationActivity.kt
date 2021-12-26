@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.duodevloopers.foodup.databinding.ActivityRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.HashMap
+import java.util.*
 
 class RegistrationActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegistrationBinding
@@ -40,11 +40,12 @@ class RegistrationActivity : AppCompatActivity(), View.OnClickListener {
                 map["id"] = binding.editTextId.text.toString()
                 map["name"] = binding.editTextName.text.toString()
                 map["email"] = binding.editTextEmail.text.toString()
+                map["credit"] = "0.00"
                 map["type"] = "student"
                 map["number"] = FirebaseAuth.getInstance().currentUser?.phoneNumber.toString()
                 FirebaseFirestore.getInstance()
                     .collection("student")
-                    .document()
+                    .document(FirebaseAuth.getInstance().currentUser?.phoneNumber.toString())
                     .set(map)
                     .addOnSuccessListener {
                         binding.animationView.visibility = View.GONE

@@ -1,13 +1,11 @@
 package com.duodevloopers.foodup.Activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.navigation.fragment.findNavController
-import com.duodevloopers.foodup.R
 import com.duodevloopers.foodup.bottomsheet.OTPInputBottomSheet
 import com.duodevloopers.foodup.callbacks.OTPInputBottomSheetInteractionCallback
 import com.duodevloopers.foodup.databinding.ActivityLoginBinding
@@ -35,6 +33,25 @@ class LoginActivity : AppCompatActivity() , OTPInputBottomSheetInteractionCallba
         if (auth.currentUser != null) {
             startActivity(Intent(this,SelectServiceActivity::class.java))
             finish()
+        }
+
+        binding.cirLoginButton.setOnClickListener {
+
+            if (binding.editTextPhone.text.isNotEmpty()) {
+
+                binding.animationView.visibility = View.VISIBLE
+
+                val number = "+88" + binding.editTextPhone.text.toString()
+                sendVerificationCode(number)
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "Please provide a valid phone number",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
         }
     }
 
