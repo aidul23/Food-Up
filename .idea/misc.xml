@@ -15,7 +15,6 @@
         <entry key="..\:/Food-Up/app/src/main/res/drawable/ic_side_bg2.xml" value="0.3828125" />
         <entry key="..\:/Food-Up/app/src/main/res/drawable/recharge_layout_background.xml" value="0.3769230769230769" />
         <entry key="..\:/Food-Up/app/src/main/res/drawable/transport_ing_background.xml" value="0.3769230769230769" />
-        <entry key="..\:/Food-Up/app/src/main/res/layout/activity_create_notice.xml" value="0.17831813576494426" />
         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_make_cover_page.xml" value="0.35260416666666666" />
@@ -51,7 +50,10 @@
         <entry key="..\:/Food-Up/app/src/main/res/layout/teacher_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Food-Up/app/src/main/res/layout/teacher_registration.xml" value="0.36666666666666664" />
         <entry key="..\:/FoodUp - final/app/src/main/res/layout/activity_main.xml" value="0.12013888888888889" />
+        <entry key="..\:/FoodUp - final/app/src/main/res/layout/activity_make_cover_page.xml" value="0.14027777777777778" />
         <entry key="..\:/FoodUp - final/app/src/main/res/layout/activity_order_status.xml" value="0.18" />
+        <entry key="..\:/FoodUp - final/app/src/main/res/layout/fragment_select_service.xml" value="0.25" />
+        <entry key="..\:/FoodUp - final/app/src/main/res/layout/reveal.xml" value="0.1" />
       </map>
     </option>
   </component>

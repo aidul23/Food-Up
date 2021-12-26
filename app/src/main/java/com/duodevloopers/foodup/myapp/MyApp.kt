@@ -4,13 +4,14 @@ import android.app.Application
 import com.duodevloopers.foodup.Model.RestaurantItemPojo
 import com.duodevloopers.foodup.Model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         if (FirebaseAuth.getInstance().currentUser != null) {
-            //getUser();
+            getUser()
         }
 
     }
@@ -21,21 +22,18 @@ class MyApp : Application() {
         var loggedInUser: User? = null
 
         private fun getUser() {
-            loggedInUser = User()
-            loggedInUser!!.id = "C171080"
-            loggedInUser!!.credit = "300.00"
-            loggedInUser!!.section = "1CM"
-//            FirebaseFirestore.getInstance()
-//                .collection("users")
-//                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
-//                .get()
-//                .addOnSuccessListener { documentSnapshot ->
-//                    if (documentSnapshot.exists()) {
-//                        loggedInUser = documentSnapshot.toObject(
-//                            User::class.java
-//                        )
-//                    }
-//                }
+
+            FirebaseFirestore.getInstance()
+                .collection("users")
+                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        loggedInUser = documentSnapshot.toObject(
+                            User::class.java
+                        )
+                    }
+                }
         }
 
         @JvmStatic

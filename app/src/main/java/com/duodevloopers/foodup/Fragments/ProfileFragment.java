@@ -3,14 +3,6 @@ package com.duodevloopers.foodup.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,14 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.duodevloopers.foodup.Constant.Constant;
 import com.duodevloopers.foodup.Model.User;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.databinding.FragmentProfileBinding;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
@@ -70,23 +67,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         navController = Navigation.findNavController(view);
 
-        String number = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
-        Log.d(TAG, "onViewCreated: "+number);
-
-        db.collection("student").document(number).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.exists()) {
-                    user = documentSnapshot.toObject(User.class);
-
-                    binding.username.setText(user.name);
-                    binding.userDept.setText(user.department);
-                    binding.userId.setText(user.id);
-                    binding.userNumber.setText(user.number);
-                }
-            }
-        });
-
+        binding.username.setText(MyApp.Companion.getLoggedInUser().name);
+        binding.userDept.setText(MyApp.Companion.getLoggedInUser().department);
+        binding.userId.setText(MyApp.Companion.getLoggedInUser().id);
+        binding.userNumber.setText(MyApp.Companion.getLoggedInUser().number);
 
         binding.editUsername.setOnClickListener(this);
         binding.editUserEmail.setOnClickListener(this);

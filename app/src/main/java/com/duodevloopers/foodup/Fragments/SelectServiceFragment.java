@@ -27,6 +27,7 @@ import com.duodevloopers.foodup.bottomsheet.PrintServiceBottomSheet;
 import com.duodevloopers.foodup.bottomsheet.RoomBottomSheet;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.utility.Constants;
 import com.duodevloopers.foodup.utility.Utility;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -96,7 +97,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
         if (progress > 0.50) {
-            credit.setText("1211.00");
+            credit.setText(MyApp.Companion.getLoggedInUser().credit);
         }
     }
 

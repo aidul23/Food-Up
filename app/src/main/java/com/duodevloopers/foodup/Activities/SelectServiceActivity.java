@@ -47,15 +47,19 @@ public class SelectServiceActivity extends AppCompatActivity {
                 showSnackBar();
 
                 String[] contents = intentResult.getContents().split("/");
+//
+//                if (contents.length == 3) {
+//                    // recharge
+//                    recharge(contents[0]);
+//                } else if (contents.length == 2) {
+//                    // attendance
+//                    //repository.writeToSheet(MyApp.getLoggedInUser());
+//
+//
+//
+//                }
 
-                if (contents.length == 3) {
-                    // recharge
-                    recharge(contents[0]);
-                } else if (contents.length == 2) {
-                    // attendance
-                    //repository.writeToSheet(MyApp.getLoggedInUser());
-
-                }
+                Log.d(TAG, "onActivityResult: " + contents.toString());
 
             }
         } else {
