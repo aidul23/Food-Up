@@ -97,7 +97,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     @Override
     public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
         if (progress > 0.50) {
-            credit.setText(MyApp.Companion.getLoggedInUser().credit);
+            //credit.setText(MyApp.Companion.getLoggedInUser().credit);
         }
     }
 
@@ -118,6 +118,8 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
 
         creditMotionLayout = binding.getRoot().findViewById(R.id.motion_layout);
         credit = creditMotionLayout.findViewById(R.id.text);
+
+        credit.setText(MyApp.Companion.getLoggedInUser().credit);
 
         creditMotionLayout.addTransitionListener(this);
 
