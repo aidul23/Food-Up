@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer;
 import com.duodevloopers.foodup.Model.ServiceOrder;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
+import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.utility.Utility;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -57,7 +58,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
 
     public void showBottomSheet() {
 
-        order = new ServiceOrder("", false, "C171080", "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
+        order = new ServiceOrder("", false, MyApp.Companion.getLoggedInUser().id, "", 0.00, false, String.valueOf(System.currentTimeMillis()), "");
 
         pageTypeSpinner = bottomSheetView.findViewById(R.id.page_type_spinner);
         shopSpinner = bottomSheetView.findViewById(R.id.shop_spinner);
