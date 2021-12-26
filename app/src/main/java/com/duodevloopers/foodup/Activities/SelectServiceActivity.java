@@ -53,7 +53,7 @@ public class SelectServiceActivity extends AppCompatActivity {
 
                 if (contents.length == 3) {
                     // recharge
-                    recharge(contents[0]);
+                    recharge(contents[1]);
                 } else if (contents.length == 2) {
                     // attendance
                     repository.writeToSheet(MyApp.Companion.getLoggedInUser(), contents[0]);
@@ -80,7 +80,7 @@ public class SelectServiceActivity extends AppCompatActivity {
                 .runTransaction(new Transaction.Function<Void>() {
                     @Override
                     public Void apply(@NotNull Transaction transaction) throws FirebaseFirestoreException {
-                        DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document("C171080");
+                        DocumentReference reference = FirebaseFirestore.getInstance().collection("student").document(MyApp.Companion.getLoggedInUser().number);
                         DocumentSnapshot documentSnapshot = transaction.get(reference);
 
                         double newAmount = Double.parseDouble(documentSnapshot.get("credit").toString()) + Double.parseDouble(amount);
