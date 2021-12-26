@@ -31,7 +31,7 @@ class CreateNoticeActivity : AppCompatActivity() {
 
         noticeType = intent.getStringExtra("type")!!
 
-        if (noticeType == "notice") binding.noticeLink.visibility = View.GONE
+        if (noticeType == "notice") binding.noticeLinkLayout.visibility = View.GONE
 
         notice = Notice(
             Utility.formatMillisecondsIntoDate(System.currentTimeMillis()),
