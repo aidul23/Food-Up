@@ -1,0 +1,460 @@
+Index: app/src/main/java/com/duodevloopers/foodup/Activities/CreateNoticeActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Activities\r\n\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.duodevloopers.foodup.Model.Notice\r\nimport com.duodevloopers.foodup.databinding.ActivityCreateNoticeBinding\r\nimport com.duodevloopers.foodup.myapp.MyApp\r\nimport com.duodevloopers.foodup.utility.Utility\r\nimport com.google.android.gms.tasks.OnSuccessListener\r\nimport com.google.firebase.firestore.FirebaseFirestore\r\n\r\nclass CreateNoticeActivity : AppCompatActivity() {\r\n\r\n    private val TAG = \"CreateNoticeActivity\"\r\n\r\n    private lateinit var notice: Notice\r\n\r\n    private lateinit var binding: ActivityCreateNoticeBinding\r\n\r\n    private lateinit var noticeType: String\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityCreateNoticeBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        binding.toolbar.setNavigationOnClickListener {\r\n            onBackPressed()\r\n        }\r\n\r\n        noticeType = intent.getStringExtra(\"type\")!!\r\n\r\n        notice = Notice(\r\n            Utility.formatMillisecondsIntoDate(System.currentTimeMillis()),\r\n            \"\",\r\n            MyApp.getLoggedInUser().section,\r\n            \"\",\r\n            noticeType\r\n        )\r\n\r\n        binding.publish.setOnClickListener(View.OnClickListener {\r\n\r\n            if (\"\" == binding.noticeTitle.text.toString()) {\r\n                binding.noticeTitle.error = \"Please provide a proper title\"\r\n            } else if (noticeType == \"file\" || noticeType == \"image\" && binding.noticeLink.equals(\"\")) {\r\n                binding.noticeLink.error = \"Please provide a link\"\r\n            } else {\r\n                publishNotice()\r\n            }\r\n\r\n        })\r\n\r\n    }\r\n\r\n    private fun publishNotice() {\r\n\r\n        notice.title = binding.noticeTitle.text.toString()\r\n        notice.imageUrl = binding.noticeLink.text.toString()\r\n\r\n        FirebaseFirestore.getInstance()\r\n            .collection(\"notice\")\r\n            .document(System.currentTimeMillis().toString())\r\n            .set(notice)\r\n            .addOnSuccessListener(OnSuccessListener {\r\n                // TODO: 02/11/2021 make a success dialog\r\n                Utility.showToast(this, \"Published successfully\")\r\n            })\r\n\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/Activities/CreateNoticeActivity.kt b/app/src/main/java/com/duodevloopers/foodup/Activities/CreateNoticeActivity.kt
+--- a/app/src/main/java/com/duodevloopers/foodup/Activities/CreateNoticeActivity.kt	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/java/com/duodevloopers/foodup/Activities/CreateNoticeActivity.kt	(date 1640500740905)
+@@ -34,7 +34,7 @@
+         notice = Notice(
+             Utility.formatMillisecondsIntoDate(System.currentTimeMillis()),
+             "",
+-            MyApp.getLoggedInUser().section,
++            MyApp.loggedInUser?.section,
+             "",
+             noticeType
+         )
+Index: app/src/main/java/com/duodevloopers/foodup/Activities/OrderStatusActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Activities\r\n\r\nimport android.os.Bundle\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport com.duodevloopers.foodup.Adapter.SummaryItemListAdapter\r\nimport com.duodevloopers.foodup.Model.RestaurantItemPojo\r\nimport com.duodevloopers.foodup.R\r\nimport com.duodevloopers.foodup.databinding.ActivityOrderStatusBinding\r\nimport java.util.*\r\n\r\nclass OrderStatusActivity : AppCompatActivity() {\r\n\r\n    private lateinit var binding: ActivityOrderStatusBinding\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityOrderStatusBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        binding.toolbar.setNavigationOnClickListener {\r\n            onBackPressed()\r\n        }\r\n\r\n        val restaurantItemPojoArrayList = ArrayList<RestaurantItemPojo>()\r\n\r\n\r\n        restaurantItemPojoArrayList.add(\r\n            RestaurantItemPojo(\r\n                R.drawable.food_icon,\r\n                \"White rice & Chicken \",\r\n                \"One plate rice, one piece chicken with gravy\",\r\n                50,\r\n                1\r\n            )\r\n        )\r\n        restaurantItemPojoArrayList.add(\r\n            RestaurantItemPojo(\r\n                R.drawable.food_icon,\r\n                \"Khichuri & Chicken\",\r\n                \"One plate khichuri, one piece chicken with gravy\",\r\n                60,\r\n                1\r\n            )\r\n        )\r\n        restaurantItemPojoArrayList.add(\r\n            RestaurantItemPojo(\r\n                R.drawable.food_icon,\r\n                \"Chicken Biriyani\",\r\n                \"One plate biriyani rice, one piece chicken with gravy\",\r\n                80,\r\n                1\r\n            )\r\n        )\r\n        restaurantItemPojoArrayList.add(\r\n            RestaurantItemPojo(\r\n                R.drawable.food_icon,\r\n                \"Mineral Water\",\r\n                \"Half liter\",\r\n                15,\r\n                1\r\n            )\r\n        )\r\n\r\n        val adapter = SummaryItemListAdapter(restaurantItemPojoArrayList)\r\n        binding.summaryItemRecyclerView.adapter = adapter\r\n        binding.summaryItemRecyclerView.setHasFixedSize(true)\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/Activities/OrderStatusActivity.kt b/app/src/main/java/com/duodevloopers/foodup/Activities/OrderStatusActivity.kt
+--- a/app/src/main/java/com/duodevloopers/foodup/Activities/OrderStatusActivity.kt	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/java/com/duodevloopers/foodup/Activities/OrderStatusActivity.kt	(date 1640500740919)
+@@ -6,6 +6,8 @@
+ import com.duodevloopers.foodup.Model.RestaurantItemPojo
+ import com.duodevloopers.foodup.R
+ import com.duodevloopers.foodup.databinding.ActivityOrderStatusBinding
++import com.duodevloopers.foodup.myapp.MyApp
++import com.google.firebase.firestore.FirebaseFirestore
+ import java.util.*
+ 
+ class OrderStatusActivity : AppCompatActivity() {
+@@ -64,5 +66,28 @@
+         val adapter = SummaryItemListAdapter(restaurantItemPojoArrayList)
+         binding.summaryItemRecyclerView.adapter = adapter
+         binding.summaryItemRecyclerView.setHasFixedSize(true)
++
++        observeOrderStatus()
++    }
++
++    private fun observeOrderStatus() {
++        FirebaseFirestore.getInstance()
++            .collection("shops")
++            .document("q3Uvg4piInWxRBC8ChrC")
++            .get()
++            .addOnSuccessListener {
++                val ref = it.reference
++                ref.collection("orders")
++                    .get()
++                    .addOnSuccessListener {
++
++                        for (order in it.documents) {
++                            if (order["id"] == MyApp.loggedInUser?.id && order["done"] == true) {
++                                binding.orderStatus.text = "Your order is ready"
++                            }
++                        }
++
++                    }
++            }
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/duodevloopers/foodup/Activities/SelectServiceActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Activities;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.Color;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\n\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport com.duodevloopers.foodup.R;\r\nimport com.duodevloopers.foodup.myapp.MyApp;\r\nimport com.duodevloopers.foodup.repository.Repository;\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.android.material.snackbar.Snackbar;\r\nimport com.google.firebase.firestore.DocumentReference;\r\nimport com.google.firebase.firestore.DocumentSnapshot;\r\nimport com.google.firebase.firestore.FirebaseFirestore;\r\nimport com.google.firebase.firestore.FirebaseFirestoreException;\r\nimport com.google.firebase.firestore.Transaction;\r\nimport com.google.zxing.integration.android.IntentIntegrator;\r\nimport com.google.zxing.integration.android.IntentResult;\r\n\r\nimport org.jetbrains.annotations.NotNull;\r\n\r\npublic class SelectServiceActivity extends AppCompatActivity {\r\n\r\n    private static final String TAG = \"SelectServiceActivity\";\r\n\r\n    private Repository repository;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_select_service);\r\n\r\n//        startActivity(new Intent(this, OrderStatusActivity.class));\r\n\r\n        repository = new Repository();\r\n    }\r\n\r\n    @Override\r\n    public void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {\r\n        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);\r\n        if (intentResult != null) {\r\n            if (intentResult.getContents() != null) {\r\n\r\n                showSnackBar();\r\n\r\n                String[] contents = intentResult.getContents().split(\"/\");\r\n\r\n                if (contents.length == 3) {\r\n                    // recharge\r\n                    recharge(contents[0]);\r\n                } else if (contents.length == 2) {\r\n                    // attendance\r\n                    //repository.writeToSheet(MyApp.getLoggedInUser());\r\n\r\n                }\r\n\r\n            }\r\n        } else {\r\n            super.onActivityResult(requestCode, resultCode, data);\r\n        }\r\n    }\r\n\r\n    private void showSnackBar() {\r\n        Snackbar.make(findViewById(android.R.id.content), \"QR Code successfully scanned\", Snackbar.LENGTH_LONG)\r\n                .setBackgroundTint(Color.GRAY)\r\n                .setActionTextColor(Color.WHITE)\r\n                .show();\r\n    }\r\n\r\n    private void recharge(String amount) {\r\n        FirebaseFirestore.getInstance()\r\n                .runTransaction(new Transaction.Function<Void>() {\r\n                    @Override\r\n                    public Void apply(@NotNull Transaction transaction) throws FirebaseFirestoreException {\r\n                        DocumentReference reference = FirebaseFirestore.getInstance().collection(\"users\").document(MyApp.getLoggedInUser().getNumber());\r\n                        DocumentSnapshot documentSnapshot = transaction.get(reference);\r\n\r\n                        double newAmount = documentSnapshot.getDouble(\"credit\") + Double.parseDouble(amount);\r\n                        transaction.update(reference, \"credit\", newAmount);\r\n\r\n                        // Success\r\n                        return null;\r\n                    }\r\n                }).addOnSuccessListener(new OnSuccessListener<Void>() {\r\n            @Override\r\n            public void onSuccess(Void aVoid) {\r\n                Log.d(TAG, \"Transaction success!\");\r\n            }\r\n        });\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/Activities/SelectServiceActivity.java b/app/src/main/java/com/duodevloopers/foodup/Activities/SelectServiceActivity.java
+--- a/app/src/main/java/com/duodevloopers/foodup/Activities/SelectServiceActivity.java	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/java/com/duodevloopers/foodup/Activities/SelectServiceActivity.java	(date 1640541511516)
+@@ -76,10 +76,10 @@
+                 .runTransaction(new Transaction.Function<Void>() {
+                     @Override
+                     public Void apply(@NotNull Transaction transaction) throws FirebaseFirestoreException {
+-                        DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document(MyApp.getLoggedInUser().getNumber());
++                        DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document("C171080");
+                         DocumentSnapshot documentSnapshot = transaction.get(reference);
+ 
+-                        double newAmount = documentSnapshot.getDouble("credit") + Double.parseDouble(amount);
++                        double newAmount = Double.parseDouble(documentSnapshot.get("credit").toString()) + Double.parseDouble(amount);
+                         transaction.update(reference, "credit", newAmount);
+ 
+                         // Success
+Index: app/src/main/java/com/duodevloopers/foodup/Model/Notice.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Model\r\n\r\nclass Notice(\r\n    var date: String,\r\n    var imageUrl: String,\r\n    var section: String,\r\n    var title: String,\r\n    var type: String,\r\n) {\r\n\r\n    constructor() : this(\"\", \"\", \"\", \"\", \"\")\r\n\r\n    override fun toString(): String {\r\n        return super.toString()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/Model/Notice.kt b/app/src/main/java/com/duodevloopers/foodup/Model/Notice.kt
+--- a/app/src/main/java/com/duodevloopers/foodup/Model/Notice.kt	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/java/com/duodevloopers/foodup/Model/Notice.kt	(date 1640500740983)
+@@ -3,7 +3,7 @@
+ class Notice(
+     var date: String,
+     var imageUrl: String,
+-    var section: String,
++    var section: String?,
+     var title: String,
+     var type: String,
+ ) {
+Index: app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.java
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.java b/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.java
+deleted file mode 100644
+--- a/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.java	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ /dev/null	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
+@@ -1,87 +0,0 @@
+-package com.duodevloopers.foodup.myapp;
+-
+-import android.app.Application;
+-
+-import com.duodevloopers.foodup.Model.RestaurantItemPojo;
+-import com.duodevloopers.foodup.Model.User;
+-import com.google.android.gms.tasks.OnSuccessListener;
+-import com.google.firebase.auth.FirebaseAuth;
+-import com.google.firebase.firestore.DocumentSnapshot;
+-import com.google.firebase.firestore.FirebaseFirestore;
+-
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class MyApp extends Application {
+-
+-    private static final String TAG = "MyApp";
+-
+-    public static List<RestaurantItemPojo> mRestaurantItemPojo = new ArrayList<>();
+-
+-    private static User user;
+-
+-    private static void getUser() {
+-        FirebaseFirestore.getInstance()
+-                .collection("users")
+-                .document(FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber())
+-                .get()
+-                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+-                    @Override
+-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+-                        if (documentSnapshot.exists()) {
+-                            user = documentSnapshot.toObject(User.class);
+-                        }
+-                    }
+-                });
+-    }
+-
+-    public static User getLoggedInUser() {
+-        return user;
+-    }
+-
+-    public static void addItemFromCart(RestaurantItemPojo restaurantItemPojo) {
+-
+-        List<RestaurantItemPojo> toRemove = new ArrayList<>();
+-
+-        for (RestaurantItemPojo item : mRestaurantItemPojo) {
+-            if (item.getmFoodName().equals(restaurantItemPojo.getmFoodName())) {
+-                toRemove.add(item);
+-            }
+-        }
+-
+-        mRestaurantItemPojo.removeAll(toRemove);
+-        mRestaurantItemPojo.add(restaurantItemPojo);
+-    }
+-
+-    public static void addItem(RestaurantItemPojo restaurantItemPojo) {
+-
+-        if (mRestaurantItemPojo.contains(restaurantItemPojo)) {
+-            mRestaurantItemPojo.remove(restaurantItemPojo);
+-        } else {
+-            mRestaurantItemPojo.add(restaurantItemPojo);
+-        }
+-
+-    }
+-
+-    @Override
+-    public void onCreate() {
+-        super.onCreate();
+-
+-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+-            //getUser();
+-        }
+-        user = new User();
+-        user.id = "C171080";
+-        user.credit = "300.00";
+-        user.section = "1CM";
+-
+-    }
+-
+-    public static void removeItem(RestaurantItemPojo restaurantItemPojo) {
+-        mRestaurantItemPojo.remove(restaurantItemPojo);
+-    }
+-
+-    public static List<RestaurantItemPojo> getmRestaurantItemPojo() {
+-        return mRestaurantItemPojo;
+-    }
+-}
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ /dev/null	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt b/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt
+new file mode 100644
+--- /dev/null	(date 1640501962229)
++++ b/app/src/main/java/com/duodevloopers/foodup/myapp/MyApp.kt	(date 1640501962229)
+@@ -0,0 +1,74 @@
++package com.duodevloopers.foodup.myapp
++
++import android.app.Application
++import com.google.firebase.auth.FirebaseAuth
++import com.duodevloopers.foodup.myapp.MyApp
++import com.duodevloopers.foodup.Model.RestaurantItemPojo
++import com.duodevloopers.foodup.Model.User
++import com.google.firebase.firestore.FirebaseFirestore
++import com.google.firebase.firestore.DocumentSnapshot
++import java.util.ArrayList
++
++class MyApp : Application() {
++    override fun onCreate() {
++        super.onCreate()
++        if (FirebaseAuth.getInstance().currentUser != null) {
++            //getUser();
++        }
++
++    }
++
++    companion object {
++        private const val TAG = "MyApp"
++        var mRestaurantItemPojo: MutableList<RestaurantItemPojo> = ArrayList()
++        var loggedInUser: User? = null
++
++        private fun getUser() {
++            loggedInUser = User()
++            loggedInUser!!.id = "C171080"
++            loggedInUser!!.credit = "300.00"
++            loggedInUser!!.section = "1CM"
++//            FirebaseFirestore.getInstance()
++//                .collection("users")
++//                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
++//                .get()
++//                .addOnSuccessListener { documentSnapshot ->
++//                    if (documentSnapshot.exists()) {
++//                        loggedInUser = documentSnapshot.toObject(
++//                            User::class.java
++//                        )
++//                    }
++//                }
++        }
++
++        @JvmStatic
++        fun addItemFromCart(restaurantItemPojo: RestaurantItemPojo) {
++            val toRemove: MutableList<RestaurantItemPojo> = ArrayList()
++            for (item in mRestaurantItemPojo) {
++                if (item.getmFoodName() == restaurantItemPojo.getmFoodName()) {
++                    toRemove.add(item)
++                }
++            }
++            mRestaurantItemPojo.removeAll(toRemove)
++            mRestaurantItemPojo.add(restaurantItemPojo)
++        }
++
++        @JvmStatic
++        fun addItem(restaurantItemPojo: RestaurantItemPojo) {
++            if (mRestaurantItemPojo.contains(restaurantItemPojo)) {
++                mRestaurantItemPojo.remove(restaurantItemPojo)
++            } else {
++                mRestaurantItemPojo.add(restaurantItemPojo)
++            }
++        }
++
++        fun removeItem(restaurantItemPojo: RestaurantItemPojo) {
++            mRestaurantItemPojo.remove(restaurantItemPojo)
++        }
++
++        @JvmStatic
++        fun getmRestaurantItemPojo(): List<RestaurantItemPojo> {
++            return mRestaurantItemPojo
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/duodevloopers/foodup/Activities/NoticeActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.duodevloopers.foodup.Activities\r\n\r\nimport android.content.Intent\r\nimport android.os.Bundle\r\nimport android.view.View\r\nimport android.view.animation.Animation\r\nimport android.view.animation.AnimationUtils\r\nimport android.widget.AdapterView\r\nimport android.widget.ArrayAdapter\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport androidx.recyclerview.widget.GridLayoutManager\r\nimport com.duodevloopers.foodup.Adapter.NoticeAdapter\r\nimport com.duodevloopers.foodup.Model.Notice\r\nimport com.duodevloopers.foodup.R\r\nimport com.duodevloopers.foodup.clicklisteners.NoticeOnClickListener\r\nimport com.duodevloopers.foodup.databinding.ActivityNoticeBinding\r\nimport com.duodevloopers.foodup.myapp.MyApp\r\nimport com.duodevloopers.foodup.utility.Utility\r\nimport com.firebase.ui.firestore.FirestoreRecyclerOptions\r\nimport com.google.android.material.chip.ChipGroup\r\n\r\n\r\nclass NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,\r\n    AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener {\r\n\r\n    private val TAG = \"NoticeActivity\"\r\n\r\n    private lateinit var binding: ActivityNoticeBinding\r\n\r\n    private lateinit var adapter: NoticeAdapter\r\n\r\n    private lateinit var selectedSection: String\r\n\r\n    private var selectedType: String = \"notice\"\r\n\r\n    private val sections = arrayOf(\"1AM\", \"1BM\", \"1CM\", \"2AM\", \"2BM\", \"2CM\")\r\n\r\n    private val rotateOpen: Animation by lazy {\r\n        AnimationUtils.loadAnimation(\r\n            this,\r\n            R.anim.rotate_open_anim\r\n        )\r\n    }\r\n    private val rotateClose: Animation by lazy {\r\n        AnimationUtils.loadAnimation(\r\n            this,\r\n            R.anim.rotate_close_anim\r\n        )\r\n    }\r\n    private val fromBottom: Animation by lazy {\r\n        AnimationUtils.loadAnimation(\r\n            this,\r\n            R.anim.from_bottom_anim\r\n        )\r\n    }\r\n    private val toBottom: Animation by lazy {\r\n        AnimationUtils.loadAnimation(\r\n            this,\r\n            R.anim.to_bottom_anim\r\n        )\r\n    }\r\n\r\n\r\n    private var clicked: Boolean = false\r\n\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        binding = ActivityNoticeBinding.inflate(layoutInflater)\r\n        setContentView(binding.root)\r\n\r\n        binding.add.setOnClickListener(this)\r\n        binding.addFile.setOnClickListener(this)\r\n        binding.addImage.setOnClickListener(this)\r\n        binding.addNotice.setOnClickListener(this)\r\n\r\n        /*MyApp.getLoggedInUser()!!.section*/\r\n        selectedSection = MyApp.getLoggedInUser()!!.section\r\n\r\n\r\n        binding.chipGroup.setOnCheckedChangeListener(this)\r\n        binding.toolbar.setNavigationOnClickListener {\r\n            onBackPressed()\r\n        }\r\n\r\n        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(\r\n            this,\r\n            android.R.layout.simple_spinner_item, sections\r\n        )\r\n\r\n        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)\r\n        binding.sectionSpinner.adapter = adapter\r\n        binding.sectionSpinner.onItemSelectedListener = this\r\n    }\r\n\r\n    override fun onCheckedChanged(group: ChipGroup?, checkedId: Int) {\r\n\r\n        selectedType = when (checkedId) {\r\n            R.id.photo -> \"image\"\r\n            R.id.doc -> \"doc\"\r\n            else -> \"notice\"\r\n        }\r\n\r\n        Utility.showToast(this, selectedType)\r\n        getNotice(selectedType, selectedSection)\r\n\r\n    }\r\n\r\n    private fun getNotice(type: String, selectedSection: String) {\r\n\r\n        val options = FirestoreRecyclerOptions.Builder<Notice>()\r\n            .setQuery(Utility.getQuery(type, selectedSection), Notice::class.java)\r\n            .build()\r\n\r\n        adapter = NoticeAdapter(options, type)\r\n        binding.list.layoutManager = GridLayoutManager(this, 2)\r\n        binding.list.adapter = adapter\r\n        adapter.startListening()\r\n        adapter.setNoticeOnClickListener(this)\r\n\r\n    }\r\n\r\n    override fun onViewPhoto(url: String) {\r\n        TODO(\"Not yet implemented\")\r\n    }\r\n\r\n    override fun onViewDoc(url: String) {\r\n        TODO(\"Not yet implemented\")\r\n    }\r\n\r\n    override fun onViewNotice(model: Notice) {\r\n        TODO(\"Not yet implemented\")\r\n    }\r\n\r\n    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {\r\n        selectedSection = sections[position]\r\n        Utility.showToast(this, selectedSection)\r\n        getNotice(selectedType, selectedSection)\r\n    }\r\n\r\n    override fun onNothingSelected(parent: AdapterView<*>?) {\r\n        TODO(\"Not yet implemented\")\r\n    }\r\n\r\n    override fun onClick(v: View?) {\r\n        when {\r\n            v!!.id == R.id.add -> {\r\n                onAddButtonClicked()\r\n            }\r\n            v.id == R.id.add_image -> {\r\n                goToCreateActivity(\"image\")\r\n            }\r\n            v.id == R.id.add_file -> {\r\n                goToCreateActivity(\"doc\")\r\n            }\r\n            v.id == R.id.add_notice -> {\r\n                goToCreateActivity(\"notice\")\r\n            }\r\n        }\r\n    }\r\n\r\n    private fun goToCreateActivity(s: String) {\r\n\r\n        startActivity(Intent(this, CreateNoticeActivity::class.java).putExtra(\"type\", s))\r\n\r\n    }\r\n\r\n    private fun onAddButtonClicked() {\r\n        setVisibility(clicked)\r\n        setAnimation(clicked)\r\n        clicked = !clicked\r\n    }\r\n\r\n    private fun setAnimation(clicked: Boolean) {\r\n        if (!clicked) {\r\n            binding.addNotice.startAnimation(fromBottom)\r\n            binding.addImage.startAnimation(fromBottom)\r\n            binding.addFile.startAnimation(fromBottom)\r\n            binding.add.startAnimation(rotateOpen)\r\n        } else {\r\n            binding.addNotice.startAnimation(toBottom)\r\n            binding.addImage.startAnimation(toBottom)\r\n            binding.addFile.startAnimation(toBottom)\r\n            binding.add.startAnimation(rotateClose)\r\n        }\r\n    }\r\n\r\n    private fun setVisibility(clicked: Boolean) {\r\n        if (!clicked) {\r\n            binding.addNotice.visibility = View.VISIBLE\r\n            binding.addImage.visibility = View.VISIBLE\r\n            binding.addFile.visibility = View.VISIBLE\r\n        } else {\r\n            binding.addNotice.visibility = View.INVISIBLE\r\n            binding.addImage.visibility = View.INVISIBLE\r\n            binding.addFile.visibility = View.INVISIBLE\r\n        }\r\n    }\r\n\r\n\r\n    override fun onStart() {\r\n        super.onStart()\r\n    }\r\n\r\n    override fun onStop() {\r\n        super.onStop()\r\n        if (adapter != null) adapter.stopListening()\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/duodevloopers/foodup/Activities/NoticeActivity.kt b/app/src/main/java/com/duodevloopers/foodup/Activities/NoticeActivity.kt
+--- a/app/src/main/java/com/duodevloopers/foodup/Activities/NoticeActivity.kt	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/java/com/duodevloopers/foodup/Activities/NoticeActivity.kt	(date 1640500741081)
+@@ -74,7 +74,7 @@
+         binding.addNotice.setOnClickListener(this)
+ 
+         /*MyApp.getLoggedInUser()!!.section*/
+-        selectedSection = MyApp.getLoggedInUser()!!.section
++        selectedSection = MyApp.loggedInUser!!.section
+ 
+ 
+         binding.chipGroup.setOnCheckedChangeListener(this)
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"testRunner\" value=\"PLATFORM\" />\r\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"1.8\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/.idea/gradle.xml	(date 1640500741091)
+@@ -4,7 +4,7 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+-        <option name="testRunner" value="PLATFORM" />
++        <option name="testRunner" value="GRADLE" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+         <option name="gradleJvm" value="1.8" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/button_background.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/button_background_blue.xml\" value=\"0.3828125\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/edit_button_background.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/general_img_background.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_edit.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_login_hero.xml\" value=\"0.3828125\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_register_hero.xml\" value=\"0.3828125\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_select_home_bg.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_side_bg.xml\" value=\"0.3828125\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/ic_side_bg2.xml\" value=\"0.3828125\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/icon_search_white.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/recharge_layout_background.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/search.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/drawable/transport_ing_background.xml\" value=\"0.3769230769230769\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_login.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_main.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_make_cover_page.xml\" value=\"0.35260416666666666\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_map.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_notice.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_order_status.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_otpactivity.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_registration.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_scan.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_select_service.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/activity_splash.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/assignment_bottom_sheet.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/bottom_sheet.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/custom_dialog.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/example_home.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_cart.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_edit_user_profile.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_faq.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_home.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_order_status.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_profile.xml\" value=\"0.2957427536231884\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_restaurant.xml\" value=\"0.17831813576494426\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_select_service.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_summary.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/fragment_terms.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/item_doc_layout.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/item_notice_layout.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/item_photo_layout.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/mobile_number_bottom_sheet.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/print_bottom_sheet.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/provider_home.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/register_example.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/reveal.xml\" value=\"0.17831813576494426\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/room_bottom_sheet.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/room_item_layout.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/summary_item_layout.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/teacher_login.xml\" value=\"0.36666666666666664\" />\r\n        <entry key=\"..\\:/Food-Up/app/src/main/res/layout/teacher_registration.xml\" value=\"0.36666666666666664\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\r\n  </component>\r\n  <component name=\"ProjectType\">\r\n    <option name=\"id\" value=\"Android\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/.idea/misc.xml	(date 1640501036034)
+@@ -13,16 +13,13 @@
+         <entry key="..\:/Food-Up/app/src/main/res/drawable/ic_select_home_bg.xml" value="0.3769230769230769" />
+         <entry key="..\:/Food-Up/app/src/main/res/drawable/ic_side_bg.xml" value="0.3828125" />
+         <entry key="..\:/Food-Up/app/src/main/res/drawable/ic_side_bg2.xml" value="0.3828125" />
+-        <entry key="..\:/Food-Up/app/src/main/res/drawable/icon_search_white.xml" value="0.3769230769230769" />
+         <entry key="..\:/Food-Up/app/src/main/res/drawable/recharge_layout_background.xml" value="0.3769230769230769" />
+-        <entry key="..\:/Food-Up/app/src/main/res/drawable/search.xml" value="0.3769230769230769" />
+         <entry key="..\:/Food-Up/app/src/main/res/drawable/transport_ing_background.xml" value="0.3769230769230769" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_make_cover_page.xml" value="0.35260416666666666" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_map.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_notice.xml" value="0.36666666666666664" />
+-        <entry key="..\:/Food-Up/app/src/main/res/layout/activity_order_status.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_otpactivity.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_registration.xml" value="0.33" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_scan.xml" value="0.36666666666666664" />
+@@ -30,13 +27,11 @@
+         <entry key="..\:/Food-Up/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/assignment_bottom_sheet.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/bottom_sheet.xml" value="0.36666666666666664" />
+-        <entry key="..\:/Food-Up/app/src/main/res/layout/custom_dialog.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/example_home.xml" value="0.33" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_cart.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_edit_user_profile.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_faq.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+-        <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_order_status.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_profile.xml" value="0.2957427536231884" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_restaurant.xml" value="0.17831813576494426" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/fragment_select_service.xml" value="0.33" />
+@@ -45,7 +40,6 @@
+         <entry key="..\:/Food-Up/app/src/main/res/layout/item_doc_layout.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/item_notice_layout.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/item_photo_layout.xml" value="0.36666666666666664" />
+-        <entry key="..\:/Food-Up/app/src/main/res/layout/mobile_number_bottom_sheet.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/print_bottom_sheet.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/provider_home.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/register_example.xml" value="0.36666666666666664" />
+@@ -55,6 +49,8 @@
+         <entry key="..\:/Food-Up/app/src/main/res/layout/summary_item_layout.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/teacher_login.xml" value="0.36666666666666664" />
+         <entry key="..\:/Food-Up/app/src/main/res/layout/teacher_registration.xml" value="0.36666666666666664" />
++        <entry key="..\:/FoodUp - final/app/src/main/res/layout/activity_main.xml" value="0.12013888888888889" />
++        <entry key="..\:/FoodUp - final/app/src/main/res/layout/activity_order_status.xml" value="0.18" />
+       </map>
+     </option>
+   </component>
+Index: app/src/main/res/navigation/main_activity_nav_graph.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<navigation xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main_activity_nav_graph\"\r\n    app:startDestination=\"@id/homeFragment\">\r\n\r\n    <fragment\r\n        android:id=\"@+id/homeFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.HomeFragment\"\r\n        android:label=\"FoodUp\"\r\n        tools:layout=\"@layout/fragment_home\" >\r\n        <action\r\n            android:id=\"@+id/action_homeFragment_to_restaurantFragment\"\r\n            app:destination=\"@id/restaurantFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/cartFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.CartFragment\"\r\n        android:label=\"Cart\"\r\n        tools:layout=\"@layout/fragment_cart\" >\r\n        <action\r\n            android:id=\"@+id/action_cartFragment_to_summaryFragment\"\r\n            app:destination=\"@id/summaryFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/profileFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.ProfileFragment\"\r\n        android:label=\"Profile\"\r\n        tools:layout=\"@layout/fragment_profile\" >\r\n        <action\r\n            android:id=\"@+id/action_profileFragment_to_editUserProfileFragment\"\r\n            app:destination=\"@id/editUserProfileFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/orderFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.OrderFragment\"\r\n        android:label=\"Order\"\r\n        tools:layout=\"@layout/fragment_order\" />\r\n    <fragment\r\n        android:id=\"@+id/balanceFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.BalanceFragment\"\r\n        android:label=\"Balance\"\r\n        tools:layout=\"@layout/fragment_faq\" />\r\n    <fragment\r\n        android:id=\"@+id/termsFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.TermsFragment\"\r\n        android:label=\"Terms &amp; Conditions\"\r\n        tools:layout=\"@layout/fragment_terms\" />\r\n    <fragment\r\n        android:id=\"@+id/settingsFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.SettingsFragment\"\r\n        android:label=\"Settings\"\r\n        tools:layout=\"@layout/fragment_settings\" />\r\n    <fragment\r\n        android:id=\"@+id/restaurantFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.RestaurantFragment\"\r\n        android:label=\"Restaurants\"\r\n        tools:layout=\"@layout/fragment_restaurant\">\r\n        <action\r\n            android:id=\"@+id/action_restaurantFragment_to_cartFragment\"\r\n            app:destination=\"@id/cartFragment\" />\r\n        <argument\r\n            android:name=\"restaurantTitle\"\r\n            app:argType=\"string\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/summaryFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.SummaryFragment\"\r\n        android:label=\"Order Summary\"\r\n        tools:layout=\"@layout/fragment_summary\" >\r\n        <argument\r\n            android:name=\"SummaryItempojo\"\r\n            app:argType=\"com.duodevloopers.foodup.Model.SummaryItemPojo\"\r\n            app:nullable=\"true\" />\r\n        <argument\r\n            android:name=\"Subtotal\"\r\n            app:argType=\"string\" />\r\n        <action\r\n            android:id=\"@+id/action_summaryFragment_to_orderStatusFragment\"\r\n            app:destination=\"@id/orderStatusFragment\" />\r\n    </fragment>\r\n    <fragment\r\n        android:id=\"@+id/editUserProfileFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.EditUserProfileFragment\"\r\n        android:label=\"Edit Profile\"\r\n        tools:layout=\"@layout/fragment_edit_user_profile\" />\r\n    <fragment\r\n        android:id=\"@+id/orderStatusFragment\"\r\n        android:name=\"com.duodevloopers.foodup.Fragments.OrderStatusFragment\"\r\n        android:label=\"Order Status\"\r\n        tools:layout=\"@layout/fragment_order_status\" />\r\n</navigation>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/navigation/main_activity_nav_graph.xml b/app/src/main/res/navigation/main_activity_nav_graph.xml
+--- a/app/src/main/res/navigation/main_activity_nav_graph.xml	(revision 42914906fcd7330f511b82b5f790fed14cdafb36)
++++ b/app/src/main/res/navigation/main_activity_nav_graph.xml	(date 1640500741272)
+@@ -9,7 +9,7 @@
+         android:id="@+id/homeFragment"
+         android:name="com.duodevloopers.foodup.Fragments.HomeFragment"
+         android:label="FoodUp"
+-        tools:layout="@layout/fragment_home" >
++        tools:layout="@layout/fragment_home">
+         <action
+             android:id="@+id/action_homeFragment_to_restaurantFragment"
+             app:destination="@id/restaurantFragment" />
+@@ -18,7 +18,7 @@
+         android:id="@+id/cartFragment"
+         android:name="com.duodevloopers.foodup.Fragments.CartFragment"
+         android:label="Cart"
+-        tools:layout="@layout/fragment_cart" >
++        tools:layout="@layout/fragment_cart">
+         <action
+             android:id="@+id/action_cartFragment_to_summaryFragment"
+             app:destination="@id/summaryFragment" />
+@@ -27,7 +27,7 @@
+         android:id="@+id/profileFragment"
+         android:name="com.duodevloopers.foodup.Fragments.ProfileFragment"
+         android:label="Profile"
+-        tools:layout="@layout/fragment_profile" >
++        tools:layout="@layout/fragment_profile">
+         <action
+             android:id="@+id/action_profileFragment_to_editUserProfileFragment"
+             app:destination="@id/editUserProfileFragment" />
+@@ -68,7 +68,7 @@
+         android:id="@+id/summaryFragment"
+         android:name="com.duodevloopers.foodup.Fragments.SummaryFragment"
+         android:label="Order Summary"
+-        tools:layout="@layout/fragment_summary" >
++        tools:layout="@layout/fragment_summary">
+         <argument
+             android:name="SummaryItempojo"
+             app:argType="com.duodevloopers.foodup.Model.SummaryItemPojo"
+@@ -78,7 +78,9 @@
+             app:argType="string" />
+         <action
+             android:id="@+id/action_summaryFragment_to_orderStatusFragment"
+-            app:destination="@id/orderStatusFragment" />
++            app:destination="@id/orderStatusFragment"
++            app:popUpTo="@id/main_activity_nav_graph"
++            app:popUpToInclusive="true" />
+     </fragment>
+     <fragment
+         android:id="@+id/editUserProfileFragment"

@@ -34,7 +34,7 @@ class CreateNoticeActivity : AppCompatActivity() {
         notice = Notice(
             Utility.formatMillisecondsIntoDate(System.currentTimeMillis()),
             "",
-            MyApp.getLoggedInUser().section,
+            MyApp.loggedInUser?.section,
             "",
             noticeType
         )

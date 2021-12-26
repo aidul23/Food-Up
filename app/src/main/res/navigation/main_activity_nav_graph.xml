@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.duodevloopers.foodup.Fragments.HomeFragment"
         android:label="FoodUp"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_restaurantFragment"
             app:destination="@id/restaurantFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/cartFragment"
         android:name="com.duodevloopers.foodup.Fragments.CartFragment"
         android:label="Cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
         <action
             android:id="@+id/action_cartFragment_to_summaryFragment"
             app:destination="@id/summaryFragment" />
@@ -27,7 +27,7 @@
         android:id="@+id/profileFragment"
         android:name="com.duodevloopers.foodup.Fragments.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editUserProfileFragment"
             app:destination="@id/editUserProfileFragment" />
@@ -68,7 +68,7 @@
         android:id="@+id/summaryFragment"
         android:name="com.duodevloopers.foodup.Fragments.SummaryFragment"
         android:label="Order Summary"
-        tools:layout="@layout/fragment_summary" >
+        tools:layout="@layout/fragment_summary">
         <argument
             android:name="SummaryItempojo"
             app:argType="com.duodevloopers.foodup.Model.SummaryItemPojo"
@@ -78,7 +78,9 @@
             app:argType="string" />
         <action
             android:id="@+id/action_summaryFragment_to_orderStatusFragment"
-            app:destination="@id/orderStatusFragment" />
+            app:destination="@id/orderStatusFragment"
+            app:popUpTo="@id/main_activity_nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"

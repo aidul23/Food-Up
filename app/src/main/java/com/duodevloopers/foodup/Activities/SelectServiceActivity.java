@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.duodevloopers.foodup.R;
-import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.repository.Repository;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
@@ -76,10 +75,10 @@ public class SelectServiceActivity extends AppCompatActivity {
                 .runTransaction(new Transaction.Function<Void>() {
                     @Override
                     public Void apply(@NotNull Transaction transaction) throws FirebaseFirestoreException {
-                        DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document(MyApp.getLoggedInUser().getNumber());
+                        DocumentReference reference = FirebaseFirestore.getInstance().collection("users").document("C171080");
                         DocumentSnapshot documentSnapshot = transaction.get(reference);
 
-                        double newAmount = documentSnapshot.getDouble("credit") + Double.parseDouble(amount);
+                        double newAmount = Double.parseDouble(documentSnapshot.get("credit").toString()) + Double.parseDouble(amount);
                         transaction.update(reference, "credit", newAmount);
 
                         // Success

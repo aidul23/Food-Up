@@ -74,7 +74,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         binding.addNotice.setOnClickListener(this)
 
         /*MyApp.getLoggedInUser()!!.section*/
-        selectedSection = MyApp.getLoggedInUser()!!.section
+        selectedSection = MyApp.loggedInUser!!.section
 
 
         binding.chipGroup.setOnCheckedChangeListener(this)

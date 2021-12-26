@@ -6,6 +6,8 @@ import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter
 import com.duodevloopers.foodup.Model.RestaurantItemPojo
 import com.duodevloopers.foodup.R
 import com.duodevloopers.foodup.databinding.ActivityOrderStatusBinding
+import com.duodevloopers.foodup.myapp.MyApp
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 class OrderStatusActivity : AppCompatActivity() {
@@ -64,5 +66,28 @@ class OrderStatusActivity : AppCompatActivity() {
         val adapter = SummaryItemListAdapter(restaurantItemPojoArrayList)
         binding.summaryItemRecyclerView.adapter = adapter
         binding.summaryItemRecyclerView.setHasFixedSize(true)
+
+        observeOrderStatus()
+    }
+
+    private fun observeOrderStatus() {
+        FirebaseFirestore.getInstance()
+            .collection("shops")
+            .document("q3Uvg4piInWxRBC8ChrC")
+            .get()
+            .addOnSuccessListener {
+                val ref = it.reference
+                ref.collection("orders")
+                    .get()
+                    .addOnSuccessListener {
+
+                        for (order in it.documents) {
+                            if (order["id"] == MyApp.loggedInUser?.id && order["done"] == true) {
+                                binding.orderStatus.text = "Your order is ready"
+                            }
+                        }
+
+                    }
+            }
     }
 }
