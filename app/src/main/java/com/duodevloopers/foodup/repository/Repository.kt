@@ -16,7 +16,7 @@ class Repository {
 
         val googleSheetApi =
             Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(GoogleSheetApi::class.java)
