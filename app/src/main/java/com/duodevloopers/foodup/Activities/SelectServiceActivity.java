@@ -54,7 +54,7 @@ public class SelectServiceActivity extends AppCompatActivity {
 
                 if (contents.length == 3) {
                     // recharge
-                    if (contents[0] == MyApp.Companion.getLoggedInUser().id) {
+                    if (contents[0].equals(MyApp.Companion.getLoggedInUser().id)) {
                         recharge(contents[1]);
                     } else {
                         Toast.makeText(this, "ID did not match", Toast.LENGTH_SHORT).show();
