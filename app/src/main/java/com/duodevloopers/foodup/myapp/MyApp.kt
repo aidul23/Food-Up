@@ -2,6 +2,7 @@ package com.duodevloopers.foodup.myapp
 
 import android.app.Application
 import android.util.Log
+import com.duodevloopers.foodup.Model.Partner
 import com.duodevloopers.foodup.Model.RestaurantItemPojo
 import com.duodevloopers.foodup.Model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +26,7 @@ class MyApp : Application() {
         var mRestaurantItemPojo: MutableList<RestaurantItemPojo> = ArrayList()
         var loggedInUser: User? = null
         var shopList: MutableList<String> = ArrayList()
+        var partnerList: MutableList<Partner> = ArrayList()
 
         private fun getUser() {
 
@@ -49,17 +51,31 @@ class MyApp : Application() {
             }
         }
 
-         fun getPrintShops() {
+        fun getPrintShops() {
             FirebaseFirestore.getInstance()
                 .collection("shops")
                 .get()
                 .addOnSuccessListener {
                     for (shop in it.documents) {
 
-                        if (shop["type"] != "food") shopList.add(shop["name"].toString())
+                        if (shop["type"] != "food") {
+                            val shop1 = shop.toObject(Partner::class.java) as Partner
+                            partnerList.add(shop1)
+                            shopList.add(shop["name"].toString())
+                        }
 
                     }
                 }
+        }
+
+        fun getPartnerNumber(name: String): String {
+            var id = ""
+            for (shop in partnerList) {
+                if (name == shop.name) {
+                    id = shop.phoneNumber
+                }
+            }
+            return id
         }
 
         @JvmStatic

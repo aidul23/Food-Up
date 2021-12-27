@@ -119,7 +119,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
     private void placePrintOrder(ServiceOrder order) {
         FirebaseFirestore.getInstance()
                 .collection("shops")
-                .document(selectedShop)
+                .document(MyApp.Companion.getPartnerNumber(selectedShop))
                 .collection("orders")
                 .document(order.getId())
                 .set(order)
