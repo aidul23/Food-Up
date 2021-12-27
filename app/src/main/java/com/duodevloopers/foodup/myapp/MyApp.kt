@@ -69,13 +69,13 @@ class MyApp : Application() {
         }
 
         fun getPartnerNumber(name: String): String {
-            var id = ""
+            var number = ""
             for (shop in partnerList) {
                 if (name == shop.name) {
-                    id = shop.phoneNumber
+                    number = shop.phoneNumber
                 }
             }
-            return id
+            return number
         }
 
         @JvmStatic
