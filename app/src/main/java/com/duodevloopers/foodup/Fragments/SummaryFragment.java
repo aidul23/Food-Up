@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.duodevloopers.foodup.Activities.MainActivity;
 import com.duodevloopers.foodup.Activities.OrderStatusActivity;
 import com.duodevloopers.foodup.Adapter.SummaryItemListAdapter;
 import com.duodevloopers.foodup.Model.FoodOrder;
@@ -128,6 +129,9 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         order.setCost(String.valueOf(totalCost));
 
         Utility.Companion.placeFoodOrder(order);
+
+        requireActivity().getSharedPreferences("shop", MainActivity.MODE_PRIVATE)
+                .edit().putString("shop_number", "+8801711111111").apply();
     }
 
 

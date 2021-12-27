@@ -65,7 +65,7 @@ class NoticeAdapter(options: FirestoreRecyclerOptions<Notice>, var type: String)
                 "doc" -> {
                     noticeOnClickListener.onViewDoc(model.imageUrl)
                 }
-                else -> {
+                "news" -> {
                     noticeOnClickListener.onViewNotice(model)
                 }
             }

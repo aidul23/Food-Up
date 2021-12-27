@@ -117,16 +117,17 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
     }
 
     private void placePrintOrder(ServiceOrder order) {
+        String partnerNumber = MyApp.Companion.getPartnerNumber(selectedShop);
         FirebaseFirestore.getInstance()
                 .collection("shops")
-                .document(MyApp.Companion.getPartnerNumber(selectedShop))
+                .document(partnerNumber)
                 .collection("orders")
                 .document(order.getId())
                 .set(order)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        callback.onConfirm();
+                        callback.onConfirm(partnerNumber);
                         hideBottomSheet();
                     }
                 });

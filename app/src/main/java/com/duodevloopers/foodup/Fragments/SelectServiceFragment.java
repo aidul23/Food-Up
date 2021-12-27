@@ -26,6 +26,7 @@ import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.bottomsheet.PrintServiceBottomSheet;
 import com.duodevloopers.foodup.bottomsheet.RoomBottomSheet;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
+import com.duodevloopers.foodup.clicklisteners.NoticeOnClickListener;
 import com.duodevloopers.foodup.databinding.FragmentSelectServiceBinding;
 import com.duodevloopers.foodup.myapp.MyApp;
 import com.duodevloopers.foodup.utility.Constants;
@@ -33,8 +34,9 @@ import com.duodevloopers.foodup.utility.Utility;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.synnapps.carouselview.ImageListener;
+import com.thefinestartist.finestwebview.FinestWebView;
 
-public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback, MotionLayout.TransitionListener {
+public class SelectServiceFragment extends Fragment implements PrintBottomSheetInteractionCallback, MotionLayout.TransitionListener, NoticeOnClickListener {
 
     private static final String TAG = "SelectServiceFragment";
 
@@ -86,7 +88,9 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
     };
 
     @Override
-    public void onConfirm() {
+    public void onConfirm(String partnerNumber) {
+        requireActivity().getSharedPreferences("shop", MainActivity.MODE_PRIVATE)
+                .edit().putString("shop_number", partnerNumber).apply();
         Toast.makeText(requireContext(), "Your print request has been posted", Toast.LENGTH_SHORT).show();
     }
 
@@ -169,6 +173,7 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
 
         adapter = new NoticeAdapter(options, "news");
         binding.newsList.setAdapter(adapter);
+        adapter.setNoticeOnClickListener(this);
         adapter.startListening();
 
 
@@ -197,5 +202,20 @@ public class SelectServiceFragment extends Fragment implements PrintBottomSheetI
         intentIntegrator.initiateScan();
 //        Intent intent = intentIntegrator.createScanIntent();
 //        startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public void onViewPhoto(@NonNull String url) {
+
+    }
+
+    @Override
+    public void onViewDoc(@NonNull String url) {
+
+    }
+
+    @Override
+    public void onViewNotice(@NonNull Notice model) {
+        new FinestWebView.Builder(requireActivity()).show(model.getSection());
     }
 }

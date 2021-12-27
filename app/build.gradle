@@ -23,7 +23,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -124,7 +123,9 @@ dependencies {
     // image slider
     implementation 'com.synnapps:carouselview:0.1.5'
 
-    implementation 'com.rm:longpresspopup:1.0.1'
+
+    // web view
+    implementation 'com.thefinestartist:finestwebview:1.2.7'
 
 
 }

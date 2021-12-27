@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.duodevloopers.foodup.R;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
@@ -38,6 +40,8 @@ public class SelectServiceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_service);
 
 //        startActivity(new Intent(this, OrderStatusActivity.class));
+
+        obserForOngoingOrders();
 
         repository = new Repository();
     }
@@ -100,5 +104,42 @@ public class SelectServiceActivity extends AppCompatActivity {
                 Log.d(TAG, "Transaction success!");
             }
         });
+    }
+
+    private void obserForOngoingOrders() {
+
+        String lastOrderShop = getSharedPreferences("shop", MainActivity.MODE_PRIVATE)
+                .getString("shop_number", "");
+
+        if (lastOrderShop != null && !lastOrderShop.equals("")) {
+            FirebaseFirestore.getInstance()
+                    .collection("shops")
+                    .document(lastOrderShop)
+                    .get()
+                    .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            DocumentReference ref = documentSnapshot.getReference();
+                            ref.collection("orders")
+                                    .document(MyApp.Companion.getLoggedInUser().id)
+                                    .addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                            if (!value.getBoolean("done")) {
+                                                new AlertDialog.Builder(SelectServiceActivity.this)
+                                                        .setTitle("Ongoing Order")
+                                                        .setMessage("Please do not place any order. You have an ongoing order")
+                                                        .setCancelable(false)
+                                                        .setPositiveButton("OK", (dialog, which) -> dialog.cancel());
+                                            } else {
+                                                getSharedPreferences("shop", MainActivity.MODE_PRIVATE)
+                                                        .edit().clear().apply();
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+        }
+
     }
 }

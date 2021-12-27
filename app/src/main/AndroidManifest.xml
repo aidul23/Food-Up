@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.duodevloopers.foodup">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".myapp.MyApp"
         android:allowBackup="true"
@@ -27,6 +29,11 @@
         <activity
             android:name=".Activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
+            android:configChanges="keyboardHidden|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/FinestWebViewTheme.Light" />
         <activity
             android:name=".Activities.RegistrationActivity"
             android:theme="@style/AppTheme.NoActionBar" />

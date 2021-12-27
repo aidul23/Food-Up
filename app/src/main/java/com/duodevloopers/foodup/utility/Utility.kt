@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.format.DateFormat
 import android.widget.Toast
 import com.duodevloopers.foodup.Model.FoodOrder
-import com.duodevloopers.foodup.Model.ServiceOrder
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
@@ -56,13 +55,5 @@ class Utility {
                 .set(foodOrder)
         }
 
-        fun placeServiceOrder(serviceOrder: ServiceOrder) {
-            FirebaseFirestore.getInstance()
-                .collection("shops")
-                .document("Stationary Shop 1")
-                .collection("orders")
-                .document()
-                .set(serviceOrder)
-        }
     }
 }
