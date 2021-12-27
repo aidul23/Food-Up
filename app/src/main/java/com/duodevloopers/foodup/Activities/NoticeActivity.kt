@@ -1,14 +1,18 @@
 package com.duodevloopers.foodup.Activities
 
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.duodevloopers.foodup.Adapter.NoticeAdapter
 import com.duodevloopers.foodup.Model.Notice
 import com.duodevloopers.foodup.R
@@ -18,10 +22,15 @@ import com.duodevloopers.foodup.myapp.MyApp
 import com.duodevloopers.foodup.utility.Utility
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.chip.ChipGroup
+import rm.com.longpresspopup.*
+import androidx.core.app.ShareCompat
+
+
+
 
 
 class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
-    AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener {
+    AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener{
 
     private val TAG = "NoticeActivity"
 
@@ -34,6 +43,8 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     private var selectedType: String = "notice"
 
     private val sections = arrayOf("1AM", "1BM", "1CM", "2AM", "2BM", "2CM")
+
+    private lateinit var imagePopup: ImageView
 
     private val rotateOpen: Animation by lazy {
         AnimationUtils.loadAnimation(
@@ -92,6 +103,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.sectionSpinner.adapter = adapter
         binding.sectionSpinner.onItemSelectedListener = this
+
     }
 
 
@@ -123,11 +135,16 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
     }
 
     override fun onViewPhoto(url: String) {
-
+        val intent = Intent(this, ViewImageActivity::class.java).apply {
+            putExtra("url",url)
+        }
+        startActivity(intent)
     }
 
     override fun onViewDoc(url: String) {
-
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        browserIntent.setPackage("com.google.android.apps.docs")
+        startActivity(browserIntent)
     }
 
     override fun onViewNotice(model: Notice) {

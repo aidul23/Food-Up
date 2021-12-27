@@ -124,5 +124,7 @@ dependencies {
     // image slider
     implementation 'com.synnapps:carouselview:0.1.5'
 
+    implementation 'com.rm:longpresspopup:1.0.1'
+
 
 }
