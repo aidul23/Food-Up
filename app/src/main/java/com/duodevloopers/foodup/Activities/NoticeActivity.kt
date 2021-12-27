@@ -1,6 +1,5 @@
 package com.duodevloopers.foodup.Activities
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,7 +11,6 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
 import com.duodevloopers.foodup.Adapter.NoticeAdapter
 import com.duodevloopers.foodup.Model.Notice
 import com.duodevloopers.foodup.R
@@ -22,15 +20,10 @@ import com.duodevloopers.foodup.myapp.MyApp
 import com.duodevloopers.foodup.utility.Utility
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.chip.ChipGroup
-import rm.com.longpresspopup.*
-import androidx.core.app.ShareCompat
-
-
-
 
 
 class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
-    AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener{
+    AdapterView.OnItemSelectedListener, NoticeOnClickListener, View.OnClickListener {
 
     private val TAG = "NoticeActivity"
 
@@ -79,7 +72,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
         binding = ActivityNoticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (MyApp.loggedInUser?.type  == "student") binding.add.visibility = View.GONE
+        if (MyApp.loggedInUser?.type == "student") binding.add.visibility = View.GONE
 
         binding.add.setOnClickListener(this)
         binding.addFile.setOnClickListener(this)
@@ -136,7 +129,7 @@ class NoticeActivity : AppCompatActivity(), ChipGroup.OnCheckedChangeListener,
 
     override fun onViewPhoto(url: String) {
         val intent = Intent(this, ViewImageActivity::class.java).apply {
-            putExtra("url",url)
+            putExtra("url", url)
         }
         startActivity(intent)
     }
