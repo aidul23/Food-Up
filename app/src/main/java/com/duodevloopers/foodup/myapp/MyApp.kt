@@ -7,12 +7,14 @@ import com.duodevloopers.foodup.Model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         if (FirebaseAuth.getInstance().currentUser != null) {
             getUser()
+            getPrintShops()
         }
 
     }
@@ -22,6 +24,7 @@ class MyApp : Application() {
         private const val TAG = "MyApp"
         var mRestaurantItemPojo: MutableList<RestaurantItemPojo> = ArrayList()
         var loggedInUser: User? = null
+        var shopList: MutableList<String> = ArrayList()
 
         private fun getUser() {
 
@@ -44,18 +47,19 @@ class MyApp : Application() {
                     Log.d(TAG, "Current data: null")
                 }
             }
+        }
 
-//            FirebaseFirestore.getInstance()
-//                .collection("student")
-//                .document(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!)
-//                .get()
-//                .addOnSuccessListener { documentSnapshot ->
-//                    if (documentSnapshot.exists()) {
-//                        loggedInUser = documentSnapshot.toObject(
-//                            User::class.java
-//                        )
-//                    }
-//                }
+         fun getPrintShops() {
+            FirebaseFirestore.getInstance()
+                .collection("shops")
+                .get()
+                .addOnSuccessListener {
+                    for (shop in it.documents) {
+
+                        if (shop["type"] != "food") shopList.add(shop["name"].toString())
+
+                    }
+                }
         }
 
         @JvmStatic

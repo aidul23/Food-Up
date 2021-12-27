@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.duodevloopers.foodup.Adapter.ShopAdapter;
 import com.duodevloopers.foodup.Model.ServiceOrder;
 import com.duodevloopers.foodup.R;
 import com.duodevloopers.foodup.callbacks.PrintBottomSheetInteractionCallback;
@@ -71,10 +72,8 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
         costLiveData.observeForever(this);
 
         //shop spinner
-        ArrayAdapter<CharSequence> adapterShop = ArrayAdapter.createFromResource(context,
-                R.array.shopName, android.R.layout.simple_spinner_item);
-        adapterShop.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        shopSpinner.setAdapter(adapterShop);
+        ShopAdapter shopAdapter = new ShopAdapter(context, MyApp.Companion.getShopList());
+        shopSpinner.setAdapter(shopAdapter);
         shopSpinner.setOnItemSelectedListener(new shopSelectedSpinnerClass());
 
         //print type spinner
@@ -153,8 +152,7 @@ public class PrintServiceBottomSheet implements View.OnClickListener, Observer<I
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            order.setType(shops[position]);
-            selectedShop = shops[position];
+            selectedShop = MyApp.Companion.getShopList().get(position);
         }
 
         @Override
