@@ -7,4 +7,6 @@ class Partner(
     var ownerName: String,
     var phoneNumber: String,
     var type: String
-)
+) {
+    constructor()
+}
